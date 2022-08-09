@@ -1,5 +1,6 @@
     async function getPhotographers() {
         // Penser à remplacer par les données récupérées dans le json
+        // Utilisre un pattern ?
         const photographers = [
             {
                 "name": "Ma data test",

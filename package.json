@@ -4,7 +4,8 @@
   "description": "## Démarrer le projet",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "sass --watch ./css/main.scss:./css/main.css"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/maxiim3/Projet_6_Front-End-Fisheye/issues"
   },
-  "homepage": "https://github.com/maxiim3/Projet_6_Front-End-Fisheye#readme"
+  "homepage": "https://github.com/maxiim3/Projet_6_Front-End-Fisheye#readme",
+  "devDependencies": {
+    "prettier": "^2.7.1",
+    "sass": "^1.54.3"
+  }
 }
