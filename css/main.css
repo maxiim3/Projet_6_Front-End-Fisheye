@@ -385,11 +385,29 @@ form input {
   padding: 0;
   box-sizing: border-box;
   list-style: none;
+  outline-color: #901c1c;
+  outline-offset: 5px;
 }
 
+h1,
+h2,
+h3,
+p,
+li,
+a,
+button,
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0;
+  font-weight: 400;
+}
+
+a:visited, a:link {
+  text-decoration: none;
+}
+
+body * :focus-visible {
+  scale: 101%;
+  transition: scale 120ms ease-out;
 }
 
 header {
@@ -398,6 +416,8 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 90px;
+  margin-top: 2.7vw;
+  margin-inline: 3.5vw;
 }
 
 h1 {
@@ -416,20 +436,43 @@ h1 {
   gap: 70px;
   margin-top: 100px;
 }
-.photographer_section article {
+.photographer_section .card {
+  display: block;
   justify-self: center;
+  width: 325px;
+}
+.photographer_section .card__artistLink {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.photographer_section article h2 {
+.photographer_section .card__artistLink__title {
   color: #d3573c;
   font-size: 36px;
 }
-.photographer_section article img {
+.photographer_section .card__artistLink__portrait {
   height: 200px;
   width: 200px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-inline: auto;
+}
+.photographer_section .card__information__item {
+  text-align: center;
+}
+.photographer_section .card__information__item--location {
+  font-size: 13px;
+  color: #d3573c;
+}
+.photographer_section .card__information__item--tagLine {
+  font-size: 10px;
+  color: black;
+}
+.photographer_section .card__information__item--price {
+  font-size: 9px;
+  color: #525252;
 }
 
 /*# sourceMappingURL=main.css.map */

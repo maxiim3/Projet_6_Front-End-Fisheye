@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
-<!--region Head-->
+   <!--region Head-->
    <head>
-<!--      Meta-->
+      <!--      Meta-->
       <meta charset="utf-8" />
       <!--      CSS-->
       <link
@@ -21,18 +21,38 @@
       <!--      Title-->
       <title>Fisheye</title>
    </head>
-<!--endregion-->
+   <!--endregion-->
    <body>
       <header>
          <img
             src="assets/images/logo.png"
-            class="logo" />
-         <h1>Nos photographes</h1>
+            class="logo"
+         aria-label='FishEye, revenez au menu principal'
+         tabindex='1'
+         />
+         <h1
+            aria-label='Découvrez nos photographes'
+            tabindex='2'
+         >Nos photographes</h1>
       </header>
       <main id="main">
-         <div class="photographer_section"></div>
+         <ul class="photographer_section"></ul>
       </main>
+
+
+      <!--API-->
+      <script src="scripts/api/api.js"></script>
+
+      <!--Models Constructor-->
+      <script src='scripts/models/PhotographerConstructor.js'></script>
+
+      <!--Factories-->
       <script src="scripts/factories/photographer.js"></script>
+
+      <!--Templates-->
+      <script src='scripts/templates/PhotographerCard.js'></script>
+
+      <!--Page Index-->
       <script src="scripts/pages/index.js"></script>
    </body>
 </html>
