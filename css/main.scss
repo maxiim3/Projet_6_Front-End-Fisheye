@@ -67,37 +67,42 @@ body {
 
 //region Style.css
 
+header,
+main {
+   margin-inline: 3.5vw;
+}
 header {
    display: flex;
    flex-direction: row;
    justify-content: space-between;
    align-items: center;
-   height: 90px;
-   margin-top: 2.7vw;
-   margin-inline: 3.5vw;
+   height: 70px;
+   margin-top: 2vw;
+   margin-bottom: 0;
 }
 
 h1 {
    color: $primary;
-   margin-right: 100px;
+   margin-right: 70px;
 }
 
 .logo {
    //height: 50px;
    height: 50px;
-   margin-left: 100px;
+   margin-left: 70px;
 }
 
 .photographer_section {
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   gap: 70px;
-   margin-top: 100px;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: space-between;
+   column-gap: 200px;
+   row-gap: 70px;
+   margin-block: 70px;
 
    .card {
       display: block;
-      justify-self: center;
-
       width: 325px;
 
       &__artistLink {
@@ -106,11 +111,6 @@ h1 {
          align-items: center;
          flex-direction: column;
 
-         &__title {
-            color: $secondary;
-            font-size: 36px;
-         }
-
          &__portrait {
             height: 200px;
             width: 200px;
@@ -118,16 +118,22 @@ h1 {
             object-fit: cover;
             object-position: center;
             margin-inline: auto;
+            margin-bottom: 20px;
+         }
+         &__title {
+            color: $secondary;
+            font-size: 36px;
          }
       }
 
       &__information {
          &__item {
             text-align: center;
+            margin-block: 3px;
 
             &--location {
                font-size: 13px;
-               color: $secondary;
+               color: $primary;
             }
 
             &--tagLine {

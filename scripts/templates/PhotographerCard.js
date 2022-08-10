@@ -16,15 +16,20 @@ class PhotographerCard {
    }
 
    createLinkSection() {
-      const { name, portrait } = this._data
+      const { id, name, portrait } = this._data
 
       // link to artist page | contains img and h2
       const $linkFocusable = document.createElement('a')
       $linkFocusable.classList.value = 'card__artistLink'
-      $linkFocusable.href = `/photographer-${name}`
+      $linkFocusable.href = `photographer.html?photographer=${id}`
       $linkFocusable.ariaRoleDescription = "Lien"
       $linkFocusable.ariaLabel = `Cliquer pour accéder à la page de l'artiste ${name}`
       $linkFocusable.tabIndex = this._index
+      // $linkFocusable.addEventListener('click', (e) => {
+      //    // e.preventDefault()
+      //    console.log($linkFocusable.href)
+      //
+      // })
 
       // Image Portrait
       const $portrait = document.createElement('img')

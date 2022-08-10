@@ -39,6 +39,11 @@ class App {
 const app = new App()
 app.init()
 
+// let params = (new URL(document.location)).searchParams;
+// let name = params.get('nom'); // la chaine de caractère "Jonathan Smith".
+// let age = parseInt(params.get('age')); // le nombre 18
+
+
 // ========================================== //
 
 // async function getPhotographers() {
