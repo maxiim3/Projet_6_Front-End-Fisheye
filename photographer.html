@@ -29,7 +29,10 @@
       <header>
          <img
             src="assets/images/logo.png"
-            class="logo" />
+            class="logo"
+            alt="FishEye, revenez au menu principal"
+            aria-label="FishEye, revenez au menu principal"
+            tabindex="1" />
       </header>
       <!--   endregion-->
 
@@ -37,12 +40,15 @@
       <main id="main">
          <div class="photograph-header">
             <button
-               class="contact_button"
-               onclick="displayModal()"> <!--Todo Enlever le JS du HTML-->
+               id="showModal"
+               class="contact_button">
                Contactez-moi
             </button>
          </div>
-         <div class='photographer_section'></div>
+         <ul class="media_section">
+
+
+         </ul>
       </main>
       <!--   endregion-->
       <!--   region Contact Modal-->
@@ -51,8 +57,8 @@
             <header>
                <h2>Contactez-moi</h2>
                <img
-                  src="assets/icons/close.svg"
-                  onclick="closeModal()" /> <!--Todo Enlever le JS du HTML-->
+                  id="closeModal"
+                  src="assets/icons/close.svg" />
             </header>
             <!--   region Form-->
             <form>
@@ -70,13 +76,21 @@
       <script src="scripts/api/api.js"></script>
 
       <!--Models Constructor-->
-      <script src='scripts/models/PhotographerConstructor.js'></script>
+      <script src='scripts/utils/contactForm.js'></script>
+      <!--Models Constructor-->
+      <script src="scripts/models/PhotographerConstructor.js"></script>
+      <script src="scripts/models/MediaConstructor.js"></script>
 
       <!--Factories-->
       <script src="scripts/factories/photographer.js"></script>
 
       <!--Templates-->
-      <script src='scripts/templates/PhotographerCard.js'></script>
+      <script src="scripts/templates/PhotographerCard.js"></script>
+
+      <!--Pub/Sub-->
+      <script src='scripts/modalObserver/OpenButtonObserver.js'></script>
+      <script src='scripts/modalObserver/CloseButtonObserver.js'></script>
+      <script src='scripts/modalObserver/ModalSubject.js'></script>
 
       <!--Page Index-->
       <script src="/scripts/pages/photographer.js"></script>
