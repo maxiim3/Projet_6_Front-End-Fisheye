@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 /* Document
    ========================================================================== */
@@ -393,8 +394,7 @@ h1,
 h2,
 h3,
 p,
-li,
-a,
+li, å a,
 button,
 body {
   font-family: "DM Sans", sans-serif;
@@ -435,7 +435,8 @@ h1 {
   margin-left: 70px;
 }
 
-.photographer_section {
+.photographer_section,
+.media_section {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -444,17 +445,20 @@ h1 {
   row-gap: 70px;
   margin-block: 70px;
 }
-.photographer_section .card {
+.photographer_section .card,
+.media_section .card {
   display: block;
   width: 325px;
 }
-.photographer_section .card__artistLink {
+.photographer_section .card__link,
+.media_section .card__link {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.photographer_section .card__artistLink__portrait {
+.photographer_section .card__link__portrait,
+.media_section .card__link__portrait {
   height: 200px;
   width: 200px;
   border-radius: 100%;
@@ -463,23 +467,28 @@ h1 {
   margin-inline: auto;
   margin-bottom: 20px;
 }
-.photographer_section .card__artistLink__title {
+.photographer_section .card__link__title,
+.media_section .card__link__title {
   color: #d3573c;
   font-size: 36px;
 }
-.photographer_section .card__information__item {
+.photographer_section .card__information__item,
+.media_section .card__information__item {
   text-align: center;
   margin-block: 3px;
 }
-.photographer_section .card__information__item--location {
+.photographer_section .card__information__item--location,
+.media_section .card__information__item--location {
   font-size: 13px;
   color: #901c1c;
 }
-.photographer_section .card__information__item--tagLine {
+.photographer_section .card__information__item--tagLine,
+.media_section .card__information__item--tagLine {
   font-size: 10px;
   color: black;
 }
-.photographer_section .card__information__item--price {
+.photographer_section .card__information__item--price,
+.media_section .card__information__item--price {
   font-size: 9px;
   color: #525252;
 }

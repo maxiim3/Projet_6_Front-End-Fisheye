@@ -1,50 +1,64 @@
-//Mettre le code JavaScript lié à la page photographer.html
-
-// Todo recuperer les elements du contact modal et appeler les fonctions presentes dans le HTML cf Todo photographer.html
-
 class App {
    constructor() {
-      this.photographersApi = new PhotographersApi('/data/photographers.json')
-      this.$photographersCardWrapper = document.querySelector('.photographer_section')
+      // Import API
+      this.api = new Api('/data/photographers.json')
+
+      // DOM
+      this.$photographersHeader = document.querySelector('.photograph-header')
+      this.$photographersCardWrapper = document.querySelector('.media_section')
+      this.$modal = document.getElementById('contact_modal')
+
+      // Modal Observer
+      this.Open = new OpenButtonObserver()
+      this.Close = new CloseButtonObserver()
+      this.WatcherModal = new ModalSubject()
+
+      // Index for screen reader
+      this.startingTabIndex = 4
+
+      // Get params from URl
       this.params = new URL(document.location).searchParams
+      this.paramsId = parseInt(this.params.get('photographer'))
    }
 
-   async getPhotographersData() {
-      const allData = await this.photographersApi.getPhotographers()
-      return await allData['photographers']
+   initModal() {
+      this.WatcherModal.subscribe(this.Open)
+      this.WatcherModal.subscribe(this.Close)
+      this.WatcherModal.fire(this.$modal)
    }
 
-   async getMediaData() {
-      const allData = await this.photographersApi.getPhotographers()
-      return await allData['media']
+   renderMedia(photographers, medias) {
+      const { name, id } = photographers
+      medias
+         .filter(media => media.photographerId === id)
+         .map(data => {
+            const mediaData = new MediaConstructor(data)
+            const mediaWithName = MediaWithName(mediaData, name)
+            return new CardFactory(mediaWithName, this.startingTabIndex, 'media')
+         })
+         .forEach(template => {
+            const card = template.createMediaCard()
+
+            this.$photographersCardWrapper.appendChild(card)
+            this.startingTabIndex += 2
+         })
    }
 
    async init() {
-      const photographers = await this.getPhotographersData()
-      const photographerId = parseInt(this.params.get('photographer'))
-      console.log(photographerId)
-      const data = photographers.filter(data =>
-         data.id === photographerId
-      )
-      console.log(photographerId)
-      let tabIndex = 2
-      const photographerData = new PhotographerConstructor(data[0])
-      const CardTemplate = new PhotographerCard(photographerData, tabIndex)
-      // todo call new Template
-      // todo factory pour API
-      // todo factory pour Data
-      // todo factory pour Template
-      // todo create new Constructor for media
-      const card = CardTemplate.createPhotographerCard()
-      this.$photographersCardWrapper.appendChild(card)
+      // Get data from photographers and media
+      const mediasData = await this.api.getMedia()
+      const photographers = await this.api.getPhotographers()
 
-      const media = await this.getMediaData()
-      // media.forEach(el => {
-      //    console.log(el.photographerId === photographerId)
-      // })
-      const photoMedia = media.filter(data => data.photographerId === photographerData.id )
+      const activePhotographer = photographers.filter(ph => ph.id === this.paramsId)[0]
+      const activePhotographerData = new PhotographerConstructor(activePhotographer)
+      const header = new CardFactory(activePhotographerData, this.startingTabIndex, 'photographer')
+      const [ information, picture ] = header.renderHeader()
 
-      console.log(photoMedia)
+      this.$photographersHeader.prepend(information)
+      this.$photographersHeader.append(picture)
+
+      this.initModal()
+      this.renderMedia(activePhotographer, mediasData)
    }
 }
 

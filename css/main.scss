@@ -41,7 +41,7 @@ h1,
 h2,
 h3,
 p,
-li,
+li,å
 a,
 button,
 body {
@@ -92,7 +92,8 @@ h1 {
    margin-left: 70px;
 }
 
-.photographer_section {
+.photographer_section,
+.media_section{
    display: flex;
    flex-wrap: wrap;
    align-items: center;
@@ -105,7 +106,7 @@ h1 {
       display: block;
       width: 325px;
 
-      &__artistLink {
+      &__link {
          display: flex;
          justify-content: center;
          align-items: center;

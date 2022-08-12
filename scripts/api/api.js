@@ -1,5 +1,6 @@
 class Api {
    _url
+
    constructor(url) {
       this._url = url
    }
@@ -14,14 +15,14 @@ class Api {
          .then(data => data)
          .catch(err => console.warn(`Un problème est survenu...${err}`))
    }
-}
 
-class PhotographersApi extends Api {
-   constructor(url) {
-      super(url)
+   async getPhotographers() {
+      const photographer = await this.get()
+      return photographer['photographers']
    }
 
-   async getPhotographers () {
-      return await this.get()
+   async getMedia() {
+      const photographer = await this.get()
+      return photographer['media']
    }
 }

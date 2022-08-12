@@ -25,22 +25,17 @@ class PhotographerCard {
       $linkFocusable.ariaRoleDescription = "Lien"
       $linkFocusable.ariaLabel = `Cliquer pour accéder à la page de l'artiste ${name}`
       $linkFocusable.tabIndex = this._index
-      // $linkFocusable.addEventListener('click', (e) => {
-      //    // e.preventDefault()
-      //    console.log($linkFocusable.href)
-      //
-      // })
 
       // Image Portrait
       const $portrait = document.createElement('img')
-      $portrait.classList.value = 'card__artistLink__portrait'
+      $portrait.classList.value = 'card__link__portrait'
       $portrait.src = portrait
-      $portrait.alt = `Photo de profil de ${name}`
+      $portrait.alt = `Portrait de ${name}`
 
       // Title with artist name
       const $h2 = document.createElement('h2')
       $h2.innerText = name
-      $h2.classList.value = 'card__artistLink__title'
+      $h2.classList.value = 'card__link__title'
       $h2.ariaLabel = name
 
       //Append img and title to link
@@ -51,7 +46,7 @@ class PhotographerCard {
    }
 
    createInformationSection() {
-      const { name, location, tagline, price } = this._data
+      const { location, tagline, price } = this._data
 
       const items = [
          {
@@ -86,6 +81,46 @@ class PhotographerCard {
       })
 
       return $information
+   }
+
+   // todo  remplacer BEM par tailwind style, car pas beaucoup d'element
+   // todo refactoriser pour isoler la creation des e;ements redondant
+   renderHeader() {
+      const {name, location, portrait, tagline} = this._data
+
+      // display active photographer in header
+      // Image Portrait
+      const $portrait = document.createElement('img')
+      $portrait.classList.value = 'card__link__portrait'
+      $portrait.src = portrait
+      $portrait.alt = `Portrait de ${name}`
+
+      const $information = document.createElement('ul')
+      $information.classList.value = 'card__information'
+      $information.ariaLabel = "Plus d'informations"
+
+      const $h2 = document.createElement('h2')
+      $h2.innerText = name
+      $h2.classList.value = 'card__link__title'
+      $h2.ariaLabel = name
+
+      const $location = document.createElement('p')
+      $location.innerText = location
+      $location.classList.value = `card__information__item card__information__item--location`
+      $location.ariaLabel = "Emplacement de l'artiste"
+
+      const $slogan = document.createElement('p')
+      $slogan.innerText = tagline
+      $slogan.classList.value = `card__information__item card__information__item--tagLine`
+      $slogan.ariaLabel = "Slogan"
+
+
+
+      $information.appendChild($h2)
+      $information.appendChild($location)
+      $information.appendChild($slogan)
+
+      return [$information, $portrait]
    }
 
    createPhotographerCard() {

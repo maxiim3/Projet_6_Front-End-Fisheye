@@ -19,19 +19,20 @@
 //     return { name, portrait, getUserCardDOM }
 // }
 
+//
+// class PhotographerFactory {
+//     _data
+//     constructor(data) {
+//         this._data = data
+//     }
+//
+//     get data() {
+//         return this._data
+//     }
+//
+//     getUserCardDOM(){
+//         const CardTemplate = new PhotographerCard(this.data)
+//         return CardTemplate.createPhotographerCard()
+//     }
+// }
 
-class PhotographerFactory {
-    _data
-    constructor(data) {
-        this._data = data
-    }
-
-    get data() {
-        return this._data
-    }
-
-    getUserCardDOM(){
-        const CardTemplate = new PhotographerCard(this.data)
-        return CardTemplate.createPhotographerCard()
-    }
-}
