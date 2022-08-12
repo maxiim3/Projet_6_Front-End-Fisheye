@@ -1,66 +1,75 @@
-class App {
-   constructor() {
-      // Import API
-      this.api = new Api('/data/photographers.json')
-
-      // DOM
-      this.$photographersHeader = document.querySelector('.photograph-header')
-      this.$photographersCardWrapper = document.querySelector('.media_section')
-      this.$modal = document.getElementById('contact_modal')
-
-      // Modal Observer
-      this.Open = new OpenButtonObserver()
-      this.Close = new CloseButtonObserver()
-      this.WatcherModal = new ModalSubject()
-
-      // Index for screen reader
-      this.startingTabIndex = 4
+   const getPhotographer = async () => {
+      //Import API
+      const api = new Api('/data/photographers.json')
+      const allPhotographers = await api.getPhotographers()
 
       // Get params from URl
-      this.params = new URL(document.location).searchParams
-      this.paramsId = parseInt(this.params.get('photographer'))
+      const params = new URL(document.location).searchParams
+      const paramsId = parseInt(params.get('photographer'))
+
+      //Filter data to get active photographer
+      const activePhotographer = allPhotographers.filter(ph => ph.id === paramsId)[0]
+      return new PhotographerConstructor(activePhotographer)
    }
 
-   initModal() {
-      this.WatcherModal.subscribe(this.Open)
-      this.WatcherModal.subscribe(this.Close)
-      this.WatcherModal.fire(this.$modal)
+   const getHeader = async (data, index) => {
+      const header = new PhotographerFactory(
+         data,
+         index,
+         'header',
+      )
+      return await header.createHeader()
+   }
+   const getMedia = async () => {
+      //Import API
+      const api = new Api('/data/photographers.json')
+      return await api.getMedia()
    }
 
-   renderMedia(photographers, medias) {
-      const { name, id } = photographers
+   const watchModal = () => {
+      const $modal = document.getElementById('contact_modal')
+
+      // Modal Observer
+      const Open = new OpenButtonObserver()
+      const Close = new CloseButtonObserver()
+      const WatcherModal = new ModalSubject()
+
+      WatcherModal.subscribe(Open)
+      WatcherModal.subscribe(Close)
+      WatcherModal.fire($modal)
+   }
+
+
+   const displayData = async (photographer, medias, index) => {
+      const $photographersCardWrapper = document.querySelector('.media_section')
+      // Index for screen reader
+
+
+      const { name, id } = photographer
       medias
          .filter(media => media.photographerId === id)
          .map(data => {
             const mediaData = new MediaConstructor(data)
             const mediaWithName = MediaWithName(mediaData, name)
-            return new CardFactory(mediaWithName, this.startingTabIndex, 'media')
+            return new PhotographerFactory(mediaWithName, index, 'media')
          })
          .forEach(template => {
             const card = template.createMediaCard()
 
-            this.$photographersCardWrapper.appendChild(card)
-            this.startingTabIndex += 2
+            $photographersCardWrapper.appendChild(card)
+            index += 2
          })
+
    }
 
-   async init() {
-      // Get data from photographers and media
-      const mediasData = await this.api.getMedia()
-      const photographers = await this.api.getPhotographers()
+   const init = async () => {
+      let startingTabIndex = 4
+      const photographer = await getPhotographer()
+      const medias = await getMedia()
 
-      const activePhotographer = photographers.filter(ph => ph.id === this.paramsId)[0]
-      const activePhotographerData = new PhotographerConstructor(activePhotographer)
-      const header = new CardFactory(activePhotographerData, this.startingTabIndex, 'photographer')
-      const [ information, picture ] = header.renderHeader()
-
-      this.$photographersHeader.prepend(information)
-      this.$photographersHeader.append(picture)
-
-      this.initModal()
-      this.renderMedia(activePhotographer, mediasData)
+      watchModal()
+      await getHeader(photographer, startingTabIndex)
+      return await displayData(photographer, medias, startingTabIndex)
    }
-}
 
-const app = new App()
-app.init()
+   init()

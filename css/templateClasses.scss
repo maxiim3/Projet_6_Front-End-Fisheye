@@ -1,0 +1,148 @@
+.flex {
+   display: flex;
+   flex-wrap: wrap;
+
+   &__col {
+      flex-direction: column;
+   }
+
+   &__row {
+      flex-direction: row;
+   }
+}
+
+.block {
+   display: block;
+}
+
+.alignCenter {
+   align-items: center;
+}
+
+.justifyBetween {
+   justify-content: space-between;
+}
+
+.justifyCenter {
+   justify-content: center;
+}
+
+.selfCenter {
+   align-self: center;
+}
+
+.cardWrapper {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   column-gap: 70px;
+   row-gap: 70px;
+   margin-block: 70px;
+}
+
+.fullSpace {
+   width: 100px;
+   height: 100px;
+}
+
+.text {
+   &__xxl {
+      font-size: 64px;
+   }
+
+   &__xl {
+      font-size: 36px;
+   }
+
+   &__l {
+      font-size: 24px;
+   }
+
+   &__m {
+      font-size: 18px;
+
+      %--alt {
+         font-size: 20px;
+      }
+   }
+
+   &__sm {
+      font-size: 13px;
+   }
+
+   &__xs {
+      font-size: 10px;
+
+      &--alt {
+         font-size: 9px;
+      }
+   }
+}
+
+.clr {
+   &__primary {
+      color: $primary;
+   }
+
+   &__secondary {
+      color: $secondary;
+   }
+
+   &__gray {
+      color: $gray;
+   }
+
+   &__white {
+      color: $white;
+   }
+
+   &__dark {
+      color: $dark;
+   }
+}
+.gap{
+   &__sm{
+      gap:6px
+   }
+   &__m {
+      gap:12px
+   }
+   &__l{
+      gap:24px
+   }
+}
+.cardLayout {
+   width: 355px;
+   height: 340px;
+}
+
+.imgPhotographer {
+   height: 200px;
+   width: 200px;
+   border-radius: 100%;
+   object-fit: cover;
+   object-position: center;
+   margin-inline: auto;
+   margin-bottom: 20px;
+}
+
+.imgMedia {
+   width: 350px;
+   height: 300px;
+   object-fit: cover;
+   object-position: center;
+   margin-inline: auto;
+}
+
+.portrait {
+   width: 200px;
+   height: 200px;
+   object-fit: cover;
+   object-position: center;
+   margin-inline: auto;
+   border-radius: 100%;
+}
+
+.likeIcon {
+   height: 18.5px;
+   width: 18px;
+}

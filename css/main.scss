@@ -1,69 +1,10 @@
-@use 'normalize.css';
-@use 'Photographer.scss';
+@import 'normalize.css';
+@import 'base';
+@import 'templateClasses';
+@import 'Photographer.scss';
 
-//region Base
-//region Variables and fonts
-$primary: #901c1c;
-$secondary: #d3573c;
-$gray: #525252;
-$white: #fafafa;
-$dark: black;
 
-@mixin links {
-   background: $primary;
-   color: $white;
-   &:hover {
-      background: $secondary;
-      color: $dark;
-   }
-}
 
-@mixin focusScale($zoom: 101%) {
-   scale: $zoom;
-   transition: scale 120ms ease-out;
-}
-
-//endregion
-//region Personal Reset
-
-*,
-*:before,
-*:after {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   list-style: none;
-   outline-color: $primary;
-   outline-offset: 5px;
-}
-
-h1,
-h2,
-h3,
-p,
-li,å
-a,
-button,
-body {
-   font-family: 'DM Sans', sans-serif;
-   font-weight: 400;
-}
-
-a {
-   &:visited,
-   &:link {
-      text-decoration: none;
-   }
-}
-
-body {
-   * :focus-visible {
-      @include focusScale;
-   }
-}
-
-//endregion
-//endregion
 
 //region Style.css
 
@@ -71,6 +12,7 @@ header,
 main {
    margin-inline: 3.5vw;
 }
+
 header {
    display: flex;
    flex-direction: row;
@@ -81,8 +23,9 @@ header {
    margin-bottom: 0;
 }
 
+
+
 h1 {
-   color: $primary;
    margin-right: 70px;
 }
 
@@ -93,62 +36,57 @@ h1 {
 }
 
 .photographer_section,
-.media_section{
-   display: flex;
-   flex-wrap: wrap;
-   align-items: center;
-   justify-content: space-between;
-   column-gap: 200px;
-   row-gap: 70px;
-   margin-block: 70px;
+.media_section {
 
-   .card {
-      display: block;
-      width: 325px;
 
-      &__link {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         flex-direction: column;
-
-         &__portrait {
-            height: 200px;
-            width: 200px;
-            border-radius: 100%;
-            object-fit: cover;
-            object-position: center;
-            margin-inline: auto;
-            margin-bottom: 20px;
-         }
-         &__title {
-            color: $secondary;
-            font-size: 36px;
-         }
-      }
-
-      &__information {
-         &__item {
-            text-align: center;
-            margin-block: 3px;
-
-            &--location {
-               font-size: 13px;
-               color: $primary;
-            }
-
-            &--tagLine {
-               font-size: 10px;
-               color: $dark;
-            }
-
-            &--price {
-               font-size: 9px;
-               color: $gray;
-            }
-         }
-      }
-   }
+   //.card {
+   //   display: block;
+   //   width: 325px;
+   //
+   //   &__link {
+   //      display: flex;
+   //      justify-content: center;
+   //      align-items: center;
+   //      flex-direction: column;
+   //
+   //      &__portrait {
+   //         height: 200px;
+   //         width: 200px;
+   //         border-radius: 100%;
+   //         object-fit: cover;
+   //         object-position: center;
+   //         margin-inline: auto;
+   //         margin-bottom: 20px;
+   //      }
+   //
+   //      &__title {
+   //         color: $secondary;
+   //         font-size: 36px;
+   //      }
+   //   }
+   //
+   //   &__information {
+   //      &__item {
+   //         text-align: center;
+   //         margin-block: 3px;
+   //
+   //         &--location {
+   //            font-size: 13px;
+   //            color: $primary;
+   //         }
+   //
+   //         &--tagLine {
+   //            font-size: 10px;
+   //            color: $dark;
+   //         }
+   //
+   //         &--price {
+   //            font-size: 9px;
+   //            color: $gray;
+   //         }
+   //      }
+   //   }
+   //}
 }
 
 // endregion

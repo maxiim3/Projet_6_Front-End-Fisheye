@@ -18,11 +18,11 @@ class Api {
 
    async getPhotographers() {
       const photographer = await this.get()
-      return photographer['photographers']
+      return photographer.photographers
    }
 
    async getMedia() {
       const photographer = await this.get()
-      return photographer['media']
+      return photographer.media
    }
 }

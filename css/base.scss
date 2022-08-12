@@ -1,0 +1,63 @@
+//region Base
+//region Variables and fonts
+$primary: #901c1c;
+$secondary: #d3573c;
+$gray: #525252;
+$white: #fafafa;
+$dark: black;
+
+@mixin links {
+  background: $primary;
+  color: $white;
+  &:hover {
+    background: $secondary;
+    color: $dark;
+  }
+}
+
+@mixin focusScale($zoom: 101%) {
+  scale: $zoom;
+  transition: scale 120ms ease-out;
+}
+
+//endregion
+//region Personal Reset
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline-color: $primary;
+  outline-offset: 5px;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+å a,
+button,
+body {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 400;
+}
+
+a {
+  &:visited,
+  &:link {
+    text-decoration: none;
+  }
+}
+
+body {
+  * :focus-visible {
+    @include focusScale;
+  }
+}
+
+//endregion
+//endregion

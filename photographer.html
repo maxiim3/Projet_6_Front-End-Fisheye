@@ -38,14 +38,14 @@
 
       <!--   region Main-->
       <main id="main">
-         <div class="photograph-header">
+         <div class="photograph-header flex flex__row flex__spaceBetween gap__l flex__center alignCenter">
             <button
                id="showModal"
                class="contact_button">
                Contactez-moi
             </button>
          </div>
-         <ul class="media_section">
+         <ul class='media_section cardWrapper'>
          </ul>
       </main>
       <!--   endregion-->
@@ -74,29 +74,34 @@
       <script src="scripts/api/api.js"></script>
 
       <!--Models Constructor-->
-      <script src='scripts/utils/contactForm.js'></script>
-      <!--Models Constructor-->
       <script src="scripts/models/PhotographerConstructor.js"></script>
       <script src="scripts/models/MediaConstructor.js"></script>
 
       <!--Factories-->
       <script src="scripts/factories/photographer.js"></script>
       <script src="scripts/factories/cardFactory.js"></script>
+      <script src="scripts/factories/mediaFactory.js"></script>
+
+      <!--Components -->
+      <script src='scripts/components/cardComponent.js'></script>
+      <script src='scripts/components/linkComponent.js'></script>
+      <script src='scripts/components/imageComponent.js'></script>
+      <script src='scripts/components/videoComponent.js'></script>
+      <script src='scripts/components/portraitComponent.js'></script>
 
       <!--Templates-->
-      <script src="scripts/templates/PhotographerCard.js"></script>
-      <script src="scripts/templates/MediaCard.js"></script>
+      <script src='scripts/template/PhotographerCard.js'></script>
+      <script src='scripts/template/MediaCard.js'></script>
+      <script src='scripts/template/PhotographerHeader.js'></script>
 
       <!--Pub/Sub-->
-      <script src='scripts/modalObserver/OpenButtonObserver.js'></script>
-      <script src='scripts/modalObserver/CloseButtonObserver.js'></script>
-      <script src='scripts/modalObserver/ModalSubject.js'></script>
+      <script src='scripts/modal/OpenButtonObserver.js'></script>
+      <script src='scripts/modal/CloseButtonObserver.js'></script>
+      <script src='scripts/modal/ModalSubject.js'></script>
 
       <!--Page Photographer-->
       <script src="/scripts/pages/photographer.js"></script>
 
-      <!--   region Scripts-->
-      <script src="/scripts/utils/contactForm.js"></script>
       <!--   endregion-->
    </body>
 </html>

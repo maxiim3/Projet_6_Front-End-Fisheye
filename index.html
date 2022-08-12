@@ -1,13 +1,17 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html
    lang="fr"
    dir="ltr">
    <!--region Head-->
    <head>
       <!--      Meta-->
-      <meta http-equiv='Content-Type' content='text/html;charset=UTF-8'>
-      <meta http-equiv='Content-Type' content='text/html;charset=windows-1251'>
-       <!--      CSS-->
+      <meta
+         http-equiv="Content-Type"
+         content="text/html;charset=UTF-8" />
+      <meta
+         http-equiv="Content-Type"
+         content="text/html;charset=windows-1251" />
+      <!--      CSS-->
       <link
          href="css/main.css"
          rel="stylesheet"
@@ -35,12 +39,13 @@
             tabindex="1" />
          <h1
             aria-label="Découvrez nos photographes"
-            tabindex="2">
+            tabindex="2"
+            class="clr__primary text__l">
             Nos photographes
          </h1>
       </header>
       <main id="main">
-         <ul class="photographer_section"></ul>
+         <ul class='photographer_section cardWrapper'></ul>
       </main>
 
       <!--API-->
@@ -52,9 +57,17 @@
       <!--Factories-->
       <script src="scripts/factories/photographer.js"></script>
       <script src="scripts/factories/cardFactory.js"></script>
+      <script src="scripts/factories/mediaFactory.js"></script>
+
+      <!--Components -->
+      <script src='scripts/components/cardComponent.js'></script>
+      <script src='scripts/components/linkComponent.js'></script>
+      <script src='scripts/components/imageComponent.js'></script>
+      <script src='scripts/components/videoComponent.js'></script>
+      <script src='scripts/components/portraitComponent.js'></script>
 
       <!--Templates-->
-      <script src="scripts/templates/PhotographerCard.js"></script>
+      <script src='scripts/template/PhotographerCard.js'></script>
 
       <!--Page Index-->
       <script src="scripts/pages/index.js"></script>

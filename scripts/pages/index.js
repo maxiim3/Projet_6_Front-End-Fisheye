@@ -1,33 +1,32 @@
-class App {
-   constructor() {
-      //Import API
-      this.api = new Api('/data/photographers.json')
 
-      // DOM
-      this.$photographersCardWrapper = document.querySelector('.photographer_section')
-
-      // Index for screen reader
-      this.startingTabIndex = 2
-   }
-
-   async init() {
-      // get data from photographers
-      const photographers = await this.api.getPhotographers()
-
-      // Create photographer object
-      // and create new template cards from factory
-      photographers
-         .map(data => {
-            const photographer = new PhotographerConstructor(data)
-            return new CardFactory(photographer, this.startingTabIndex, 'photographer')
-         })
-         .forEach(template => {
-            const card = template.createPhotographerCard()
-            this.$photographersCardWrapper.appendChild(card)
-            this.startingTabIndex += 2
-         })
-   }
+const getPhotographers = async () => {
+   //Import API
+   const api = new Api('/data/photographers.json')
+   return await api.getPhotographers()
 }
 
-const app = new App()
-app.init()
+const displayData = async photographers => {
+   // DOM
+   const $photographersCardWrapper = document.querySelector('.photographer_section')
+   // Index for screen reader
+   let startingTabIndex = 2
+
+   photographers
+      .map(data => {
+         const photographer = new PhotographerConstructor(data)
+         return new PhotographerFactory(photographer, startingTabIndex, 'photographer')
+      })
+      .forEach(template => {
+         const card = template.createPhotographerCard()
+         $photographersCardWrapper.appendChild(card)
+         startingTabIndex += 2
+      })
+}
+
+const init = async () => {
+   const photographers = await getPhotographers()
+
+   return await displayData(photographers)
+}
+
+init()
