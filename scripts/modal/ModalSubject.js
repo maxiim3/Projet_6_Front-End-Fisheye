@@ -1,5 +1,6 @@
 class ModalSubject {
-   constructor() {
+   constructor($dom) {
+      this.$dom = $dom
       this._observers = []
    }
 
@@ -11,11 +12,11 @@ class ModalSubject {
       this._observers = this._observers.filter(observer => observer !== obs)
    }
 
-   fire($dom) {
+   fire() {
       this._observers.forEach(obs => {
          obs.btn.addEventListener('click', e => {
             e.preventDefault()
-            obs.updateDom($dom)
+            obs.updateDom(this.$dom)
          })
       })
    }

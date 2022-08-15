@@ -1,22 +1,28 @@
 
+
+const fetchDataFromApi= async () => {
+   const api = new Api('/data/photographers.json')
+  return await api.fetch()
+}
+
 const getPhotographers = async () => {
    //Import API
-   const api = new Api('/data/photographers.json')
-   return await api.getPhotographers()
+   const allData = await fetchDataFromApi()
+   return allData.photographers
 }
 
 const displayData = async photographers => {
    // DOM
-   const $photographersCardWrapper = document.querySelector('.photographer_section')
+   const $photographersCardWrapper = document.getElementById('cardWrapper')
    // Index for screen reader
    let startingTabIndex = 2
 
    photographers
-      .map(data => {
-         const photographer = new PhotographerConstructor(data)
-         return new PhotographerFactory(photographer, startingTabIndex, 'photographer')
+      .map(photographer => {
+         return new PhotographerConstructor(photographer)
       })
-      .forEach(template => {
+      .forEach(photographer => {
+         const template = new PhotographerFactory(photographer, startingTabIndex, 'photographer')
          const card = template.createPhotographerCard()
          $photographersCardWrapper.appendChild(card)
          startingTabIndex += 2

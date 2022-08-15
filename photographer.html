@@ -18,6 +18,12 @@
       <link
          href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
          rel="stylesheet" />
+      <!--      Font Awesome-->
+      <link
+         rel="stylesheet"
+         href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
+         integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5"
+         crossorigin="anonymous" />
       <!--      Title-->
       <title>Fisheye - {photographe}</title>
       <!--todo replace photographer-->
@@ -38,38 +44,44 @@
 
       <!--   region Main-->
       <main id="main">
-         <div class="photograph-header flex flex__row flex__spaceBetween gap__l flex__center alignCenter">
+         <div
+            class="photograph-header flex flex__row flex__spaceBetween gap__l flex__center alignCenter">
             <button
                id="showModal"
                class="contact_button">
                Contactez-moi
             </button>
          </div>
-         <ul class='media_section cardWrapper'>
+         <ul
+            class="cardWrapper"
+            id="cardWrapper">
+            <!--media Data fetched here-->
          </ul>
       </main>
+
       <!--   endregion-->
       <!--   region Contact Modal-->
-      <div id="contact_modal">
-         <div class="modal">
+      <section id="contact_modal">
+         <article class="modal__inner">
             <header>
                <h2>Contactez-moi</h2>
+               <h3 id="form_photographer"></h3>
                <img
                   id="closeModal"
                   src="assets/icons/close.svg" />
             </header>
             <!--   region Form-->
-            <form>
-               <div>
-                  <label>Prénom</label>
-                  <input />
-               </div>
-               <button class="contact_button">Envoyer</button>
+            <form
+               id="form"
+               method="dialog">
+               <!--modal form display here-->
             </form>
             <!--   endregion-->
-         </div>
-      </div>
+         </article>
+      </section>
+      <section id="lightbox"></section>
       <!--   endregion-->
+      <!--region Scripts-->
       <!--API-->
       <script src="scripts/api/api.js"></script>
 
@@ -79,30 +91,30 @@
 
       <!--Factories-->
       <script src="scripts/factories/photographer.js"></script>
-      <script src="scripts/factories/cardFactory.js"></script>
       <script src="scripts/factories/mediaFactory.js"></script>
 
       <!--Components -->
-      <script src='scripts/components/cardComponent.js'></script>
-      <script src='scripts/components/linkComponent.js'></script>
-      <script src='scripts/components/imageComponent.js'></script>
-      <script src='scripts/components/videoComponent.js'></script>
-      <script src='scripts/components/portraitComponent.js'></script>
+      <script src="scripts/components/cardComponent.js"></script>
+      <script src="scripts/components/linkComponent.js"></script>
+      <script src="scripts/components/imageComponent.js"></script>
+      <script src="scripts/components/videoComponent.js"></script>
+      <script src="scripts/components/portraitComponent.js"></script>
+
+      <!--Utils-->
+      <script src="scripts/utils/formatText.js"></script>
 
       <!--Templates-->
-      <script src='scripts/template/PhotographerCard.js'></script>
-      <script src='scripts/template/MediaCard.js'></script>
-      <script src='scripts/template/PhotographerHeader.js'></script>
+      <script src="scripts/template/PhotographerCard.js"></script>
+      <script src="scripts/template/Form.js"></script>
+      <script src="scripts/template/MediaCard.js"></script>
+      <script src="scripts/template/PhotographerHeader.js"></script>
 
       <!--Pub/Sub-->
-      <script src='scripts/modal/OpenButtonObserver.js'></script>
-      <script src='scripts/modal/CloseButtonObserver.js'></script>
-      <script src='scripts/modal/ModalSubject.js'></script>
-
+      <script src="scripts/modal/OpenButtonObserver.js"></script>
+      <script src="scripts/modal/CloseButtonObserver.js"></script>
+      <script src="scripts/modal/ModalSubject.js"></script>
       <!--Page Photographer-->
       <script src="/scripts/pages/photographer.js"></script>
-
-      <!--   endregion-->
+      <!--endregion-->
    </body>
 </html>
-

@@ -11,31 +11,37 @@
  * @return ObjectConstructor
  */
 class PhotographerConstructor {
-   _data
+   #data
+
    constructor(data) {
-      this._data = data
+      this.#data = data
+   }
+
+   get data() {
+      return this.#data
    }
 
    get id() {
-      return this._data['id']
+      return this.#data['id']
    }
 
    get name() {
-      return this._data['name']
+      return this.#data['name']
    }
 
    get tagline() {
-      return this._data['tagline']
+      return this.#data['tagline']
    }
 
    get location() {
-      return `${this._data['city']}, ${this._data['country']}`
+      return `${this.#data['city']}, ${this.#data['country']}`
    }
+
    get price() {
-      return `${this._data['price']}€/jour`
+      return `${this.#data['price']}€/jour`
    }
 
    get portrait() {
-      return `assets/images/photographerPortrait/${this._data['portrait']}`
+      return `assets/images/photographerPortrait/${this.#data['portrait']}`
    }
 }

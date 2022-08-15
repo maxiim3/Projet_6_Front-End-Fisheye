@@ -44,9 +44,9 @@ class MediaConstructor {
 
 /**
  * @param {MediaConstructor} Media
- * @param {string} PhotographerName
+ * @param photographer
  */
-function MediaWithName(Media, PhotographerName){
-   Media['photographerName'] = PhotographerName;
+function MediaWithPhotographer(Media, photographer){
+   Media['photographer'] = photographer;
    return Media
 }

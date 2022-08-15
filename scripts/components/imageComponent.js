@@ -12,7 +12,7 @@ class Image {
    }
 
    setHTMLAttributes() {
-      this.$img.classList.value = 'imgPhotographer'
+      this.$img.classList.value = 'imgMedia'
       this.$img.src = this.mediaLink
       this.$img.alt = `${this.title} par ${this.photographerName}`
    }

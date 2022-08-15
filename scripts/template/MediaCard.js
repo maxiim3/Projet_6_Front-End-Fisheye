@@ -4,40 +4,15 @@ class MediaCard {
       this._index = accessibilityIndex
    }
 
-   // createImage() {
-   //    const $img = document.createElement('img')
-   //    $img.classList.value = 'imgMedia'
-   //
-   //    return $img
-   // }
-
-   // createVideo() {
-   //    const $video = document.createElement('video')
-   //    $video.controls = true
-   //    $video.classList.value = 'imgMedia'
-   //    $video.disablePictureInPicture = true
-   //    $video.autoplay = true
-   //
-   //    return $video
-   // }
    getMedia() {
-      const { title, mediaType, mediaLink, photographerName } = this._media
-      let media
-
-      if (mediaType === 'image') media = this.createImage()
-      else if (mediaType === 'video') media = this.createVideo()
-
-      media.src = mediaLink
-      media.alt = `${title} par ${photographerName}`
-
-      return media
+      return new MediaFactory(this._media, this._media.mediaType)
    }
 
    createInformationSection() {
       const { likes, title } = this._media
       //section
       const $section = document.createElement('section')
-      $section.classList.value = 'card__information'
+      $section.classList.value = 'card__information flex flex__row justifyBetween alignCenter'
       $section.ariaLabel = "Plus d'informations"
       $section.tabIndex = this._index + 1
 
@@ -63,21 +38,26 @@ class MediaCard {
       return $section
    }
 
-   getCardWrapper({mediaType}) {
-      const card = new CardComponent(mediaType, "Média")
+   getCardWrapper({ mediaType }) {
+      const card = new CardComponent(mediaType, 'Média')
       return card.createComponent()
    }
-   createMediaCard() {
-      const { id } = this._media
-      const card = this.getCardWrapper(this._media)
-      const link = new LinkComponent(id, 'media', 'Agrandir l\'élément', this._index)
-      const media = this.getMedia()
 
+   createMediaCard() {
+      const { id, title, photographer } = this._media
+      const card = this.getCardWrapper(this._media)
+      const link = new LinkComponent('media', id, photographer,  "Agrandir l'élément", this._index)
+      const media = this.getMedia()
+      const $media = media.createComponent()
       const $link = link.createComponent()
-      $link.appendChild(media)
+      $link.appendChild($media)
+
+      $link.addEventListener('click', e => {
+         e.preventDefault()
+         console.log(`opening ${photographer.name}'s ${title}...`)
+      })
 
       const information = this.createInformationSection()
- // todo refactoriser avec les nouveaux composants comme pour photographerCard et Cardheader
       // add main component to card wrapper
       card.appendChild($link)
       card.appendChild(information)

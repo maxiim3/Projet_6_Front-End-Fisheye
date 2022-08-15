@@ -1,7 +1,12 @@
 class PhotographerCard {
+   #data
    constructor(data, accessibilityIndex) {
-      this._data = data
+      this.#data = data
       this._index = accessibilityIndex
+   }
+
+   get data() {
+      return this.#data
    }
 
    getCardWrapper({ name }) {
@@ -73,21 +78,21 @@ class PhotographerCard {
 
    createPhotographerCard() {
       // wrapper
-      const $card = this.getCardWrapper(this._data)
+      const $card = this.getCardWrapper(this.data)
       //Link
-      const $link = this.getLink(this._data)
+      const $link = this.getLink(this.data)
       //img
-      const $portrait = this.getPortrait(this._data)
+      const $portrait = this.getPortrait(this.data)
       //h2
-      const $h2 = this.getH2(this._data)
+      const $h2 = this.getH2(this.data)
       //Info
       const $information = this.getInformationSection()
       //city
-      const $city = this.getCity(this._data)
+      const $city = this.getCity(this.data)
       //tag
-      const $tagline = this.getTagLine(this._data)
+      const $tagline = this.getTagLine(this.data)
       // price
-      const $price = this.getPrice(this._data)
+      const $price = this.getPrice(this.data)
 
       $link.appendChild($portrait)
       $link.appendChild($h2)

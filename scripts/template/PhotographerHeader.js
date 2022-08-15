@@ -1,7 +1,7 @@
 // todo  remplacer BEM par tailwind style, car pas beaucoup d'element
 // todo refactoriser pour isoler la creation des e;ements redondant
 
-class RenderHeader {
+class PhotographerHeader {
    constructor(data, accessibilityIndex) {
       this._data = data
       this._index = accessibilityIndex

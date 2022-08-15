@@ -1,11 +1,12 @@
 class CloseButtonObserver {
-   constructor() {
-      this.$btn = document.querySelector('#closeModal')
+   constructor(closeButton) {
+      this.$btn = closeButton
    }
    get btn() {
       return this.$btn
    }
    updateDom($dom) {
+      // $dom.close()
       $dom.style.display = 'none'
    }
 }

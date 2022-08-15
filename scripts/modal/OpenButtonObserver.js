@@ -1,6 +1,6 @@
 class OpenButtonObserver {
-   constructor() {
-      this.$btn = document.querySelector('#showModal')
+   constructor(openBtn) {
+      this.$btn = openBtn
    }
 
    get btn() {
@@ -8,6 +8,7 @@ class OpenButtonObserver {
    }
 
    updateDom($dom) {
-      $dom.style.display = 'block'
+      $dom.style.display = 'flex'
+      // $dom.showModal()
    }
 }

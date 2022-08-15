@@ -161,10 +161,6 @@ body * :focus-visible {
   width: 18px;
 }
 
-#contact_modal {
-  display: none;
-}
-
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
@@ -184,52 +180,86 @@ body * :focus-visible {
   cursor: pointer;
 }
 
-.modal {
+#contact_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(250, 250, 250, 0.7);
+}
+
+.modal__inner {
+  padding-inline: 30px;
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: min(700px, 50vw);
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding: 35px;
+  justify-content: center;
+  gap: 35px;
   margin: auto;
 }
-.modal header {
+.modal__inner header {
   justify-content: space-between;
   width: 100%;
 }
-.modal header img {
+.modal__inner header img {
   cursor: pointer;
 }
-.modal header h2 {
+.modal__inner header h2 {
   font-size: 64px;
   font-weight: normal;
   text-align: center;
 }
-
-form {
-  display: flex;
+.modal__inner form {
   width: 100%;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 10px;
+  margin: auto;
 }
-form label {
+.modal__inner form label {
+  display: block;
   color: #312e2e;
   font-size: 36px;
 }
-form div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
-}
-form input {
+.modal__inner form input,
+.modal__inner form textarea {
+  resize: none;
   width: 100%;
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.photographer__aside {
+  position: fixed;
+  bottom: 0;
+  right: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  background-color: #db8876;
+  font-size: 24px;
+  padding-inline: 30px;
+  padding-block: 15px;
+}
+.photographer__aside img {
+  margin-left: 5px;
+  width: 18px;
+  height: 18px;
 }
 
 header,

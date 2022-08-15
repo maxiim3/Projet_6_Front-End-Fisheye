@@ -1,10 +1,20 @@
 //region Base
 //region Variables and fonts
 $primary: #901c1c;
+$primary__alt : #db8876;
 $secondary: #d3573c;
 $gray: #525252;
 $white: #fafafa;
 $dark: black;
+
+$text__64 : 64px;
+$text__36 : 36px;
+$text__24 : 24px;
+$text__20 : 20px;
+$text__18 : 18px;
+$text__13 : 13px;
+$text__10 : 10px;
+$text__09 : 9px;
 
 @mixin links {
   background: $primary;

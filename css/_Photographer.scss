@@ -1,5 +1,5 @@
 #contact_modal {
-   display: none;
+   //display: none;
 }
 
 .photograph-header {
@@ -21,15 +21,33 @@
    cursor: pointer;
 }
 
-.modal {
+#contact_modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   margin: 0;
+   padding: 0;
+   display: none;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   background-color: rgba(250, 250, 250, 70%);
+}
+
+.modal__inner {
+   padding-inline: 30px;
    border-radius: 5px;
-   background-color: #db8876;
-   width: 50%;
+   background-color: $primary__alt;
+   width: min(700px, 50vw);
+   height: 80vh;
    display: flex;
    flex-direction: column;
    align-items: center;
-   justify-content: space-between;
-   padding: 35px;
+   justify-content: center;
+   gap: 35px;
    margin: auto;
 
    header {
@@ -46,31 +64,49 @@
          text-align: center;
       }
    }
-}
 
-form {
-   display: flex;
-   width: 100%;
-   flex-direction: column;
-   align-items: flex-start;
-
-   label {
-      color: #312e2e;
-      font-size: 36px;
-   }
-
-   div {
+   form {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      width: 100%;
-      align-items: self-start;
-      margin-bottom: 26px;
-   }
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 10px;
+      margin: auto;
 
-   input {
-      width: 100%;
-      height: 68px;
-      border: none;
-      border-radius: 5px;
+      label {
+         display: block;
+         color: #312e2e;
+         font-size: 36px;
+      }
+
+      input,
+      textarea {
+         resize: none;
+         width: 100%;
+         height: 68px;
+         border: none;
+         border-radius: 5px;
+      }
+   }
+}
+
+.photographer__aside {
+   position: fixed;
+   bottom: 0;
+   right: 100px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 350px;
+   background-color: $primary__alt;
+   font-size: $text__24;
+   padding-inline: 30px;
+   padding-block: 15px;
+
+   img {
+      margin-left: 5px;
+      width: 18px;
+      height: 18px;
    }
 }

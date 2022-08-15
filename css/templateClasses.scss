@@ -44,36 +44,37 @@
    height: 100px;
 }
 
+
 .text {
    &__xxl {
-      font-size: 64px;
+      font-size: $text__64;
    }
 
    &__xl {
-      font-size: 36px;
+      font-size: $text__36;
    }
 
    &__l {
-      font-size: 24px;
+      font-size: $text__24;
    }
 
    &__m {
-      font-size: 18px;
+      font-size: $text__18;
 
       %--alt {
-         font-size: 20px;
+         font-size: $text__20;
       }
    }
 
    &__sm {
-      font-size: 13px;
+      font-size: $text__13;
    }
 
    &__xs {
-      font-size: 10px;
+      font-size: $text__10;
 
       &--alt {
-         font-size: 9px;
+         font-size: $text__09;
       }
    }
 }
