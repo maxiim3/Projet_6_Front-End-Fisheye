@@ -43,7 +43,9 @@ $text__09 : 9px;
   outline-color: $primary;
   outline-offset: 5px;
 }
-
+html{
+  scroll-behavior: smooth;
+}
 h1,
 h2,
 h3,

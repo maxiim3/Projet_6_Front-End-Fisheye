@@ -16,11 +16,14 @@
          href="css/main.css"
          rel="stylesheet"
          type="text/css" />
-
+      <!--region scripts JS-->
       <!--API-->
       <script
          src="scripts/api/api.js"
          defer></script>
+
+      <!--Utils-->
+      <script src="scripts/utils/formatText.js"></script>
 
       <!--Models Constructor-->
       <script
@@ -29,10 +32,10 @@
 
       <!--Factories-->
       <script
-         src="scripts/factories/photographer.js"
+         src="scripts/factories/CardTemplateFactory.js"
          defer></script>
       <script
-         src="scripts/factories/mediaFactory.js"
+         src="scripts/factories/ComponentMediaFactory.js"
          defer></script>
 
       <!--Components -->
@@ -51,16 +54,22 @@
       <script
          src="scripts/components/portraitComponent.js"
          defer></script>
+      <script
+         src="scripts/components/LoadingSpinner.js"
+         defer></script>
 
       <!--Templates-->
       <script
-         src="scripts/template/PhotographerCard.js"
+         src="scripts/template/CardPhotographer.js"
          defer></script>
 
       <!--Page Index-->
       <script
          src="scripts/pages/index.js"
          defer></script>
+
+      <!--endregion-->
+
       <!--      Favicon -->
       <link
          rel="icon"
@@ -97,7 +106,9 @@
          </h1>
       </header>
       <main id="main">
-         <ul class="cardWrapper" id='cardWrapper'>
+         <ul
+            class="cardWrapper"
+            id="cardWrapper">
             <!--  photographer data fetched here -->
          </ul>
       </main>

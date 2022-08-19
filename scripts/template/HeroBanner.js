@@ -1,15 +1,22 @@
 // todo  remplacer BEM par tailwind style, car pas beaucoup d'element
 // todo refactoriser pour isoler la creation des e;ements redondant
 
-class PhotographerHeader {
+/**
+ * @param {PhotographerConstructor} data
+ * @param {number} accessibilityIndex Index for screen Readers
+ * @method {function } createHeroBanner() return the node element
+ * @return {HTMLTemplateElement}
+ * @type {HTMLTemplateElement}
+ */
+class HeroBanner {
    constructor(data, accessibilityIndex) {
       this._data = data
       this._index = accessibilityIndex
-      this.$headerWrapper = document.querySelector('.photograph-header')
+      this.$heroBanner = document.querySelector('#hero-banner')
    }
    getInformationSection() {
       const $information = document.createElement('ul')
-      $information.classList.value = 'flex flex__col alignCenter gap__m'
+      $information.classList.value = 'header__information'
       $information.ariaLabel = "Informations"
       $information.tabIndex = this._index + 1
       return $information
@@ -17,7 +24,7 @@ class PhotographerHeader {
    getH1({ name }) {
       const $h1 = document.createElement('h1')
       $h1.innerText = name
-      $h1.classList.value = 'card__link__title text__xxl clr__secondary'
+      $h1.classList.value = 'header__title'
       $h1.ariaLabel = name
 
       return $h1
@@ -26,7 +33,7 @@ class PhotographerHeader {
    getCity({ location }) {
       const $li = document.createElement('li')
       $li.innerText = location
-      $li.classList.value = `text__l clr__primary`
+      $li.classList.value = `header__location`
       $li.ariaRoleDescription = `Localisation de l'artiste`
       $li.ariaLabel = 'Ville et Pays'
 
@@ -36,7 +43,7 @@ class PhotographerHeader {
    getTagLine({ tagline }) {
       const $li = document.createElement('li')
       $li.innerText = tagline
-      $li.classList.value = `text__m clr__dark`
+      $li.classList.value = `header__tagline`
       $li.ariaRoleDescription = `Localisation de l'artiste`
       $li.ariaLabel = 'Ville et Pays'
 
@@ -48,16 +55,19 @@ class PhotographerHeader {
       return portraitFactory.createComponent()
    }
 
-   createHeader(){
+   createHeroBanner(){
       const $information = this.getInformationSection()
+
       const $h1 = this.getH1(this._data)
       const $city = this.getCity(this._data)
       const $tagline = this.getTagLine(this._data)
       const $portrait = this.getPortrait(this._data)
+
       $information.appendChild($h1)
       $information.appendChild($city)
       $information.appendChild($tagline)
-      this.$headerWrapper.prepend($information)
-      this.$headerWrapper.appendChild($portrait)
+
+      this.$heroBanner.prepend($information)
+      this.$heroBanner.appendChild($portrait)
    }
 }

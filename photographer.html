@@ -9,6 +9,77 @@
          href="css/main.css"
          rel="stylesheet"
          type="text/css" />
+      <!--region scripts JS-->
+      <!--API-->
+      <script
+         src="scripts/api/api.js"
+         defer></script>
+
+      <!--Utils-->
+      <script src='scripts/utils/formatText.js'></script>
+
+      <!--Classes-->
+      <script src='scripts/classes/Lightbox.js'></script>
+      <script src='scripts/classes/Form.js'></script>
+      <script src='scripts/classes/Modal.js'></script>
+
+      <!--Models Constructor-->
+      <script
+         src="scripts/models/PhotographerConstructor.js"
+         defer></script>
+      <script
+         src="scripts/models/MediaConstructor.js"
+
+         defer></script>
+      <!--Factories-->
+      <script
+         src="scripts/factories/CardTemplateFactory.js"
+         defer></script>
+      <script
+         src="scripts/factories/ComponentMediaFactory.js"
+         defer></script>
+
+      <!--Components -->
+      <script
+         src="scripts/components/cardComponent.js"
+         defer></script>
+      <script
+         src="scripts/components/linkComponent.js"
+         defer></script>
+      <script
+         src="scripts/components/imageComponent.js"
+         defer></script>
+      <script
+         src="scripts/components/videoComponent.js"
+         defer></script>
+      <script
+         src="scripts/components/portraitComponent.js"
+         defer></script>
+      <script
+         src="scripts/components/LoadingSpinner.js"
+         defer></script>
+
+      <!--Templates-->
+      <script
+         src="scripts/template/CardPhotographer.js"
+         defer></script>
+      <script
+         src="scripts/template/AsideInformation.js"
+         defer></script>
+      <script
+         src="scripts/template/CardMedia.js"
+         defer></script>
+      <script
+         src="scripts/template/HeroBanner.js"
+         defer></script>
+
+      <!--Page Index-->
+      <script
+         src="scripts/pages/photographer.js"
+         defer></script>
+
+      <!--endregion-->
+
       <!--      Favicon -->
       <link
          rel="icon"
@@ -33,6 +104,8 @@
    <body>
       <!--   region Header-->
       <header>
+         <!--         todo Link to home page xxx?? extract header in component ?-->
+
          <img
             src="assets/images/logo.png"
             class="logo"
@@ -44,14 +117,17 @@
 
       <!--   region Main-->
       <main id="main">
-         <div
-            class="photograph-header flex flex__row flex__spaceBetween gap__l flex__center alignCenter">
+         <header
+            class="hero-banner"
+            id="hero-banner"
+            role='banner'
+         >
             <button
                id="showModal"
                class="contact_button">
                Contactez-moi
             </button>
-         </div>
+         </header>
          <ul
             class="cardWrapper"
             id="cardWrapper">
@@ -61,8 +137,8 @@
 
       <!--   endregion-->
       <!--   region Contact Modal-->
-      <section id="contact_modal">
-         <article class="modal__inner">
+      <section id="contact_modal" tabindex='0'>
+         <article class="modal__inner" tabindex='0'>
             <header>
                <h2>Contactez-moi</h2>
                <h3 id="form_photographer"></h3>
@@ -72,49 +148,17 @@
             </header>
             <!--   region Form-->
             <form
-               id="form"
-               method="dialog">
+               id="form">
                <!--modal form display here-->
             </form>
             <!--   endregion-->
          </article>
-      </section>
-      <section id="lightbox"></section>
+      </section>\
       <!--   endregion-->
-      <!--region Scripts-->
-      <!--API-->
-      <script src="scripts/api/api.js"></script>
-
-      <!--Models Constructor-->
-      <script src="scripts/models/PhotographerConstructor.js"></script>
-      <script src="scripts/models/MediaConstructor.js"></script>
-
-      <!--Factories-->
-      <script src="scripts/factories/photographer.js"></script>
-      <script src="scripts/factories/mediaFactory.js"></script>
-
-      <!--Components -->
-      <script src="scripts/components/cardComponent.js"></script>
-      <script src="scripts/components/linkComponent.js"></script>
-      <script src="scripts/components/imageComponent.js"></script>
-      <script src="scripts/components/videoComponent.js"></script>
-      <script src="scripts/components/portraitComponent.js"></script>
-
-      <!--Utils-->
-      <script src="scripts/utils/formatText.js"></script>
-
-      <!--Templates-->
-      <script src="scripts/template/PhotographerCard.js"></script>
-      <script src="scripts/template/Form.js"></script>
-      <script src="scripts/template/MediaCard.js"></script>
-      <script src="scripts/template/PhotographerHeader.js"></script>
-
-      <!--Pub/Sub-->
-      <script src="scripts/modal/OpenButtonObserver.js"></script>
-      <script src="scripts/modal/CloseButtonObserver.js"></script>
-      <script src="scripts/modal/ModalSubject.js"></script>
-      <!--Page Photographer-->
-      <script src="/scripts/pages/photographer.js"></script>
+      <!--region Lightbox-->
+      <section
+         class="lightbox"
+         id="lightbox"></section>
       <!--endregion-->
    </body>
 </html>

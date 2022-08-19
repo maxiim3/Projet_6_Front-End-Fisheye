@@ -1,5 +1,6 @@
-class PhotographerCard {
+class CardPhotographer {
    #data
+
    constructor(data, accessibilityIndex) {
       this.#data = data
       this._index = accessibilityIndex
@@ -17,17 +18,16 @@ class PhotographerCard {
    getInformationSection() {
       const $information = document.createElement('ul')
       $information.classList.value = 'flex flex__col justifyCenter alignCenter gap__sm'
-      $information.ariaLabel = "Plus d'informations"
+      $information.ariaLabel = 'Plus d\'informations'
       $information.tabIndex = this._index + 1
       return $information
    }
 
    getLink({ id }) {
       const link = new LinkComponent(
-         'photographer',
-         id,
-         "accéder à la page de l'artiste",
-         this._index
+         'accéder à la page de l\'artiste',
+         this._index,
+         { photographer: { id: 'photographer', value: id } },
       )
       return link.createComponent()
    }
@@ -76,7 +76,7 @@ class PhotographerCard {
       return $li
    }
 
-   createPhotographerCard() {
+   createCard() {
       // wrapper
       const $card = this.getCardWrapper(this.data)
       //Link

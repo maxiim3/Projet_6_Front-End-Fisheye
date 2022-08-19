@@ -5,9 +5,10 @@ class Image {
    photographerName
 
    constructor(data) {
-      this.photographerName = data.photographerName
+      this.photographerName = data.photographer.name
       this.title = data.title
       this.mediaLink = data.mediaLink
+      this.id = data.id
       this.$img = document.createElement('img')
    }
 
