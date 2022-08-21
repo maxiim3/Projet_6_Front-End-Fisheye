@@ -69,7 +69,7 @@ body * :focus-visible {
 
 .cardWrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: 70px;
   row-gap: 70px;
   margin-block: 70px;
@@ -151,6 +151,7 @@ main[data-lightbox-is-open=true] {
 .cardWrapper .imgMedia {
   width: 350px;
   height: 300px;
+  border-radius: 5px;
 }
 
 .hero-banner {
@@ -238,8 +239,10 @@ main[data-lightbox-is-open=true] {
   justify-content: space-between;
   width: 100%;
 }
-.modal__inner header img {
+.modal__inner header #closeModal {
   cursor: pointer;
+  font-size: 64px;
+  color: #fafafa;
 }
 .modal__inner header h2 {
   font-size: 64px;
@@ -273,6 +276,22 @@ main[data-lightbox-is-open=true] {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 15px;
+}
+.card__information--title, .card__information--likes {
+  font-size: 24px;
+  color: #901c1c;
+}
+.card__information .likeIcon {
+  cursor: pointer;
+  height: 24px;
+  width: 20px;
+  color: #901c1c;
+  margin-left: 5px;
+  transition: opacity 500ms ease-in-out;
+}
+.card__information .likeIcon:hover {
+  opacity: 0.6;
 }
 
 .photographer__aside {
@@ -288,8 +307,10 @@ main[data-lightbox-is-open=true] {
   font-size: 24px;
   padding-inline: 30px;
   padding-block: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
-.photographer__aside img {
+.photographer__aside i {
   margin-left: 5px;
   width: 18px;
   height: 18px;
@@ -338,51 +359,56 @@ main[data-lightbox-is-open=true] {
 .lightbox[data-open=true] {
   display: block;
 }
-.lightbox__content {
+.lightbox__container {
   width: 80%;
   height: 80%;
   position: relative;
   margin-inline: auto;
   margin-top: 5%;
 }
-.lightbox__content__title {
-  position: absolute;
+.lightbox__title {
+  position: relative;
+  display: block;
   bottom: -50px;
   left: 0;
+  color: #901c1c;
+  font-size: 24px;
 }
-.lightbox .media_container {
+.lightbox__media-wrapper {
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: center;
+  overflow: hidden;
   width: 100%;
   height: 100%;
 }
-.lightbox .media_container .imgMedia {
+.lightbox__media-wrapper .imgMedia {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: center;
 }
-.lightbox .media_container .imgMedia[data-visible=true] {
+.lightbox__media-wrapper .imgMedia[data-visible=true] {
   visibility: visible;
 }
 .lightbox i.fa-solid {
   position: absolute;
   font-size: 64px;
   cursor: pointer;
+  color: #901c1c;
 }
 .lightbox i.fa-solid.fa-angle-right, .lightbox i.fa-solid.fa-angle-left, .lightbox i.fa-solid.fa-xmark {
   transition: color 350ms;
 }
 .lightbox i.fa-solid.fa-angle-right:active, .lightbox i.fa-solid.fa-angle-left:active, .lightbox i.fa-solid.fa-xmark:active {
-  color: #901c1c;
+  color: black;
   animation: navigation 450ms 100ms ease-in-out;
 }
 .lightbox i.fa-solid.fa-angle-right:hover, .lightbox i.fa-solid.fa-angle-left:hover, .lightbox i.fa-solid.fa-xmark:hover {
-  color: #901c1c;
+  color: black;
   transition: color 350ms;
 }
 .lightbox i.fa-solid.fa-angle-right {
@@ -460,8 +486,8 @@ main[data-lightbox-is-open=true] {
     transform: rotate(360deg);
   }
 }
-header,
-main {
+body > header,
+body > main {
   margin-inline: 3.5vw;
 }
 

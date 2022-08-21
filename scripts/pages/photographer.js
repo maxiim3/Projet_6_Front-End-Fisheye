@@ -1,7 +1,3 @@
-/*todo Make Functional to classes and refactor
- *  - create class for lightbox and form
- * */
-
 class App {
    _paramsId
    _photographer
@@ -15,9 +11,6 @@ class App {
 
       //Modal DOM Element
       this.$main = document.querySelector('#main')
-      this.$modal = document.querySelector('#contact_modal')
-      this.$openBtn = document.querySelector('#showModal')
-      this.$closeBtn = document.querySelector('#closeModal')
       this.$mediasContainer = document.getElementById('cardWrapper')
       this.spinnerLoader = new LoadingSpinner(this.$mediasContainer)
    }
@@ -66,8 +59,8 @@ class App {
       this.spinnerLoader.renderSpinner()
 
       await this.getData()
-      await lightbox(this._medias)
 
+      document.title = this._photographer.name
       const modal = new Modal()
       const $form = createForm()
       modal.init()
@@ -75,6 +68,8 @@ class App {
 
       setTimeout(async () => {
          await this.renderData()
+         const lb = new Lightbox(this._photographer, this._medias)
+         await lb.init()
       }, 450)
    }
 }

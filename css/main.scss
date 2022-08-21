@@ -8,9 +8,9 @@
 
 //region Style.css
 
-header,
-main {
-   margin-inline: 3.5vw;
+body > header,
+body > main {
+   margin-inline: $outer-border;
 }
 
 header {

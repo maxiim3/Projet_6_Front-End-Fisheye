@@ -20,16 +20,16 @@ class CardMedia {
       const $mediaTitle = document.createElement('h3')
       $mediaTitle.innerText = title
       $mediaTitle.classList.value = 'card__information--title'
+
       // Like span
       const $likesSpan = document.createElement('span')
       $likesSpan.innerText = likes
       $likesSpan.classList.value = 'card__information--likes'
 
       // like Icon
-      const $likesIcon = document.createElement('img')
-      $likesIcon.src = 'assets/icons/heart-solid.svg'
+      const $likesIcon = document.createElement('i')
       $likesIcon.alt = 'Cliquez pour ajouter à vos favoris'
-      $likesIcon.classList.value = 'likeIcon'
+      $likesIcon.classList.value = 'fa-solid fa-heart likeIcon'
 
       $likesSpan.appendChild($likesIcon)
       $section.appendChild($mediaTitle)

@@ -1,33 +1,39 @@
 //region Base
 //region Variables and fonts
 $primary: #901c1c;
-$primary__alt : #db8876;
+$primary__alt: #db8876;
 $secondary: #d3573c;
 $gray: #525252;
 $white: #fafafa;
 $dark: black;
 
-$text__64 : 64px;
-$text__36 : 36px;
-$text__24 : 24px;
-$text__20 : 20px;
-$text__18 : 18px;
-$text__13 : 13px;
-$text__10 : 10px;
-$text__09 : 9px;
+$text__64: 64px;
+$text__36: 36px;
+$text__24: 24px;
+$text__20: 20px;
+$text__18: 18px;
+$text__13: 13px;
+$text__10: 10px;
+$text__09: 9px;
+
+$outer-border: 3.5vw;
+$card-layout-width: 355px;
+$card-layout-height: 340px;
+
+$grid-columns: 3;
 
 @mixin links {
-  background: $primary;
-  color: $white;
-  &:hover {
-    background: $secondary;
-    color: $dark;
-  }
+   background: $primary;
+   color: $white;
+   &:hover {
+      background: $secondary;
+      color: $dark;
+   }
 }
 
 @mixin focusScale($zoom: 101%) {
-  scale: $zoom;
-  transition: scale 120ms ease-out;
+   scale: $zoom;
+   transition: scale 120ms ease-out;
 }
 
 //endregion
@@ -36,16 +42,18 @@ $text__09 : 9px;
 *,
 *:before,
 *:after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  list-style: none;
-  outline-color: $primary;
-  outline-offset: 5px;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   list-style: none;
+   outline-color: $primary;
+   outline-offset: 5px;
 }
-html{
-  scroll-behavior: smooth;
+
+html {
+   scroll-behavior: smooth;
 }
+
 h1,
 h2,
 h3,
@@ -54,21 +62,21 @@ li,
 å a,
 button,
 body {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 400;
+   font-family: 'DM Sans', sans-serif;
+   font-weight: 400;
 }
 
 a {
-  &:visited,
-  &:link {
-    text-decoration: none;
-  }
+   &:visited,
+   &:link {
+      text-decoration: none;
+   }
 }
 
 body {
-  * :focus-visible {
-    @include focusScale;
-  }
+   * :focus-visible {
+      @include focusScale;
+   }
 }
 
 //endregion

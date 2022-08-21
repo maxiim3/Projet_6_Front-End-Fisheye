@@ -11,13 +11,12 @@ class AsideInformation {
       this.$aside = document.createElement('aside')
       this.$likes = document.createElement('span')
       this.$price = document.createElement('span')
-      this.$likesIcon = document.createElement('img')
+      this.$likesIcon = document.createElement('i')
    }
 
    init() {
-      this.$likesIcon.src = 'assets/icons/heart-solid.svg'
       this.$likesIcon.alt = 'Cliquez pour ajouter à vos favoris'
-      this.$likesIcon.classList.value = 'likeIcon'
+      this.$likesIcon.classList.value = 'fa-solid fa-heart likeIcon'
 
       this.$likes.innerText = `3000`
       this.$likes.ariaLabel = 'Nombre de likes'
