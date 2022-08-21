@@ -16,13 +16,13 @@
          defer></script>
 
       <!--Utils-->
-      <script src='scripts/utils/formatText.js'></script>
+      <script src="scripts/utils/formatText.js"></script>
 
       <!--Classes-->
-      <script src='scripts/classes/Lightbox.js'></script>
-      <script src='scripts/classes/Form.js'></script>
-      <script src='scripts/classes/Modal.js'></script>
-      <script src='scripts/classes/Like.js'></script>
+      <script src="scripts/classes/Lightbox.js"></script>
+      <script src="scripts/classes/Form.js"></script>
+      <script src="scripts/classes/Modal.js"></script>
+      <script src="scripts/classes/Like.js"></script>
 
       <!--Models Constructor-->
       <script
@@ -30,7 +30,6 @@
          defer></script>
       <script
          src="scripts/models/MediaConstructor.js"
-
          defer></script>
       <!--Factories-->
       <script
@@ -107,12 +106,14 @@
       <header>
          <!--         todo Link to home page xxx?? extract header in component ?-->
 
-         <img
-            src="assets/images/logo.png"
-            class="logo"
-            alt="FishEye, revenez au menu principal"
-            aria-label="FishEye, revenez au menu principal"
-            tabindex="1" />
+         <a href="index.html">
+            <img
+               src="assets/images/logo.png"
+               class="logo"
+               alt="FishEye, revenez au menu principal"
+               aria-label="FishEye, revenez au menu principal"
+               tabindex="1" />
+         </a>
       </header>
       <!--   endregion-->
 
@@ -121,8 +122,7 @@
          <header
             class="hero-banner"
             id="hero-banner"
-            role='banner'
-         >
+            role="banner">
             <button
                id="showModal"
                class="contact_button">
@@ -138,19 +138,24 @@
 
       <!--   endregion-->
       <!--   region Contact Modal-->
-      <section id="contact_modal" tabindex='0'>
-         <article class="modal__inner" tabindex='0'>
+      <section
+         id="contact_modal"
+         tabindex="0">
+         <article
+            class="modal__inner"
+            tabindex="0">
             <header>
                <h2>Contactez-moi</h2>
                <h3 id="form_photographer"></h3>
-   <!--            <img
-                  id="closeModal"
-                  src="assets/icons/close.svg" />-->
-               <i class='fa-solid fa-xmark'  id="closeModal"></i>
+               <!--            <img
+                        id="closeModal"
+                        src="assets/icons/close.svg" />-->
+               <i
+                  class="fa-solid fa-xmark"
+                  id="closeModal"></i>
             </header>
             <!--   region Form-->
-            <form
-               id="form">
+            <form id="form">
                <!--modal form display here-->
             </form>
             <!--   endregion-->

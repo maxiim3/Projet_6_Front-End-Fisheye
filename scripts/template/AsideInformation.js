@@ -5,13 +5,14 @@
  */
 
 class AsideInformation {
-   constructor({ price }) {
-      this._price = price
+   constructor(media) {
+      this._price = media.price
       this.$main = document.querySelector('#main')
       this.$aside = document.createElement('aside')
-      this.$likes = document.createElement('span')
-      this.$price = document.createElement('span')
+      this.likeWrapper = document.createElement('div')
+      this.$likes = document.createElement('p')
       this.$likesIcon = document.createElement('i')
+      this.$price = document.createElement('p')
    }
 
    init() {
@@ -19,16 +20,21 @@ class AsideInformation {
       this.$likesIcon.classList.value = 'fa-solid fa-heart likeIcon'
 
       this.$likes.innerText = `3000`
+      this.$likes.classList.value = `aside__count-like`
       this.$likes.ariaLabel = 'Nombre de likes'
+
+      this.likeWrapper.classList.value = 'aside__wrapper'
+      this.likeWrapper.ariaHidden = 'true'
 
       this.$price.innerText = this._price
       this.$price.ariaLabel = 'Tarifs journaliers'
       this.$aside.ariaLabel = 'Informations sur le photographe'
       this.$aside.classList.value = 'photographer__aside'
 
-      this.$likes.appendChild(this.$likesIcon)
+      this.likeWrapper.appendChild(this.$likes)
+      this.likeWrapper.appendChild(this.$likesIcon)
 
-      this.$aside.appendChild(this.$likes)
+      this.$aside.appendChild(this.likeWrapper)
       this.$aside.appendChild(this.$price)
 
       this.$main.appendChild(this.$aside)

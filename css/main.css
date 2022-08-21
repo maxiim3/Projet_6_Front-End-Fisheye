@@ -155,12 +155,12 @@ main[data-lightbox-is-open=true] {
 }
 
 .hero-banner {
-  padding: 24px 50px;
-  background-color: #fafafa;
+  display: grid;
   width: 100%;
   height: 300px;
+  padding: 24px 50px;
   animation: fadeIn 350ms 500ms both;
-  display: grid;
+  background-color: #fafafa;
   grid-template-columns: 1fr 1fr 1fr;
 }
 .hero-banner .portrait {
@@ -170,14 +170,14 @@ main[data-lightbox-is-open=true] {
 
 .header__information {
   display: flex;
-  flex-direction: column;
   align-items: start;
+  flex-direction: column;
   height: 100%;
 }
 .header__title {
   /*card__link__title text__xxl clr__secondary*/
-  margin: 0;
   font-size: 64px;
+  margin: 0;
   color: #d3573c;
 }
 .header__location {
@@ -194,54 +194,54 @@ main[data-lightbox-is-open=true] {
 .contact_button {
   font-size: 20px;
   font-weight: bold;
-  margin-inline: auto;
-  color: white;
-  padding: 11px;
   width: 170px;
   height: 70px;
-  border: none;
-  background-color: #901c1c;
-  border-radius: 5px;
+  padding: 11px;
   cursor: pointer;
   animation: fadeIn 350ms 800ms both;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  background-color: #901c1c;
+  margin-inline: auto;
 }
 
 #contact_modal {
   position: fixed;
   top: 0;
   left: 0;
+  display: none;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   animation: fadeIn 300ms;
   background-color: rgba(250, 250, 250, 0.7);
 }
 
 .modal__inner {
-  padding-inline: 30px;
-  border-radius: 5px;
-  background-color: #db8876;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
   width: min(700px, 50vw);
   height: 80vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 35px;
   margin: auto;
+  border-radius: 5px;
+  background-color: #db8876;
+  padding-inline: 30px;
+  gap: 35px;
 }
 .modal__inner header {
   justify-content: space-between;
   width: 100%;
 }
 .modal__inner header #closeModal {
-  cursor: pointer;
   font-size: 64px;
+  cursor: pointer;
   color: #fafafa;
 }
 .modal__inner header h2 {
@@ -250,80 +250,96 @@ main[data-lightbox-is-open=true] {
   text-align: center;
 }
 .modal__inner form {
-  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: stretch;
+  flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  width: 100%;
   margin: auto;
+  gap: 10px;
 }
 .modal__inner form label {
+  font-size: 36px;
   display: block;
   color: #312e2e;
-  font-size: 36px;
 }
 .modal__inner form input,
 .modal__inner form textarea {
-  resize: none;
   width: 100%;
   height: 68px;
+  resize: none;
   border: none;
   border-radius: 5px;
 }
 
 .card__information {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-top: 15px;
 }
-.card__information--title, .card__information--likes {
+.card__information__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card__information__wrapper[data-is-liked=true] i {
+  color: #ff2600;
+}
+.card__information__title, .card__information__likes {
   font-size: 24px;
   color: #901c1c;
 }
-.card__information .likeIcon {
-  cursor: pointer;
-  height: 24px;
-  width: 20px;
-  color: #901c1c;
+.card__information__icon {
+  font-size: 24px;
   margin-left: 5px;
-  transition: opacity 500ms ease-in-out;
+  cursor: pointer;
+  transition: opacity, color, transform 350ms ease-in-out;
+  color: #901c1c;
 }
-.card__information .likeIcon:hover {
+.card__information__icon:active {
+  animation: navigation 450ms ease-in-out;
+}
+.card__information__icon:hover {
+  transform: scale(1.05);
   opacity: 0.6;
+  color: #d3573c;
 }
 
 .photographer__aside {
-  animation: fadeIn 400ms 600ms both;
-  position: fixed;
-  bottom: 0;
-  right: 100px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 350px;
-  background-color: #db8876;
   font-size: 24px;
-  padding-inline: 30px;
-  padding-block: 15px;
+  position: fixed;
+  right: 100px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  animation: fadeIn 400ms 600ms both;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+  background-color: #db8876;
+  padding-inline: 30px;
+  padding-block: 15px;
+}
+.photographer__aside .aside__wrapper {
+  display: flex;
+  gap: 5px;
 }
 .photographer__aside i {
-  margin-left: 5px;
   width: 18px;
   height: 18px;
+  margin-left: 5px;
 }
 
 .imgPhotographer {
-  height: 200px;
   width: 200px;
+  height: 200px;
+  margin-bottom: 20px;
   border-radius: 100%;
   object-fit: cover;
   object-position: center;
   margin-inline: auto;
-  margin-bottom: 20px;
 }
 
 .imgMedia {
@@ -335,50 +351,50 @@ main[data-lightbox-is-open=true] {
 .portrait {
   width: 200px;
   height: 200px;
+  border-radius: 100%;
   object-fit: cover;
   object-position: center;
   margin-inline: auto;
-  border-radius: 100%;
 }
 
 .likeIcon {
-  height: 18.5px;
   width: 18px;
+  height: 18.5px;
 }
 
 .lightbox {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
+  display: none;
   width: 100vw;
   height: 100vh;
-  background-color: #fafafa;
   animation: fadeIn 350ms 100ms;
+  background-color: #fafafa;
 }
 .lightbox[data-open=true] {
   display: block;
 }
 .lightbox__container {
+  position: relative;
   width: 80%;
   height: 80%;
-  position: relative;
-  margin-inline: auto;
   margin-top: 5%;
+  margin-inline: auto;
 }
 .lightbox__title {
+  font-size: 24px;
   position: relative;
-  display: block;
   bottom: -50px;
   left: 0;
+  display: block;
   color: #901c1c;
-  font-size: 24px;
 }
 .lightbox__media-wrapper {
   display: flex;
+  overflow: hidden;
   flex-flow: column nowrap;
   justify-content: center;
-  overflow: hidden;
   width: 100%;
   height: 100%;
 }
@@ -395,8 +411,8 @@ main[data-lightbox-is-open=true] {
   visibility: visible;
 }
 .lightbox i.fa-solid {
-  position: absolute;
   font-size: 64px;
+  position: absolute;
   cursor: pointer;
   color: #901c1c;
 }
@@ -404,12 +420,12 @@ main[data-lightbox-is-open=true] {
   transition: color 350ms;
 }
 .lightbox i.fa-solid.fa-angle-right:active, .lightbox i.fa-solid.fa-angle-left:active, .lightbox i.fa-solid.fa-xmark:active {
-  color: black;
   animation: navigation 450ms 100ms ease-in-out;
+  color: black;
 }
 .lightbox i.fa-solid.fa-angle-right:hover, .lightbox i.fa-solid.fa-angle-left:hover, .lightbox i.fa-solid.fa-xmark:hover {
-  color: black;
   transition: color 350ms;
+  color: black;
 }
 .lightbox i.fa-solid.fa-angle-right {
   top: 50%;
@@ -425,8 +441,8 @@ main[data-lightbox-is-open=true] {
 }
 
 .focusNavigation {
-  color: #901c1c;
   animation: navigation 250ms ease-in-out;
+  color: #901c1c;
 }
 
 @keyframes navigation {
@@ -459,19 +475,19 @@ main[data-lightbox-is-open=true] {
   align-self: center;
 }
 .duo:before {
-  height: 50px;
-  width: 50px;
-  content: "";
   display: block;
+  width: 50px;
+  height: 50px;
+  content: "";
   -webkit-animation: spin 0.5s infinite linear;
   animation: spin 0.5s infinite linear;
   border-width: 6px;
   border-style: solid;
-  border-bottom-color: #901c1c;
   border-top-color: #901c1c;
+  border-right-color: #d3573c;
+  border-bottom-color: #901c1c;
   border-left-color: #d3573c;
   border-radius: 100%;
-  border-right-color: #d3573c;
 }
 
 @-webkit-keyframes spin {

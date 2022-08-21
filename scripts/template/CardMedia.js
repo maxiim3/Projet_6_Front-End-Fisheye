@@ -19,21 +19,55 @@ class CardMedia {
       // title
       const $mediaTitle = document.createElement('h3')
       $mediaTitle.innerText = title
-      $mediaTitle.classList.value = 'card__information--title'
+      $mediaTitle.classList.value = 'card__information__title'
+
+      // like Wrapper
+      const $likeWrapper = document.createElement('div')
+      $likeWrapper.classList.value = 'card__information__wrapper'
+      $likeWrapper.ariaHidden = 'true'
+      $likeWrapper.dataset.isLiked = 'false'
+      $likeWrapper.dataset.mediaId = this._media.id
 
       // Like span
-      const $likesSpan = document.createElement('span')
-      $likesSpan.innerText = likes
-      $likesSpan.classList.value = 'card__information--likes'
+      const $likesCounter = document.createElement('p')
+      $likesCounter.innerText = likes
+      $likesCounter.classList.value = 'card__information__likes'
+      $likesCounter.dataset.countLikes = likes
 
       // like Icon
       const $likesIcon = document.createElement('i')
       $likesIcon.alt = 'Cliquez pour ajouter à vos favoris'
-      $likesIcon.classList.value = 'fa-solid fa-heart likeIcon'
+      $likesIcon.classList.value = 'fa-solid fa-heart card__information__icon'
 
-      $likesSpan.appendChild($likesIcon)
+      $likeWrapper.appendChild($likesCounter)
+      $likeWrapper.appendChild($likesIcon)
+
+      const $asideLike = document
+         .querySelector('.photographer__aside')
+         .querySelector('.aside__count-like')
+
+      $likeWrapper
+         .querySelector('.card__information__icon')
+         .addEventListener('click', ev => {
+            ev.preventDefault()
+
+            if ($likeWrapper.dataset.isLiked === 'true') {
+               $likeWrapper.dataset.isLiked = 'false'
+               this._media.LikeCounter.update('DEC')
+               $likesCounter.innerText = this._media.LikeCounter.count
+               $likesCounter.dataset.countLikes = this._media.LikeCounter.count
+               $asideLike.innerHTML = parseInt($asideLike.innerHTML) -1
+            } else {
+               $likeWrapper.dataset.isLiked = 'true'
+               this._media.LikeCounter.update('INC')
+               $likesCounter.innerText = this._media.LikeCounter.count
+               $likesCounter.dataset.countLikes = this._media.LikeCounter.count
+               $asideLike.innerHTML = parseInt($asideLike.innerHTML) +1
+            }
+         })
+
       $section.appendChild($mediaTitle)
-      $section.appendChild($likesSpan)
+      $section.appendChild($likeWrapper)
 
       return $section
    }

@@ -49,4 +49,12 @@ class MediaConstructor {
 function MediaWithPhotographer(Media, photographer){
    Media['photographer'] = photographer;
    return Media
+}/**
+ * @param {MediaConstructor} Media
+ * @param {LikeCounter} LikeCounter
+ */
+function MediaWithLikeCounter(Media, LikeCounter){
+   Media['LikeCounter'] = LikeCounter;
+
+   return Media
 }

@@ -27,13 +27,13 @@ main {
 }
 
 .hero-banner {
-   padding: 24px 50px;
-   background-color: #fafafa;
+   display: grid;
    width: 100%;
    height: 300px;
+   padding: 24px 50px;
    //margin: 0 100px;
    animation: fadeIn 350ms 500ms both;
-   display: grid;
+   background-color: #fafafa;
    grid-template-columns: 1fr 1fr 1fr;
 
    .portrait {
@@ -45,16 +45,16 @@ main {
 .header {
    &__information {
       display: flex;
-      flex-direction: column;
-      //justify-content: space-evenly;
       align-items: start;
+      //justify-content: space-evenly;
+      flex-direction: column;
       height: 100%;
    }
 
    &__title {
       /*card__link__title text__xxl clr__secondary*/
-      margin: 0;
       font-size: $text-_64;
+      margin: 0;
       color: $secondary;
    }
 
@@ -75,54 +75,54 @@ main {
    font-size: 20px;
    //align-self: center;
    font-weight: bold;
-   margin-inline: auto;
-   color: white;
-   padding: 11px;
    width: 170px;
    height: 70px;
-   border: none;
-   background-color: #901c1c;
-   border-radius: 5px;
+   padding: 11px;
    cursor: pointer;
    animation: fadeIn 350ms 800ms both;
+   color: white;
+   border: none;
+   border-radius: 5px;
+   background-color: #901c1c;
+   margin-inline: auto;
 }
 
 #contact_modal {
    position: fixed;
    top: 0;
    left: 0;
+   display: none;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
    width: 100%;
    height: 100%;
    margin: 0;
    padding: 0;
-   display: none;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
    animation: fadeIn 300ms;
    background-color: rgba(250, 250, 250, 70%);
 }
 
 .modal__inner {
-   padding-inline: 30px;
-   border-radius: 5px;
-   background-color: $primary__alt;
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   justify-content: center;
    width: min(700px, 50vw);
    height: 80vh;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   gap: 35px;
    margin: auto;
+   border-radius: 5px;
+   background-color: $primary__alt;
+   padding-inline: 30px;
+   gap: 35px;
 
    header {
       justify-content: space-between;
       width: 100%;
 
       #closeModal {
-         cursor: pointer;
          font-size: 64px;
+         cursor: pointer;
          color: $white;
       }
 
@@ -134,25 +134,25 @@ main {
    }
 
    form {
-      width: 100%;
       display: flex;
-      flex-direction: column;
       align-items: stretch;
+      flex-direction: column;
       justify-content: space-between;
-      gap: 10px;
+      width: 100%;
       margin: auto;
+      gap: 10px;
 
       label {
+         font-size: 36px;
          display: block;
          color: #312e2e;
-         font-size: 36px;
       }
 
       input,
       textarea {
-         resize: none;
          width: 100%;
          height: 68px;
+         resize: none;
          border: none;
          border-radius: 5px;
       }
@@ -161,61 +161,83 @@ main {
 
 .card__information {
    display: flex;
-   justify-content: space-between;
    align-items: center;
+   justify-content: space-between;
    margin-top: 15px;
 
-   &--title,
-   &--likes {
+   &__wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      &[data-is-liked='true'] {
+         i {
+            color: $secondary--alt;
+         }
+      }
+   }
+
+   &__title,
+   &__likes {
       font-size: $text__24;
       color: $primary;
    }
 
-   .likeIcon {
-      cursor: pointer;
-      height: 24px;
-      width: 20px;
-      color: $primary;
+   &__icon {
+      font-size: 24px;
       margin-left: 5px;
-      transition: opacity 500ms ease-in-out;
+      cursor: pointer;
+      transition: opacity, color, transform 350ms ease-in-out;
+      color: $primary;
+
+      &:active {
+         animation: navigation 450ms ease-in-out;
+      }
 
       &:hover {
+         transform: scale(1.05);
          opacity: 0.6;
+         color: $secondary;
       }
    }
 }
 
 .photographer__aside {
-   animation: fadeIn 400ms 600ms both;
-   position: fixed;
-   bottom: 0;
-   right: 100px;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   width: 350px;
-   background-color: $primary__alt;
    font-size: $text__24;
-   padding-inline: 30px;
-   padding-block: 15px;
+   position: fixed;
+   right: 100px;
+   bottom: 0;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 350px;
+   animation: fadeIn 400ms 600ms both;
    border-top-left-radius: 5px;
    border-top-right-radius: 5px;
+   background-color: $primary__alt;
+   padding-inline: 30px;
+   padding-block: 15px;
+
+   .aside__wrapper {
+      display: flex;
+      gap: 5px;
+   }
 
    i {
-      margin-left: 5px;
       width: 18px;
       height: 18px;
+      margin-left: 5px;
    }
 }
 
 .imgPhotographer {
-   height: 200px;
    width: 200px;
+   height: 200px;
+   margin-bottom: 20px;
    border-radius: 100%;
    object-fit: cover;
    object-position: center;
    margin-inline: auto;
-   margin-bottom: 20px;
 }
 
 .imgMedia {
@@ -227,56 +249,56 @@ main {
 .portrait {
    width: 200px;
    height: 200px;
+   border-radius: 100%;
    object-fit: cover;
    object-position: center;
    margin-inline: auto;
-   border-radius: 100%;
 }
 
 .likeIcon {
-   height: 18.5px;
    width: 18px;
+   height: 18.5px;
 }
 
 .lightbox {
-   display: none;
    position: absolute;
    top: 0;
    left: 0;
+   display: none;
    width: 100vw;
    height: 100vh;
-   background-color: $white;
    animation: fadeIn 350ms 100ms;
+   background-color: $white;
 
    &[data-open='true'] {
       display: block;
    }
 
    &__container {
+      position: relative;
       width: 80%;
       height: 80%;
-      position: relative;
       //background-color: pink;
-      margin-inline: auto;
       margin-top: 5%;
+      margin-inline: auto;
    }
 
    &__title {
+      font-size: $text__24;
       position: relative;
-      display: block;
       bottom: -50px;
       left: 0;
+      display: block;
       color: $primary;
-      font-size: $text__24;
    }
 
    //todo border-radius lightbox and header and shadow img media lightbox
 
    &__media-wrapper {
       display: flex;
+      overflow: hidden;
       flex-flow: column nowrap;
       justify-content: center;
-      overflow: hidden;
       width: 100%;
       height: 100%;
 
@@ -297,8 +319,8 @@ main {
    }
 
    i.fa-solid {
-      position: absolute;
       font-size: $text__64;
+      position: absolute;
       cursor: pointer;
       color: $primary;
       $offset: 60px;
@@ -309,13 +331,13 @@ main {
          transition: color 350ms;
 
          &:active {
-            color: $dark;
             animation: navigation 450ms 100ms ease-in-out;
+            color: $dark;
          }
 
          &:hover {
-            color: $dark;
             transition: color 350ms;
+            color: $dark;
          }
       }
 
@@ -337,8 +359,8 @@ main {
 }
 
 .focusNavigation {
-   color: $primary;
    animation: navigation 250ms ease-in-out;
+   color: $primary;
 }
 
 @keyframes navigation {
@@ -375,19 +397,19 @@ main {
    align-self: center;
 
    &:before {
-      height: 50px;
-      width: 50px;
-      content: '';
       display: block;
+      width: 50px;
+      height: 50px;
+      content: '';
       -webkit-animation: spin 0.5s infinite linear;
       animation: spin 0.5s infinite linear;
       border-width: 6px;
       border-style: solid;
-      border-bottom-color: $primary;
       border-top-color: $primary;
+      border-right-color: $secondary;
+      border-bottom-color: $primary;
       border-left-color: $secondary;
       border-radius: 100%;
-      border-right-color: $secondary;
    }
 }
 
