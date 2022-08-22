@@ -38,55 +38,90 @@ class App {
          })
    }
 
-   async renderData() {
+   async renderFormModal() {
+      document.title = this._photographer.name
+      const modal = new Modal()
+      const $form = createForm()
+      modal.init()
+      return handleForm($form)
+   }
+
+   // Trier Par :
+   // Popularity (likes) || Date || Titre
+   async sortBy(data, type, sort) {
+      await sortBy(data, type, sort)
+   }
+
+   async renderMedias(data) {
+      return data.forEach(media => {
+         const cardTemplate = new CardTemplateFactory(media, this._startingTabIndex, 'media')
+         const card = cardTemplate.createCard()
+         this.$mediasContainer.appendChild(card)
+         this._startingTabIndex += 2
+      })
+   }
+
+   async renderPage() {
       this.spinnerLoader.removeSpinner()
+
+      const lb = new Lightbox(this._photographer, this._medias)
+      await lb.init()
 
       const heroBanner = new HeroBanner(this._photographer, this._startingTabIndex)
       heroBanner.createHeroBanner()
 
       const aside = new AsideInformation(this._photographer)
       aside.init()
+      this._medias = this._medias.map(media => MediaWithLikeCounter(media, new LikeCounter(media)))
 
-      this._medias.forEach(media => {
-         const cardTemplate = new CardTemplateFactory(media, this._startingTabIndex, 'media')
-         const card = cardTemplate.createCard()
-         this.$mediasContainer.appendChild(card)
-         this._startingTabIndex += 2
+    /*  const data = await sortBy(this._medias, 'titre', "inc")
+      await this.renderMedias(data)*/
+      await this.renderMedias(this._medias)
+
+      return this._medias
+   }
+
+   async updateAsideOnLike() {
+      const $asideLike = document
+         .querySelector('.photographer__aside')
+         .querySelector('.aside__count-like')
+
+      const $allLikesWrapper = [...document.querySelectorAll('.card__information__wrapper')]
+      $allLikesWrapper.forEach(wrapper => {
+         const like = wrapper.querySelector('.card__information__likes')
+         this._countLikes += parseInt(like.innerText)
       })
-      this._medias.map(media => MediaWithLikeCounter(media, new LikeCounter(media)))
+      $asideLike.textContent = this._countLikes
+
+      return $asideLike
    }
 
    async init() {
       this.spinnerLoader.renderSpinner()
 
       await this.getData()
-
-      document.title = this._photographer.name
-      const modal = new Modal()
-      const $form = createForm()
-      modal.init()
-      handleForm($form)
-
-      // todo refactor
+      await this.renderFormModal()
       setTimeout(async () => {
-         await this.renderData()
-         const lb = new Lightbox(this._photographer, this._medias)
-         await lb.init()
-
-         const $asideLike = document
-            .querySelector('.photographer__aside')
-            .querySelector('.aside__count-like')
-
-         const $allLikesWrapper = [...document.querySelectorAll('.card__information__wrapper')]
-         $allLikesWrapper.forEach(wrapper => {
-            const like = wrapper.querySelector('.card__information__likes')
-            this._countLikes += parseInt(like.innerText)
-         })
-         $asideLike.textContent = this._countLikes
-
+         await this.renderPage()
+         await this.updateAsideOnLike()
+         // await this.sortBy()
       }, 450)
+
+      // creer block filter
+      // regler les style pour afficher/cacher le bloque
+      // recuperer la valeur du filtre selectionner
+      // l'emvoyer dans sortBy()
    }
 }
 
 const app = new App()
 app.init()
+/*const arr = [
+   { age: 54, sub: { price: 64, birth: '2005/11/6', name: 'Walter' } },
+   { age: 12, sub: { price: 98, birth: '1908/06/24', name: 'Armel' } },
+   { age: 18, sub: { price: 2, birth: '1787/08/31', name: 'Boby' } },
+]
+sort(arr, 'sub.price', 'inc')
+arr.forEach(a => console.table(a.sub))*/
+
+// console.log('3'.localeCompare('2'))
