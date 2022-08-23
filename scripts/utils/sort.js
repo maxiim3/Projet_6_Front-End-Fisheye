@@ -1,49 +1,43 @@
 /**
  * Sort an Array
- * @param arr { [...MediaConstructor] } Array of medias
  * @param type { String } "titre" | "date" | "popularite"
- * @param sort { String } "INC" | "DEC"
- * @return arr
+ * @param container {NodeList}
  */
-async function sortBy(arr, type, sort) {
-   arr.sort((a, b) => {
-      switch (formatText(type)) {
-         case 'titre':
-            const titleA = a._data.title
-            const titleB = b._data.title
+function sortBy(type, container) {
+      const { childNodes: children } = container
+      const startIndex = 3
 
-            switch (sort.toUpperCase()) {
-               case 'INC':
-                  return titleA.localeCompare(titleB, 'en', { sensitivity: 'base' })
-               case 'DEC':
-                  return titleB.localeCompare(titleA, 'en', { sensitivity: 'base' })
-            }
-            break
+   function recursive() {
+      const output = []
+      let propA
+      let propB
+      let compare
+      for (let i = startIndex; i < children.length - 1; i++) {
 
-         case 'date':
-            const dateA = new Date(a._data.date)
-            const dateB = new Date(b._data.date)
+         switch (formatText(type)) {
+            case 'date':
+               propA = new Date (children[i].dataset.date)
+               propB = new Date (children[i + 1].dataset.date)
+               compare = propA - propB
+               break
+            case 'popularite':
+               propA = children[i].dataset.popularite
+               propB = children[i + 1].dataset.popularite
+               compare = propA - propB
+               break
+            case 'titre':
+               propA = children[i].dataset.titre
+               propB = children[i + 1].dataset.titre
+               compare = propA.localeCompare(propB, 'en', { sensitivity: 'base' })
+               break
+         }
 
-            switch (sort.toUpperCase()) {
-               case 'INC':
-                  return dateA - dateB
-               case 'DEC':
-                  return dateB - dateA
-            }
-            break
-
-         case 'popularite':
-            const countA = a.LikeCounter.count
-            const countB = b.LikeCounter.count
-
-            switch (sort.toUpperCase()) {
-               case 'INC':
-                  return countA - countB
-               case 'DEC':
-                  return countB - countA
-            }
-            break
+         if (compare > 0) {
+            container.insertBefore(children[i + 1], children[i])
+            output.push(propA - propB > 0) // push true
+         }
       }
-   })
-   return arr
+      if (output.length !== 0 ) recursive() // if || while true values => call recursive
+   }
+   return recursive()
 }

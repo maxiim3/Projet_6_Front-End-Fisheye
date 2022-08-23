@@ -26,6 +26,85 @@ main {
    }
 }
 
+.sort {
+   &__wrapper {
+      font-size: $text__18;
+      font-weight: bold;
+      position: absolute;
+      display: flex;
+      justify-content: space-between;
+      width: 300px;
+   }
+
+   &__options {
+      z-index: 10;
+      display: flex;
+      overflow: hidden;
+      align-items: start;
+      flex-flow: column nowrap;
+      width: 180px;
+      height: 40px;
+      padding: 1px 5px;
+      transition: height 450ms;
+      color: $white;
+      border-radius: 5px;
+      background-color: $primary;
+
+      p {
+         position: relative;
+         display: block;
+         width: 100%;
+         height: 40px;
+         padding-top: 10px;
+         transition: opacity 550ms ease-in-out;
+
+         &[data-hidden='true'] {
+            opacity: 0;
+         }
+
+         &:hover {
+            //background-color: $secondary;
+            cursor: pointer;
+         }
+      }
+
+      &--icon {
+         font-size: 24px;
+         position: absolute;
+         z-index: 15;
+         top: 10px;
+         right: 10px;
+         transition: rotate 350ms ease-in-out;
+         color: white;
+      }
+
+      &[data-dropped='true'] {
+         /*display: block;*/
+         height: 120px;
+         box-shadow: 2px 3px 5px $gray;
+
+         p {
+            opacity: 1;
+
+            &:not(:last-of-type) {
+               &:after {
+                  position: absolute;
+                  bottom: -5px;
+                  left: 0;
+                  width: 100%;
+                  content: '';
+                  border-top: 1px white solid;
+               }
+            }
+         }
+
+         .sort__options--icon {
+            rotate: 180deg;
+         }
+      }
+   }
+}
+
 .hero-banner {
    display: grid;
    width: 100%;

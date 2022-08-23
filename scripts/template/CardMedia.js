@@ -116,7 +116,7 @@ class CardMedia {
       card.appendChild(information)
 
       card.dataset.titre = this._media._data.title
-      card.dataset.data = this._media._data.date
+      card.dataset.date = this._media._data.date
       card.dataset.popularite = this._media.LikeCounter.count
 
       this.handleLike(card)
