@@ -1,0 +1,37 @@
+//region Style.css
+
+body > header,
+body > main {
+   margin-inline: $outer-border;
+}
+
+header {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+   align-items: center;
+   height: 70px;
+   margin-top: 2vw;
+   margin-bottom: 0;
+}
+
+header {
+   h1 {
+      font-size: $text__36;
+      color: $primary;
+      margin: 0;
+   }
+}
+
+.page__main {
+   width: 100%;
+   margin: 0;
+
+   .cardWrapper {
+      row-gap: 70px;
+      column-gap: 160px;
+      padding-inline: 30px;
+   }
+}
+
+// endregion

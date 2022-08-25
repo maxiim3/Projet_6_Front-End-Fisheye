@@ -3,6 +3,7 @@ class Modal {
       this.$modal = document.querySelector('#contact_modal')
       this.$openBtn = document.querySelector('#showModal')
       this.$closeBtn = document.querySelector('#closeModal')
+
    }
 
    showModal() {

@@ -40,17 +40,12 @@ class App {
 
    async renderFormModal() {
       document.title = this._photographer.name
+      document.querySelector('#form_photographer').textContent = this._photographer.name
       const modal = new Modal()
       const $form = createForm()
       modal.init()
       return handleForm($form)
    }
-
-   /*   // Trier Par :
-      // Popularity (likes) || Date || Titre
-      async sortBy(data, type, sort) {
-         await sortBy(data, type, sort)
-      }*/
 
    async renderMedias(data) {
       return data.forEach(media => {
@@ -64,9 +59,6 @@ class App {
    async renderPage() {
       this.spinnerLoader.removeSpinner()
 
-      const lb = new Lightbox(this._photographer, this._medias)
-      await lb.init()
-
       const heroBanner = new HeroBanner(this._photographer, this._startingTabIndex)
       heroBanner.createHeroBanner()
 
@@ -74,8 +66,6 @@ class App {
       aside.init()
       this._medias = this._medias.map(media => MediaWithLikeCounter(media, new LikeCounter(media)))
 
-      /*  const data = await sortBy(this._medias, 'titre', "inc")
-        await this.renderMedias(data)*/
       await this.renderMedias(this._medias)
 
       return this._medias
@@ -192,42 +182,11 @@ class App {
          await this.updateAsideOnLike()
          this.renderFilter()
          await this.handleSort()
+         const lb = new Lightbox(this._photographer, this._medias)
+         await lb.init()
       }, 450)
    }
 }
 
 const app = new App()
 app.init()
-/*const arr = [
-   { age: 54, sub: { price: 64, birth: '2005/11/6', name: 'Walter' } },
-   { age: 12, sub: { price: 98, birth: '1908/06/24', name: 'Armel' } },
-   { age: 18, sub: { price: 2, birth: '1787/08/31', name: 'Boby' } },
-]
-sort(arr, 'sub.price', 'inc')
-arr.forEach(a => console.table(a.sub))*/
-
-// console.log('3'.localeCompare('2'))
-/*
-const wrapper = document.createElement('section')
-wrapper.id = 'wrapper'
-const first = document.createElement('div')
-first.id = 'first'
-const second = document.createElement('div')
-second.id = 'second'
-const third = document.createElement('div')
-third.id = 'third'
-
-first.style.cssText = "width:  250px; height: 100px; background-color: blue"
-second.style.cssText = "width: 250px; height: 250px; background-color: orange; border-radius: 100%"
-third.style.cssText = "width:  250px; height: 250px; background-color: lime; rotate: 45deg"
-
-document.getElementById('main').appendChild(wrapper)
-$wrapper = document.getElementById('wrapper')
-$wrapper.appendChild(first)
-$wrapper.appendChild(second)
-$wrapper.appendChild(third)
-const $first = document.getElementById('first')
-const $second = document.getElementById('second')
-const $third = document.getElementById('third')
-
-debugger*/

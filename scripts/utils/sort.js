@@ -18,26 +18,26 @@ function sortBy(type, container) {
             case 'date':
                propA = new Date (children[i].dataset.date)
                propB = new Date (children[i + 1].dataset.date)
-               compare = propA - propB
+               compare = propA - propB // retourne la difference des dates en valeurs millisecondes (nombre positif ou negatif)
                break
             case 'popularite':
                propA = children[i].dataset.popularite
                propB = children[i + 1].dataset.popularite
-               compare = propA - propB
+               compare = propA - propB // retourne la difference entre a et b (nombre positif ou negatif)
                break
             case 'titre':
                propA = children[i].dataset.titre
                propB = children[i + 1].dataset.titre
-               compare = propA.localeCompare(propB, 'en', { sensitivity: 'base' })
+               compare = propA.localeCompare(propB, 'en', { sensitivity: 'base' }) // retourne un nombre positif ou negatif)
                break
          }
 
-         if (compare > 0) {
-            container.insertBefore(children[i + 1], children[i])
+         if (compare > 0) { // si A plus grand que B
+            container.insertBefore(children[i + 1], children[i]) // alors on place B (children[i + 1]) avant A (children[i])
             output.push(propA - propB > 0) // push true
          }
       }
-      if (output.length !== 0 ) recursive() // if || while true values => call recursive
+      if (output.length !== 0 ) recursive() // si output comprend au moins une valeur (true) alors on appelle de nouveau la fonction
    }
    return recursive()
 }

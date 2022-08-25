@@ -89,8 +89,8 @@ class CardMedia {
       card.dataset.popularite = this._media.LikeCounter.count
    }
 
-   createCard(name, value) {
-      const { id, title, photographer, mediaType } = this._media
+   createCard() {
+      const { id, photographer, mediaType } = this._media
       const card = this.getCardWrapper(this._media)
 
       const link = new LinkComponent("Agrandir l'élément", this._index, {
@@ -123,11 +123,4 @@ class CardMedia {
 
       return card
    }
-
-   // async setUrl() {
-   //    const { id, title, photographer } = this._media
-   //    let [url, params] = location.href.split('?')
-   //    params = `?photographer=${photographer.id}&media=${id}`
-   //    location.href = url + params
-   // }
 }
