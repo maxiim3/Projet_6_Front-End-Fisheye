@@ -12,7 +12,7 @@ class CardComponent {
       this.$li = document.createElement('li')
    }
    setHTMLAttributes() {
-      this.$li.classList.value = 'card cardLayout selfCenter'
+      this.$li.classList.value = 'cardLayout'
       this.$li.ariaRoleDescription = this.description
       this.$li.ariaLabel = `${this.description} : ${this.data}`
    }

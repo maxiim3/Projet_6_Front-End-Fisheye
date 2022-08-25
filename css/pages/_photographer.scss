@@ -154,6 +154,7 @@
 //region Modal
 #contact_modal {
    position: fixed;
+   z-index: 50;
    top: -10px;
    left: 0;
    display: none;
@@ -369,8 +370,6 @@
       display: block;
       color: $primary;
    }
-
-   //todo border-radius lightbox and header and shadow img media lightbox
 
    &__media-wrapper {
       display: flex;

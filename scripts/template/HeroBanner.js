@@ -1,6 +1,3 @@
-// todo  remplacer BEM par tailwind style, car pas beaucoup d'element
-// todo refactoriser pour isoler la creation des e;ements redondant
-
 /**
  * @param {PhotographerConstructor} data
  * @param {number} accessibilityIndex Index for screen Readers

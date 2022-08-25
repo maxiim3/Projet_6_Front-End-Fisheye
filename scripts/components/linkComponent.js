@@ -22,7 +22,7 @@ class LinkComponent {
       const paramsMedia = this.mediaIdKey
          ? `&${this.mediaIdKey}=${this.mediaIdValue || 'all-medias'}`
          : ''
-      this.$a.classList.value = 'flex flex__col justifyCenter alignCenter mediaLink'
+      this.$a.classList.value = 'photographer__link media__link'
       this.$a.href += `photographer.html?${paramsPhotographer}${paramsMedia}`
       this.$a.ariaRoleDescription = this.desc
       this.$a.ariaLabel = `Cliquez pour${this.desc}`

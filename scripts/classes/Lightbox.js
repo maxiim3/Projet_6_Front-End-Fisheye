@@ -11,7 +11,6 @@ class Lightbox {
    constructor(photographer, medias) {
       this.photographer = photographer
       this.medias = medias
-
       // DOM Nodes
       this.$main = document.getElementById('main')
       this.$lightbox = document.querySelector('#lightbox')
@@ -29,24 +28,23 @@ class Lightbox {
       this.$btnClose.classList.value = 'fa-solid fa-xmark'
       this.$mediaTitle.classList.value = 'lightbox__title'
       // All Medias from page
-      this.allMediaLink = [...document.querySelectorAll('.mediaLink')]
+      this.allMediaLink = [...document.querySelectorAll('.media__link')]
       // Spinner Loader Class
       this.spinnerLoader = new LoadingSpinner(this.$mediaContainer)
    }
 
-   /* todo make observer -> subscribe || unsubscribe ```this.allMediaLink.forEach```*/
    /**
     * Add event Listener to all media cards in the photographer page
     * @param e
     */
    addEventListenerToAllMedias(e) {
-      this.allMediaLink.forEach($media =>
+      return this.allMediaLink.forEach($media =>
          $media.addEventListener('click', e => this.openLightbox(e, $media))
       )
    }
 
    removeEventListenerToAllMedias() {
-      this.allMediaLink.forEach(media => media.removeEventListener('click', this.openLightbox))
+      return this.allMediaLink.forEach(media => media.removeEventListener('click', this.openLightbox))
    }
 
    /**
@@ -55,9 +53,9 @@ class Lightbox {
     * @param {HTMLLinkElement} $mediaLink
     */
    openLightbox(e, $mediaLink) {
+      e.preventDefault()
       this.$activeMedia = $mediaLink
 
-      e.preventDefault()
       const previousMediaCard = document.querySelector('.lightbox__displayed-media')
       if (previousMediaCard) this.$mediaContainer.removeChild(previousMediaCard)
 
@@ -163,6 +161,7 @@ class Lightbox {
       }, 450)
    }
 
+
    async keyboardNavigation(e) {
       switch (e.key) {
          case 'ArrowLeft':
@@ -179,8 +178,8 @@ class Lightbox {
             break
       }
    }
-
    async init() {
+      this.addEventListenerToAllMedias()
       document.addEventListener('keyup', e => {
          setTimeout(() => {
             switch (e.key) {
@@ -196,7 +195,6 @@ class Lightbox {
             }
          }, 250)
       })
-      this.addEventListenerToAllMedias()
 
       this.$lightboxContent.appendChild(this.$mediaContainer)
       this.$lightboxContent.appendChild(this.$mediaTitle)

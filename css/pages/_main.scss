@@ -32,6 +32,49 @@ header {
       column-gap: 160px;
       padding-inline: 30px;
    }
+
+   .cardLayout {
+      align-self: center;
+   }
+
+   .photographer {
+      &__name {
+         font-size: $text__36;
+         color: $secondary;
+      }
+
+      &__link {
+         display: flex;
+         flex-wrap: wrap;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+      }
+
+      &__information {
+         display: flex;
+         flex-wrap: wrap;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+         gap: 6px;
+
+         &__location {
+            font-size: $text__18;
+            color: $primary;
+         }
+
+         &__tagline {
+            font-size: $text__13;
+            color: $dark;
+         }
+
+         &__price {
+            font-size: $text__10;
+            color: $gray;
+         }
+      }
+   }
 }
 
 // endregion

@@ -17,7 +17,7 @@ class CardPhotographer {
 
    getInformationSection() {
       const $information = document.createElement('ul')
-      $information.classList.value = 'flex flex__col justifyCenter alignCenter gap__sm'
+      $information.classList.value = 'photographer__information'
       $information.ariaLabel = 'Plus d\'informations'
       $information.tabIndex = this._index + 1
       return $information
@@ -40,7 +40,7 @@ class CardPhotographer {
    getH2({ name }) {
       const $h2 = document.createElement('h2')
       $h2.innerText = name
-      $h2.classList.value = 'card__link__title text__xl clr__secondary'
+      $h2.classList.value = 'photographer__name'
       $h2.ariaLabel = name
 
       return $h2
@@ -49,7 +49,7 @@ class CardPhotographer {
    getCity({ location }) {
       const $li = document.createElement('li')
       $li.innerText = location
-      $li.classList.value = `text__sm clr__primary`
+      $li.classList.value = `photographer__information__location`
       $li.ariaRoleDescription = `Localisation de l'artiste`
       $li.ariaLabel = 'Ville et Pays'
 
@@ -59,7 +59,7 @@ class CardPhotographer {
    getTagLine({ tagline }) {
       const $li = document.createElement('li')
       $li.innerText = tagline
-      $li.classList.value = `text__xs clr__dark`
+      $li.classList.value = `photographer__information__tagline`
       $li.ariaRoleDescription = `Localisation de l'artiste`
       $li.ariaLabel = 'Ville et Pays'
 
@@ -69,7 +69,7 @@ class CardPhotographer {
    getPrice({ price }) {
       const $li = document.createElement('li')
       $li.innerText = price
-      $li.classList.value = `text__xs--alt clr__gray`
+      $li.classList.value = `photographer__information__price`
       $li.ariaRoleDescription = `Tarifs`
       $li.ariaLabel = 'Tarifs journaliers'
 

@@ -86,6 +86,7 @@ body {
 //endregion
 //endregion
 
+//titles
 h1 {
    margin-right: 70px;
 }
@@ -98,4 +99,15 @@ h1 {
    object-fit: cover;
    object-position: center;
    margin-inline: auto;
+}
+
+// Main Layout for Card components
+.cardLayout {
+   width: $card-layout-width;
+   height: $card-layout-height;
+}
+
+// Main Logo in Body>HEADER
+.logo {
+   height: 50px;
 }

@@ -51,90 +51,6 @@ h1 {
   margin-inline: auto;
 }
 
-.flex {
-  display: flex;
-  flex-wrap: wrap;
-}
-.flex__col {
-  flex-direction: column;
-}
-.flex__row {
-  flex-direction: row;
-}
-
-.block {
-  display: block;
-}
-
-.alignCenter {
-  align-items: center;
-}
-
-.justifyBetween {
-  justify-content: space-between;
-}
-
-.justifyCenter {
-  justify-content: center;
-}
-
-.selfCenter {
-  align-self: center;
-}
-
-.fullSpace {
-  width: 100px;
-  height: 100px;
-}
-
-.text__xxl {
-  font-size: 64px;
-}
-.text__xl {
-  font-size: 36px;
-}
-.text__l {
-  font-size: 24px;
-}
-.text__m {
-  font-size: 18px;
-}
-.text__sm {
-  font-size: 13px;
-}
-.text__xs {
-  font-size: 10px;
-}
-.text__xs--alt {
-  font-size: 9px;
-}
-
-.clr__primary {
-  color: #901c1c;
-}
-.clr__secondary {
-  color: #d3573c;
-}
-.clr__gray {
-  color: #525252;
-}
-.clr__white {
-  color: #fafafa;
-}
-.clr__dark {
-  color: black;
-}
-
-.gap__sm {
-  gap: 6px;
-}
-.gap__m {
-  gap: 12px;
-}
-.gap__l {
-  gap: 24px;
-}
-
 .cardLayout {
   width: 355px;
   height: 340px;
@@ -199,6 +115,40 @@ header h1 {
   row-gap: 70px;
   column-gap: 160px;
   padding-inline: 30px;
+}
+.page__main .cardLayout {
+  align-self: center;
+}
+.page__main .photographer__name {
+  font-size: 36px;
+  color: #d3573c;
+}
+.page__main .photographer__link {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.page__main .photographer__information {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.page__main .photographer__information__location {
+  font-size: 18px;
+  color: #901c1c;
+}
+.page__main .photographer__information__tagline {
+  font-size: 13px;
+  color: black;
+}
+.page__main .photographer__information__price {
+  font-size: 10px;
+  color: #525252;
 }
 
 .hero-banner {
@@ -328,6 +278,7 @@ header h1 {
 
 #contact_modal {
   position: fixed;
+  z-index: 50;
   top: -10px;
   left: 0;
   display: none;
