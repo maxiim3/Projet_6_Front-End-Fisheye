@@ -121,6 +121,7 @@
          right: 10px;
          transition: rotate 350ms ease-in-out;
          color: white;
+         cursor: pointer;
       }
 
       &[data-dropped='true'] {
@@ -129,7 +130,10 @@
 
          p {
             opacity: 1;
-
+         &:hover {
+           text-decoration:  underline;
+            text-underline-offset: 7px;
+         }
             &:not(:last-of-type) {
                &:after {
                   position: absolute;

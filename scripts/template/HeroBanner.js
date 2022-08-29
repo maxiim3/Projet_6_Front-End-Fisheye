@@ -22,7 +22,7 @@ class HeroBanner {
       const $h1 = document.createElement('h1')
       $h1.innerText = name
       $h1.classList.value = 'header__title'
-      $h1.ariaLabel = name
+      $h1.ariaLabel = `Nom de du/de la photographe: ${name}`
 
       return $h1
    }
@@ -41,8 +41,8 @@ class HeroBanner {
       const $li = document.createElement('li')
       $li.innerText = tagline
       $li.classList.value = `header__tagline`
-      $li.ariaRoleDescription = `Localisation de l'artiste`
-      $li.ariaLabel = 'Ville et Pays'
+      $li.ariaRoleDescription = `Slogan de l'artiste`
+      $li.ariaLabel = 'Slogan'
 
       return $li
    }

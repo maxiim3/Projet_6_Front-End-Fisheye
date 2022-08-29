@@ -1,9 +1,19 @@
 class Modal {
    constructor() {
       this.$modal = document.querySelector('#contact_modal')
+      this.$modal.tabIndex = -1
       this.$openBtn = document.querySelector('#showModal')
+      this.$openBtn.tabIndex = "Ouvrir le formulaire"
+      this.$openBtn.ariaLabel =
       this.$closeBtn = document.querySelector('#closeModal')
+      this.$closeBtn.tabIndex = 0
+      this.$closeBtn.ariaLabel = "Fermer la fenêtre du formulaire"
 
+   }
+
+   openModal(e) {
+      e.preventDefault()
+      this.showModal()
    }
 
    showModal() {
@@ -30,11 +40,6 @@ class Modal {
 
       // add listeners
       this.$openBtn.addEventListener('click', e => this.openModal(e))
-   }
-
-   openModal(e) {
-      e.preventDefault()
-      this.showModal()
    }
 
    closeWithKeyboard(e) {

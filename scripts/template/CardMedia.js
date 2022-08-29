@@ -32,12 +32,16 @@ class CardMedia {
       const $likesCounter = document.createElement('p')
       $likesCounter.innerText = likes
       $likesCounter.classList.value = 'card__information__likes'
+      $likesCounter.ariaLabel = `Nombre de likes : ${likes}`
+      $likesCounter.tabIndex = 0
       $likesCounter.dataset.countLikes = likes
 
       // like Icon
       const $likesIcon = document.createElement('i')
       $likesIcon.alt = 'Cliquez pour ajouter à vos favoris'
       $likesIcon.classList.value = 'fa-solid fa-heart card__information__icon'
+      $likesIcon.tabIndex = 0
+      $likesIcon.ariaLabel = 'Sélectionner pour ajouter à vos favoris'
 
       $likeWrapper.appendChild($likesCounter)
       $likeWrapper.appendChild($likesIcon)

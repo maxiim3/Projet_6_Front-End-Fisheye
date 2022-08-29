@@ -256,6 +256,7 @@ header h1 {
   right: 10px;
   transition: rotate 350ms ease-in-out;
   color: white;
+  cursor: pointer;
 }
 .sort__options[data-dropped=true] {
   height: 140px;
@@ -263,6 +264,10 @@ header h1 {
 }
 .sort__options[data-dropped=true] p {
   opacity: 1;
+}
+.sort__options[data-dropped=true] p:hover {
+  text-decoration: underline;
+  text-underline-offset: 7px;
 }
 .sort__options[data-dropped=true] p:not(:last-of-type):after {
   position: absolute;

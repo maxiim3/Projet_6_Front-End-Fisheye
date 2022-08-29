@@ -10,19 +10,13 @@ class Api {
    }
 
    async fetch() {
-      return fetch(this.url)
-         .then(res => res.json())
-         .then(data => data)
-         .catch(err => console.warn(`Un problème est survenu...${err}`))
+      try {
+         const fetchData = await fetch(this.url)
+         const response = await fetchData.json()
+         return await response
+      } catch (e) {
+         throw new Error('Un problème est survenu...')
+      }
    }
-   //
-   // async getPhotographers() {
-   //    const photographer = await this.get()
-   //    return photographer.photographers
-   // }
-   //
-   // async getMedia() {
-   //    const photographer = await this.get()
-   //    return photographer.media
-   // }
+
 }

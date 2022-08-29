@@ -14,12 +14,15 @@ class Form {
       // set wrapper [label, input]
       const $wrapper = document.createElement('section')
       $wrapper.classList.value = `inputsWrapper inputWrapper__${id}`
+      $wrapper.ariaLabel = `Entrez votre ${label}`
+      $wrapper.tabIndex = 0
 
       // set label
-      if (type !== "button") {
+      if (type !== 'button') {
          const $label = document.createElement('label')
          $label.htmlFor = id
          $label.innerText = label
+         $label.tabIndex = -1
          $wrapper.appendChild($label)
       }
 
@@ -31,6 +34,7 @@ class Form {
             $input.id = id
             $input.name = id
             $input.classList.value = `input input__${id}`
+            $input.tabIndex = 0
             // append input and label to wrapper
             $wrapper.appendChild($input)
             break
@@ -40,6 +44,7 @@ class Form {
             const $textarea = document.createElement('textarea')
             $textarea.id = id
             $textarea.classList.value = `input input__${id}`
+            $textarea.tabIndex = 0
             // append input and label to wrapper
             $wrapper.appendChild($textarea)
             break
@@ -50,6 +55,7 @@ class Form {
             $email.id = id
             $email.type = type
             $email.classList.value = `input input__${id}`
+            $email.tabIndex = 0
             $wrapper.appendChild($email)
             break
 
@@ -59,6 +65,7 @@ class Form {
             $btn.classList.value = 'contact_button'
             $btn.innerText = label
             $btn.id = 'sendForm'
+            $btn.tabIndex = 0
             $wrapper.appendChild($btn)
             break
       }
@@ -101,10 +108,10 @@ function createForm() {
    return form
 }
 
-// todo Implementer Focus screereader sur Close nodal btn
 function handleForm(form) {
    const submit = document.getElementById('sendForm')
    const $modal = document.querySelector('#contact_modal')
+   $modal.tabIndex = 0
 
    submit.addEventListener('click', e => {
       const { value: prenom } = document.getElementById('prenom')
@@ -124,8 +131,7 @@ function handleForm(form) {
             outputs.forEach(out => console.log(out, 'color: green'))
             $modal.style.display = 'none'
          }
-      }
-      catch (e) {
+      } catch (e) {
          console.warn(e + '\nTous les champs doivent être renseignés')
       }
    })

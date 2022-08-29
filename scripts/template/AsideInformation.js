@@ -22,6 +22,7 @@ class AsideInformation {
       this.$likes.innerText = `3000`
       this.$likes.classList.value = `aside__count-like`
       this.$likes.ariaLabel = 'Nombre de likes'
+      this.$likes.tabIndex = 0
 
       this.likeWrapper.classList.value = 'aside__wrapper'
       this.likeWrapper.ariaHidden = 'true'

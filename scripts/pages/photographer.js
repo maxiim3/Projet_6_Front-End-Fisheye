@@ -87,51 +87,53 @@ class App {
    }
 
    renderFilter() {
-      const date = document.createElement('p')
-      date.ariaLabel = 'trier les éléments'
-      date.classList.value = 'sort__options--date'
-      date.textContent = 'Date'
-      date.tabIndex = 0
-
-      const popularity = document.createElement('p')
-      popularity.ariaLabel = 'trier les éléments'
-      popularity.classList.value = 'sort__options--popularity'
-      popularity.textContent = 'Popularité'
-      popularity.tabIndex = 0
-
-      const title = document.createElement('p')
-      title.ariaLabel = 'trier les éléments'
-      title.classList.value = 'sort__options--title'
-      title.textContent = 'Titre'
-      title.tabIndex = 0
-
-      const icon = document.createElement('i')
-      icon.ariaLabel = 'trier les éléments'
-      icon.classList.value = 'sort__options--icon fa-solid fa-angle-down'
-
       const options = document.createElement('div')
-      options.ariaLabel = 'trier les éléments'
+      options.ariaLabel = 'sélectionner pour trier les éléments'
       options.classList.value = 'sort__options'
       options.dataset.dropped = 'false'
+
+      const date = document.createElement('p')
+      date.ariaLabel = 'trier les éléments par date'
+      date.classList.value = 'sort__options--date'
+      date.textContent = 'Date'
+      date.tabIndex = options.dataset.dropped === 'true' ? 0 : -1
+
+      const popularity = document.createElement('p')
+      popularity.ariaLabel = 'trier les éléments par popularité'
+      popularity.classList.value = 'sort__options--popularity'
+      popularity.textContent = 'Popularité'
+      popularity.tabIndex = options.dataset.dropped === 'true'  ? 0 : -1
+
+      const title = document.createElement('p')
+      title.ariaLabel = 'trier les éléments par tite'
+      title.classList.value = 'sort__options--title'
+      title.textContent = 'Titre'
+      title.tabIndex = options.dataset.dropped === 'true' ? 0 : -1
+
+      const icon = document.createElement('i')
+      icon.classList.value = 'sort__options--icon fa-solid fa-angle-down'
+      icon.tabIndex = -1
+
+      const label = document.createElement('label')
+      label.ariaHidden = 'true'
+      label.classList.value = 'sort__label'
+      label.textContent = 'Trier les éléments'
+      label.tabIndex = 0
+
       options.appendChild(icon)
       options.appendChild(title)
       options.appendChild(popularity)
       options.appendChild(date)
 
-      const label = document.createElement('label')
-      label.ariaHidden = 'true'
-      label.classList.value = 'sort__label'
-      label.textContent = 'Trier par'
-
       const wrapper = document.querySelector('.sort__wrapper')
-      wrapper.ariaLabel = 'trier les éléments'
       wrapper.appendChild(label)
       wrapper.appendChild(options)
+      wrapper.tabIndex = -1
    }
 
    async handleSort() {
       const options = document.querySelector('.sort__options')
-      const buttons = [...options.querySelectorAll('p')]
+      const buttons = [...options.querySelectorAll('p'), document.querySelector('.sort__options--icon')]
 
       buttons.forEach(btn => {
          btn.addEventListener('click', async ev => {
