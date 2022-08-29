@@ -418,7 +418,7 @@ header h1 {
   display: flex;
   gap: 5px;
 }
-.photographer__aside i {
+.photographer__aside .fa-solid {
   width: 18px;
   height: 18px;
   margin-left: 5px;
@@ -493,32 +493,32 @@ header h1 {
 .lightbox__media-wrapper .imgMedia[data-visible=true] {
   visibility: visible;
 }
-.lightbox i.fa-solid {
+.lightbox .fa-solid {
   font-size: 64px;
   position: absolute;
   cursor: pointer;
   color: #901c1c;
 }
-.lightbox i.fa-solid.fa-angle-right, .lightbox i.fa-solid.fa-angle-left, .lightbox i.fa-solid.fa-xmark {
+.lightbox .fa-solid.fa-angle-right, .lightbox .fa-solid.fa-angle-left, .lightbox .fa-solid.fa-xmark {
   transition: color 350ms;
 }
-.lightbox i.fa-solid.fa-angle-right:active, .lightbox i.fa-solid.fa-angle-left:active, .lightbox i.fa-solid.fa-xmark:active {
+.lightbox .fa-solid.fa-angle-right:active, .lightbox .fa-solid.fa-angle-left:active, .lightbox .fa-solid.fa-xmark:active {
   animation: navigation 450ms 100ms ease-in-out;
   color: black;
 }
-.lightbox i.fa-solid.fa-angle-right:hover, .lightbox i.fa-solid.fa-angle-left:hover, .lightbox i.fa-solid.fa-xmark:hover {
+.lightbox .fa-solid.fa-angle-right:hover, .lightbox .fa-solid.fa-angle-left:hover, .lightbox .fa-solid.fa-xmark:hover {
   transition: color 350ms;
   color: black;
 }
-.lightbox i.fa-solid.fa-angle-right {
+.lightbox .fa-solid.fa-angle-right {
   top: 50%;
   right: 60px;
 }
-.lightbox i.fa-solid.fa-angle-left {
+.lightbox .fa-solid.fa-angle-left {
   top: 50%;
   left: 60px;
 }
-.lightbox i.fa-solid.fa-xmark {
+.lightbox .fa-solid.fa-xmark {
   top: 60px;
   right: 60px;
 }

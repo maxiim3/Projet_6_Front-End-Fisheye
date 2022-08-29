@@ -5,7 +5,7 @@ class CardMedia {
    }
 
    getMedia() {
-      return new ComponentMediaFactory(this._media, this._media.mediaType)
+      return new MediaFactory(this._media)
    }
 
    createInformationSection() {
@@ -37,7 +37,7 @@ class CardMedia {
       $likesCounter.dataset.countLikes = likes
 
       // like Icon
-      const $likesIcon = document.createElement('i')
+      const $likesIcon = document.createElement('span')
       $likesIcon.alt = 'Cliquez pour ajouter à vos favoris'
       $likesIcon.classList.value = 'fa-solid fa-heart card__information__icon'
       $likesIcon.tabIndex = 0

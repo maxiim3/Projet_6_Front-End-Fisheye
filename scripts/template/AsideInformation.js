@@ -11,7 +11,7 @@ class AsideInformation {
       this.$aside = document.createElement('aside')
       this.likeWrapper = document.createElement('div')
       this.$likes = document.createElement('p')
-      this.$likesIcon = document.createElement('i')
+      this.$likesIcon = document.createElement('span')
       this.$price = document.createElement('p')
    }
 

@@ -30,7 +30,7 @@ class App {
 
       const filterPhotographer = allPhotographers.filter(ph => ph.id === this._paramsId)[0]
       this._photographer = new PhotographerConstructor(filterPhotographer)
-
+      document.querySelector('h1').textContent = this._photographer.name
       allMedias
          .filter(data => data.photographerId === this._photographer.id)
          .map(data => {
@@ -65,7 +65,6 @@ class App {
       const aside = new AsideInformation(this._photographer)
       aside.init()
       this._medias = this._medias.map(media => MediaWithLikeCounter(media, new LikeCounter(media)))
-
       await this.renderMedias(this._medias)
 
       return this._medias
@@ -110,7 +109,7 @@ class App {
       title.textContent = 'Titre'
       title.tabIndex = options.dataset.dropped === 'true' ? 0 : -1
 
-      const icon = document.createElement('i')
+      const icon = document.createElement('span')
       icon.classList.value = 'sort__options--icon fa-solid fa-angle-down'
       icon.tabIndex = -1
 

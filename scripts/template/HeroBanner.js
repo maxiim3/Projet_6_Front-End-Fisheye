@@ -12,14 +12,14 @@ class HeroBanner {
       this.$heroBanner = document.querySelector('#hero-banner')
    }
    getInformationSection() {
-      const $information = document.createElement('ul')
+      const $information = document.createElement('article')
       $information.classList.value = 'header__information'
       $information.ariaLabel = "Informations"
       $information.tabIndex = this._index + 1
       return $information
    }
    getH1({ name }) {
-      const $h1 = document.createElement('h1')
+      const $h1 = document.createElement('h2')
       $h1.innerText = name
       $h1.classList.value = 'header__title'
       $h1.ariaLabel = `Nom de du/de la photographe: ${name}`
@@ -28,7 +28,7 @@ class HeroBanner {
    }
 
    getCity({ location }) {
-      const $li = document.createElement('li')
+      const $li = document.createElement('p')
       $li.innerText = location
       $li.classList.value = `header__location`
       $li.ariaRoleDescription = `Localisation de l'artiste`
@@ -38,7 +38,7 @@ class HeroBanner {
    }
 
    getTagLine({ tagline }) {
-      const $li = document.createElement('li')
+      const $li = document.createElement('p')
       $li.innerText = tagline
       $li.classList.value = `header__tagline`
       $li.ariaRoleDescription = `Slogan de l'artiste`

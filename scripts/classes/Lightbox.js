@@ -16,16 +16,26 @@ class Lightbox {
       this.$lightbox = document.querySelector('#lightbox')
       this.$lightboxContent = document.createElement('div')
       this.$mediaContainer = document.createElement('div')
-      this.$btnPrevious = document.createElement('i')
-      this.$btnNext = document.createElement('i')
-      this.$btnClose = document.createElement('i')
+      this.$btnPrevious = document.createElement('span')
+      this.$btnNext = document.createElement('span')
+      this.$btnClose = document.createElement('span')
       this.$mediaTitle = document.createElement('h3')
       // Set Classes
       this.$lightboxContent.classList.value = 'lightbox__container'
       this.$mediaContainer.classList.value = 'lightbox__media-wrapper'
+
       this.$btnPrevious.classList.value = 'fa-solid fa-angle-left'
+      this.$btnPrevious.setAttribute('role', 'button')
+      this.$btnPrevious.ariaRoleDescription = "naviguer à l'élément précédent"
+
       this.$btnNext.classList.value = 'fa-solid fa-angle-right'
+      this.$btnNext.setAttribute('role', 'button')
+      this.$btnNext.ariaRoleDescription = "naviguer à l'élément suivant"
+
       this.$btnClose.classList.value = 'fa-solid fa-xmark'
+      this.$btnClose.setAttribute('role', 'button')
+      this.$btnClose.ariaRoleDescription = 'Fermer la fenêtre'
+
       this.$mediaTitle.classList.value = 'lightbox__title'
       // All Medias from page
       this.allMediaLink = [...document.querySelectorAll('.media__link')]
@@ -44,7 +54,9 @@ class Lightbox {
    }
 
    removeEventListenerToAllMedias() {
-      return this.allMediaLink.forEach(media => media.removeEventListener('click', this.openLightbox))
+      return this.allMediaLink.forEach(media =>
+         media.removeEventListener('click', this.openLightbox)
+      )
    }
 
    /**
@@ -66,11 +78,11 @@ class Lightbox {
             .filter(({ id }) => id === parseInt(this.$activeMedia.dataset.id))
             .at(0)
 
-         const mediaFactory = new ComponentMediaFactory(mediaObject, this.$activeMedia.dataset.type)
+         const mediaFactory = new MediaFactory(mediaObject, true)
          const mediaCard = mediaFactory.createComponent()
 
          mediaCard.classList.value = 'lightbox__displayed-media'
-         this.$mediaTitle.innerText = mediaFactory.title
+         this.$mediaTitle.innerText = mediaObject.title
 
          await this.displayMedia(mediaCard)
          this.$main.dataset.lightboxIsOpen = 'true'
@@ -82,7 +94,7 @@ class Lightbox {
          /*Enable Previous Event*/
          this.$btnPrevious.addEventListener('click', e => this.changeMedia(e, 'previous'))
          /*Enable Next Event*/
-         this.$btnNext.addEventListener('click', e =>this.changeMedia(e, 'next'))
+         this.$btnNext.addEventListener('click', e => this.changeMedia(e, 'next'))
       }, 300)
 
       this.removeEventListenerToAllMedias()
@@ -104,7 +116,7 @@ class Lightbox {
       this.$main.dataset.lightboxIsOpen = 'false'
 
       setTimeout(() => {
-      this.$lightbox.dataset.open = 'false'
+         this.$lightbox.dataset.open = 'false'
       }, 400)
 
       this.addEventListenerToAllMedias()
@@ -118,7 +130,7 @@ class Lightbox {
     * @param {MouseEvent | KeyboardEvent } e
     * @param {string} type is type of "previous" or "next"
     */
-   async changeMedia(e, type){
+   async changeMedia(e, type) {
       e.preventDefault()
 
       const activeMediaCard = document.querySelector('.lightbox__displayed-media')
@@ -143,14 +155,12 @@ class Lightbox {
 
       const nextConstructorMedia = this.medias[index]
 
-      const nextMediaFactory = new ComponentMediaFactory(
-         nextConstructorMedia,
-         nextConstructorMedia.mediaType
-      )
+      const nextMediaFactory = new MediaFactory(nextConstructorMedia, true)
       const nextMediaCard = nextMediaFactory.createComponent()
 
       nextMediaCard.classList.value = 'lightbox__displayed-media'
-      this.$mediaTitle.innerText = nextMediaFactory.title
+
+      this.$mediaTitle.innerText = nextConstructorMedia.title
       this.$mediaContainer.removeChild(activeMediaCard)
       this.spinnerLoader.renderSpinner()
 
@@ -160,7 +170,6 @@ class Lightbox {
          this.$mediaContainer.appendChild(nextMediaCard)
       }, 450)
    }
-
 
    async keyboardNavigation(e) {
       switch (e.key) {
@@ -178,6 +187,7 @@ class Lightbox {
             break
       }
    }
+
    async init() {
       this.addEventListenerToAllMedias()
       document.addEventListener('keyup', e => {

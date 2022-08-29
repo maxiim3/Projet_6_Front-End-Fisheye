@@ -1,9 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html
+   lang="fr"
+   dir="ltr">
    <!--region Head-->
    <head>
       <!--      Meta-->
-      <meta charset="utf-8" />
+      <meta
+         http-equiv="Content-Type"
+         content="text/html;charset=UTF-8" />
+
       <!--region scripts JS-->
       <!--API-->
       <script
@@ -32,7 +37,7 @@
          src="scripts/factories/CardTemplateFactory.js"
          defer></script>
       <script
-         src="scripts/factories/ComponentMediaFactory.js"
+         src="scripts/factories/MediaFactory.js"
          defer></script>
 
       <!--Components -->
@@ -42,15 +47,6 @@
       <script
          src="scripts/components/linkComponent.js"
          defer></script>
-      <script
-         src="scripts/components/MediaComponents.js"
-         defer></script>
-<!--      <script
-         src="scripts/components/imageComponent.js"
-         defer></script>
-      <script
-         src="scripts/components/videoComponent.js"
-         defer></script>-->
       <script
          src="scripts/components/portraitComponent.js"
          defer></script>
@@ -97,7 +93,7 @@
          referrerpolicy="no-referrer" />
       <!--      CSS-->
       <link
-         href='css/index.css'
+         href="css/index.css"
          rel="stylesheet"
          type="text/css" />
       <!--      Title-->
@@ -113,14 +109,16 @@
                src="assets/images/logo.png"
                class="logo"
                alt="FishEye, revenez au menu principal"
-               aria-label="FishEye, revenez au menu principal"
-               tabindex="1" />
+               aria-label="FishEye, revenez au menu principal" />
+            <h1 hidden></h1>
          </a>
       </header>
       <!--   endregion-->
 
       <!--   region Main-->
-      <main id="main" class='page__photographer'>
+      <main
+         id="main"
+         class="page__photographer">
          <header
             class="hero-banner"
             id="hero-banner"
@@ -128,7 +126,7 @@
             <button
                id="showModal"
                class="contact_button"
-            aria-label="Sélectionner pour m'envoyer un message">
+               aria-label="Sélectionner pour m'envoyer un message">
                Contactez-moi
             </button>
          </header>
@@ -154,9 +152,11 @@
             <header>
                <h2>Contactez-moi</h2>
                <h3 id="form_photographer"></h3>
-               <i
+               <span
                   class="fa-solid fa-xmark"
-                  id="closeModal"></i>
+                  id="closeModal"
+                  role="button"
+                  aria-roledescription="fermer le formulaire"></span>
             </header>
             <!--   region Form-->
             <form id="form">
