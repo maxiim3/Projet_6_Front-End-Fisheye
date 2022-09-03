@@ -20,7 +20,7 @@ class Lightbox {
       this.$btnNext = document.createElement('span')
       this.$btnClose = document.createElement('span')
       this.$mediaTitle = document.createElement('h3')
-      // Set Classes
+      // Set CSS Classes
       this.$lightboxContent.classList.value = 'lightbox__container'
       this.$mediaContainer.classList.value = 'lightbox__media-wrapper'
 
@@ -113,16 +113,17 @@ class Lightbox {
     * @param {MouseEvent | KeyboardEvent } e
     */
    closeLightbox(e) {
-      this.$main.dataset.lightboxIsOpen = 'false'
+      this.$lightbox.dataset.open = 'false'
 
       setTimeout(() => {
-         this.$lightbox.dataset.open = 'false'
-      }, 400)
+         this.$main.dataset.lightboxIsOpen = 'false'
+      }, 250)
 
       this.addEventListenerToAllMedias()
       this.$btnPrevious.removeEventListener('click', this.changeMedia)
       this.$btnNext.removeEventListener('click', this.changeMedia)
       document.removeEventListener('keydown', this.keyboardNavigation)
+      this.spinnerLoader.renderSpinner()
    }
 
    /**
@@ -132,7 +133,7 @@ class Lightbox {
     */
    async changeMedia(e, type) {
       e.preventDefault()
-
+      this.spinnerLoader.renderSpinner()
       const activeMediaCard = document.querySelector('.lightbox__displayed-media')
       const getActiveId = parseInt(this.$lightbox.dataset.activeMediaId)
       const activeMediaInFilterMedia = this.medias.filter(media => media.id === getActiveId)[0]

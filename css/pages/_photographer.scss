@@ -5,7 +5,6 @@
    height: 300px;
    margin: 0;
    padding: 24px 50px;
-   animation: fadeIn 350ms 500ms both;
    background-color: #fafafa;
    grid-template-columns: 1fr 1fr 1fr;
 
@@ -54,7 +53,6 @@
    margin-top: 10px;
    padding: 11px;
    cursor: pointer;
-   animation: fadeIn 350ms 800ms both;
    color: white;
    border: none;
    border-radius: 5px;
@@ -130,10 +128,12 @@
 
          p {
             opacity: 1;
-         &:hover {
-           text-decoration:  underline;
-            text-underline-offset: 7px;
-         }
+
+            &:hover {
+               text-decoration: underline;
+               text-underline-offset: 7px;
+            }
+
             &:not(:last-of-type) {
                &:after {
                   position: absolute;
@@ -169,8 +169,20 @@
    height: 100%;
    margin: 0;
    padding: 0;
-   animation: fadeIn 300ms;
+   animation: fadeIn 300ms both ease-in-out 400ms;
    background-color: rgba(250, 250, 250, 70%);
+}
+
+.animate__fade-out {
+   animation: fadeOut 450ms ease-in-out both !important;
+}
+
+.animate__shrink {
+   animation: shrink 650ms ease-in-out both !important;
+}
+
+.animate__fade-in {
+   animation: fadeIn 350ms ease-in-out both !important;
 }
 
 .modal__inner {
@@ -194,12 +206,17 @@
       gap: 5px;
 
       #closeModal {
-         font-size: $text__64;
+         span {
+            font-size: $text__64;
+            color: $white;
+         }
+
+         border: none;
+         background-color: rgba(0, 0, 0, 0%);
          position: absolute;
          top: 0;
          right: 0;
          cursor: pointer;
-         color: $white;
       }
 
       h2,
@@ -236,7 +253,7 @@
       }
 
       .contact_button {
-         animation: fadeIn 350ms 160ms both;
+         animation: fadeIn 400ms 300ms both ease-in-out;
       }
    }
 }
@@ -267,9 +284,15 @@
       color: $primary;
    }
 
+   &__btn {
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
+      width: fit-content;
+      margin-left: 5px;
+   }
+
    &__icon {
       font-size: 24px;
-      margin-left: 5px;
       cursor: pointer;
       transition: opacity, color, transform 350ms ease-in-out;
       color: $primary;
@@ -288,7 +311,7 @@
 
 .cardLayout[data-is-liked='true'] {
    .card__information__icon,
-   .card__information__likes{
+   .card__information__likes {
       color: #d09139;
    }
 }
@@ -336,7 +359,6 @@
    object-position: top;
    margin-inline: auto;
 }
-
 
 .likeIcon {
    width: 18px;
@@ -442,68 +464,4 @@
 .focusNavigation {
    animation: navigation 250ms ease-in-out;
    color: $primary;
-}
-
-@keyframes navigation {
-   0%,
-   60%,
-   100% {
-      scale: 100%;
-   }
-   40% {
-      scale: 60%;
-   }
-   80% {
-      scale: 110%;
-   }
-}
-
-@keyframes fadeIn {
-   from {
-      opacity: 0;
-      animation-timing-function: ease-in;
-   }
-   to {
-      opacity: 1;
-      animation-timing-function: ease-out;
-   }
-}
-
-/**
-  * Duo
-  *
-  * @author jh3y - jhey.dev
-*/
-.duo {
-   align-self: center;
-
-   &:before {
-      display: block;
-      width: 50px;
-      height: 50px;
-      content: '';
-      -webkit-animation: spin 0.5s infinite linear;
-      animation: spin 0.5s infinite linear;
-      border-width: 6px;
-      border-style: solid;
-      border-top-color: $primary;
-      border-right-color: $secondary;
-      border-bottom-color: $primary;
-      border-left-color: $secondary;
-      border-radius: 100%;
-   }
-}
-
-@-webkit-keyframes spin {
-   to {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-   }
-}
-
-@keyframes spin {
-   to {
-      -webkit-transform: rotate(360deg);
-      transform: rotate(360deg);
-   }
 }

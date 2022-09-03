@@ -6,23 +6,22 @@
  * @type {HTMLTemplateElement}
  */
 class HeroBanner {
-   constructor(data, accessibilityIndex) {
+   constructor(data) {
       this._data = data
-      this._index = accessibilityIndex
       this.$heroBanner = document.querySelector('#hero-banner')
    }
    getInformationSection() {
       const $information = document.createElement('article')
       $information.classList.value = 'header__information'
-      $information.ariaLabel = "Informations"
-      $information.tabIndex = this._index + 1
+      $information.ariaLabel = "Informations sur l'artiste"
+      $information.tabIndex = 0
       return $information
    }
    getH1({ name }) {
       const $h1 = document.createElement('h2')
       $h1.innerText = name
       $h1.classList.value = 'header__title'
-      $h1.ariaLabel = `Nom de du/de la photographe: ${name}`
+      $h1.ariaLabel = `Nom de l'artiste: ${name}`
 
       return $h1
    }

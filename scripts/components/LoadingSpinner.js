@@ -5,7 +5,6 @@ class LoadingSpinner {
       this.$loader = document.createElement('div')
       this.$loader.classList.value = 'duo'
       this.$loader.ariaHidden = 'true'
-      this.$loader.tabIndex = -1
    }
 
    renderSpinner(){

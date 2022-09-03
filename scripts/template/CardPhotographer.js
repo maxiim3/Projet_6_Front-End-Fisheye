@@ -1,13 +1,6 @@
 class CardPhotographer {
-   #data
-
-   constructor(data, accessibilityIndex) {
-      this.#data = data
-      this._index = accessibilityIndex
-   }
-
-   get data() {
-      return this.#data
+   constructor(photographer) {
+      this._photographer = photographer
    }
 
    getCardWrapper({ name }) {
@@ -18,17 +11,15 @@ class CardPhotographer {
    getInformationSection() {
       const $information = document.createElement('ul')
       $information.classList.value = 'photographer__information'
-      $information.ariaLabel = 'Plus d\'informations'
-      $information.tabIndex = this._index + 1
+      $information.ariaLabel = "Plus d'informations"
+      $information.tabIndex = 0
       return $information
    }
 
    getLink({ id }) {
-      const link = new LinkComponent(
-         'accéder à la page de l\'artiste',
-         this._index,
-         { photographer: { id: 'photographer', value: id } },
-      )
+      const link = new LinkComponent("accéder à la page de l'artiste", {
+         photographer: { id: 'photographer', value: id },
+      })
       return link.createComponent()
    }
 
@@ -78,21 +69,21 @@ class CardPhotographer {
 
    createCard() {
       // wrapper
-      const $card = this.getCardWrapper(this.data)
+      const $card = this.getCardWrapper(this._photographer)
       //Link
-      const $link = this.getLink(this.data)
+      const $link = this.getLink(this._photographer)
       //img
-      const $portrait = this.getPortrait(this.data)
+      const $portrait = this.getPortrait(this._photographer)
       //h2
-      const $h2 = this.getH2(this.data)
+      const $h2 = this.getH2(this._photographer)
       //Info
       const $information = this.getInformationSection()
       //city
-      const $city = this.getCity(this.data)
+      const $city = this.getCity(this._photographer)
       //tag
-      const $tagline = this.getTagLine(this.data)
+      const $tagline = this.getTagLine(this._photographer)
       // price
-      const $price = this.getPrice(this.data)
+      const $price = this.getPrice(this._photographer)
 
       $link.appendChild($portrait)
       $link.appendChild($h2)

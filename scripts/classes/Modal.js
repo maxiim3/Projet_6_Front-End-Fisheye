@@ -1,14 +1,12 @@
 class Modal {
    constructor() {
       this.$modal = document.querySelector('#contact_modal')
+      this.$innerModal = document.querySelector('#contact_modal .modal__inner')
       this.$modal.tabIndex = -1
       this.$openBtn = document.querySelector('#showModal')
-      this.$openBtn.tabIndex = "Ouvrir le formulaire"
-      this.$openBtn.ariaLabel =
+      this.$openBtn.ariaLabel = 'Ouvrir le formulaire'
       this.$closeBtn = document.querySelector('#closeModal')
-      this.$closeBtn.tabIndex = 0
-      this.$closeBtn.ariaLabel = "Fermer la fenêtre du formulaire"
-
+      this.$closeBtn.ariaLabel = 'Fermer la fenêtre du formulaire'
    }
 
    openModal(e) {
@@ -20,7 +18,7 @@ class Modal {
       // update dom
       this.$modal.style.display = 'flex'
       this.$modal.dataset.isOpen = 'true'
-
+      document.querySelector('.modal__inner').focus({ focusVisible: true })
       // remove listeners
       this.$openBtn.removeEventListener('click', this.openModal)
 
@@ -30,16 +28,25 @@ class Modal {
    }
 
    hideModal() {
-      // update dom
-      this.$modal.style.display = 'none'
-      this.$modal.dataset.isOpen = 'false'
+      this.$innerModal.classList.add('animate__fade-out')
+      this.$innerModal.classList.add('animate__shrink')
+      this.$modal.classList.add('animate__fade-out')
+      const timeOutBeforeClosing = setTimeout(() => {
+         // update dom
+         this.$modal.style.display = 'none'
+         this.$modal.dataset.isOpen = 'false'
 
-      // remove listeners
-      this.$closeBtn.removeEventListener('click', this.closeWithMouse)
-      document.removeEventListener('keydown', this.closeWithKeyboard)
+         // remove listeners
+         this.$closeBtn.removeEventListener('click', this.closeWithMouse)
+         document.removeEventListener('keydown', this.closeWithKeyboard)
 
-      // add listeners
-      this.$openBtn.addEventListener('click', e => this.openModal(e))
+         // add listeners
+         this.$openBtn.addEventListener('click', e => this.openModal(e))
+         this.$innerModal.classList.remove('animate__fade-out')
+         this.$innerModal.classList.remove('animate__shrink')
+         this.$modal.classList.remove('animate__fade-out')
+         clearTimeout(timeOutBeforeClosing)
+      }, 450)
    }
 
    closeWithKeyboard(e) {

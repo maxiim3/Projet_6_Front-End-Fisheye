@@ -1,7 +1,7 @@
 /**
  * Sort an Array
  * @param type { String } "titre" | "date" | "popularite"
- * @param container {NodeList}
+ * @param container {HTMLElement}
  */
 function sortBy(type, container) {
       const { childNodes: children } = container

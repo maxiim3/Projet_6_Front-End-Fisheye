@@ -11,7 +11,7 @@ class LikeCounter {
             this.count++
             break
          case 'DEC':
-            this.count--
+            this.count > 0 ? this.count-- : this.count = 0
             break
          default:
             throw 'Action inconnue...'
@@ -19,23 +19,3 @@ class LikeCounter {
       this.media._data.likes= this.count
    }
 }
-/*
-
-class LikeSubject {
-   constructor() {
-      this.observers = []
-   }
-
-   subscribe(observer) {
-      this.observers.push(observer)
-   }
-
-   unsubscribe(observer) {
-      this._observers = this._observers.filter(obs => obs !== observer)
-   }
-
-   fire(action) {
-      this.observers.forEach(obs => obs.update(action))
-   }
-}
-*/

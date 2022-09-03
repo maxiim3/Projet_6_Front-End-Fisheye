@@ -1,7 +1,6 @@
 class MediaFactory {
    data
    type
-   thumbnail
    media
    _withVideoControl
 
@@ -14,7 +13,7 @@ class MediaFactory {
    constructor(data, withVideoControl = false) {
       this._withVideoControl = withVideoControl
 
-      const { mediaType: type, title, mediaLink: url, id, photographer } = data
+      const { mediaType: type, title, mediaLink: url, photographer } = data
       try {
          switch (type) {
             case 'image':

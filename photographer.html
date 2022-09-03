@@ -24,6 +24,7 @@
       <script src="scripts/classes/Form.js"></script>
       <script src="scripts/classes/Modal.js"></script>
       <script src="scripts/classes/Like.js"></script>
+      <script src="scripts/classes/Filter.js"></script>
 
       <!--Models Constructor-->
       <script
@@ -102,6 +103,37 @@
    <!--endregion-->
 
    <body>
+      <!--   region Contact Modal-->
+      <section id="contact_modal">
+         <article
+            class="modal__inner"
+            tabindex="-1">
+            <header tabindex="0">
+               <h2 tabindex="0">Contactez-moi</h2>
+               <h3
+                  id="form_photographer"
+                  tabindex="0"></h3>
+               <button
+                  id="closeModal"
+                  aria-roledescription="fermer le formulaire">
+                  <span class="fa-solid fa-xmark"></span>
+               </button>
+            </header>
+            <!--   region Form-->
+            <form id="form">
+               <!--modal form display here-->
+            </form>
+            <!--   endregion-->
+         </article>
+      </section>
+      <!--   endregion-->
+
+      <!--region Lightbox-->
+      <section
+         class="lightbox"
+         id="lightbox"></section>
+      <!--endregion-->
+
       <!--   region Header-->
       <header>
          <a href="index.html">
@@ -142,34 +174,5 @@
       </main>
 
       <!--   endregion-->
-      <!--   region Contact Modal-->
-      <section
-         id="contact_modal"
-         tabindex="0">
-         <article
-            class="modal__inner"
-            tabindex="0">
-            <header>
-               <h2>Contactez-moi</h2>
-               <h3 id="form_photographer"></h3>
-               <span
-                  class="fa-solid fa-xmark"
-                  id="closeModal"
-                  role="button"
-                  aria-roledescription="fermer le formulaire"></span>
-            </header>
-            <!--   region Form-->
-            <form id="form">
-               <!--modal form display here-->
-            </form>
-            <!--   endregion-->
-         </article>
-      </section>
-      <!--   endregion-->
-      <!--region Lightbox-->
-      <section
-         class="lightbox"
-         id="lightbox"></section>
-      <!--endregion-->
    </body>
 </html>
