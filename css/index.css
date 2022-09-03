@@ -610,34 +610,36 @@ header h1 {
 .lightbox__media-wrapper .imgMedia[data-visible=true] {
   visibility: visible;
 }
-.lightbox .fa-solid {
-  font-size: 64px;
+.lightbox .navigation {
   position: absolute;
-  cursor: pointer;
-  color: #901c1c;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
 }
-.lightbox .fa-solid.fa-angle-right, .lightbox .fa-solid.fa-angle-left, .lightbox .fa-solid.fa-xmark {
-  transition: color 350ms;
-}
-.lightbox .fa-solid.fa-angle-right:active, .lightbox .fa-solid.fa-angle-left:active, .lightbox .fa-solid.fa-xmark:active {
-  animation: navigation 450ms 100ms ease-in-out;
-  color: black;
-}
-.lightbox .fa-solid.fa-angle-right:hover, .lightbox .fa-solid.fa-angle-left:hover, .lightbox .fa-solid.fa-xmark:hover {
-  transition: color 350ms;
-  color: black;
-}
-.lightbox .fa-solid.fa-angle-right {
-  top: 50%;
-  right: 60px;
-}
-.lightbox .fa-solid.fa-angle-left {
+.lightbox .navigation--previous {
   top: 50%;
   left: 60px;
 }
-.lightbox .fa-solid.fa-xmark {
+.lightbox .navigation--next {
+  top: 50%;
+  right: 60px;
+}
+.lightbox .navigation--close {
   top: 60px;
   right: 60px;
+}
+.lightbox .navigation:active .fa-solid {
+  animation: navigation 450ms 100ms ease-in-out;
+  color: black;
+}
+.lightbox .navigation:hover .fa-solid {
+  transition: color 350ms;
+  color: black;
+}
+.lightbox .navigation .fa-solid {
+  font-size: 64px;
+  cursor: pointer;
+  color: #901c1c;
+  transition: color 350ms;
 }
 
 .focusNavigation {

@@ -7,7 +7,7 @@ class MediaConstructor {
 
    get id() {
       return this._data['id']
-   }
+   }''
 
    get photographerId() {
       return this._data['photographerId']

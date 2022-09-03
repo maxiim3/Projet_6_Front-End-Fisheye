@@ -7,7 +7,7 @@ class App {
 
    async getPhotographers() {
       const allData = await this.api.fetch()
-      return allData['photographers']
+      return allData['photographers'] // Data
    }
 
    async displayPhotographers(photographers) {

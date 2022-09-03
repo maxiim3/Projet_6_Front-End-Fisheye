@@ -102,6 +102,7 @@ class Filter {
    async init() {
       await this.renderFilter()
       const options = document.querySelector('.sort__options')
+
       const buttons = [
          ...options.querySelectorAll('p'),
          document.querySelector('.sort__options--icon'),

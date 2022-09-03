@@ -27,13 +27,14 @@ class App {
     */
    async getData() {
       const { media: allMedias, photographers: allPhotographers } = await this.api.fetch()
+
+      // get photographer ID from URL params
       const paramsId = this.getParamsFromURL('photographer')
-
+      // Filter JSON Data
       const filteredPhotographer = allPhotographers.filter(ph => ph.id === paramsId)[0]
+      // Constructor Pattern
       this._photographer = new PhotographerConstructor(filteredPhotographer)
-
-      document.querySelector('h1').textContent = this._photographer.name
-
+      // Filter Medias
       allMedias
          .filter(data => data.photographerId === this._photographer.id)
          .map(data => {
@@ -45,6 +46,10 @@ class App {
       return (document.title = this._photographer.name)
    }
 
+   setMainTitle() {
+      return (document.querySelector('h1').textContent = this._photographer.name)
+   }
+
    async renderFormModal() {
       document.querySelector('#form_photographer').textContent = this._photographer.name
       const modal = new Modal()
@@ -54,14 +59,20 @@ class App {
    }
 
    async renderPage() {
+      this.setDocumentTitle()
+      this.setMainTitle()
+
       this.spinnerLoader.removeSpinner()
 
+      // Render Hero Banner
       const heroBanner = new HeroBanner(this._photographer)
       heroBanner.createHeroBanner()
 
+      // Render Aside Informations
       const aside = new AsideInformation(this._photographer)
       aside.init()
 
+      // Decorator Pattern with Like Counter => () => renderMedias()
       this._medias = this._medias.map(media => MediaWithLikeCounter(media, new LikeCounter(media)))
       await this.renderMedias(this._medias)
 
@@ -76,6 +87,9 @@ class App {
       })
    }
 
+   /**
+    * @return {HTMLElement} Count and initiate the total number of likes element in the page, and set it in aside section
+    */
    async countTotalLike() {
       const $asideLike = document
          .querySelector('.photographer__aside')
@@ -94,7 +108,6 @@ class App {
    async init() {
       this.spinnerLoader.renderSpinner()
       await this.getData()
-      this.setDocumentTitle()
       await this.renderFormModal()
 
       setTimeout(async () => {
@@ -102,8 +115,6 @@ class App {
          await this.countTotalLike()
          const filter = new Filter()
          await filter.init()
-         /*this.renderFilter()
-         await this.handleSort()*/
          const lb = new Lightbox(this._photographer, this._medias)
          await lb.init()
       }, 300)

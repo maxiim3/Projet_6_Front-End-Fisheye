@@ -36,6 +36,7 @@ class MediaFactory {
       this.media.src = url
       this.media.classList.value = 'imgMedia'
       this.media.alt = `${title} par ${photographer.name}`
+      this.media.ariaLabel = `${title} par ${photographer.name}`
 
    }
 

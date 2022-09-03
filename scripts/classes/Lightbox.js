@@ -14,29 +14,41 @@ class Lightbox {
       // DOM Nodes
       this.$main = document.getElementById('main')
       this.$lightbox = document.querySelector('#lightbox')
+
       this.$lightboxContent = document.createElement('div')
-      this.$mediaContainer = document.createElement('div')
-      this.$btnPrevious = document.createElement('span')
-      this.$btnNext = document.createElement('span')
-      this.$btnClose = document.createElement('span')
-      this.$mediaTitle = document.createElement('h3')
-      // Set CSS Classes
       this.$lightboxContent.classList.value = 'lightbox__container'
+
+      this.$mediaContainer = document.createElement('div')
       this.$mediaContainer.classList.value = 'lightbox__media-wrapper'
+      this.$mediaContainer.tabIndex = 0
 
-      this.$btnPrevious.classList.value = 'fa-solid fa-angle-left'
-      this.$btnPrevious.setAttribute('role', 'button')
-      this.$btnPrevious.ariaRoleDescription = "naviguer à l'élément précédent"
+      this.$previousIcon = document.createElement('span')
+      this.$previousIcon.classList.value = 'fa-solid fa-angle-left'
+      this.$previousBtn = document.createElement('button')
+      this.$previousBtn.classList.value = 'navigation navigation--previous'
+      this.$previousBtn.ariaRoleDescription = "naviguer à l'élément précédent"
+      this.$previousBtn.appendChild(this.$previousIcon)
 
-      this.$btnNext.classList.value = 'fa-solid fa-angle-right'
-      this.$btnNext.setAttribute('role', 'button')
-      this.$btnNext.ariaRoleDescription = "naviguer à l'élément suivant"
+      this.$nextIcon = document.createElement('span')
+      this.$nextIcon.classList.value = 'fa-solid fa-angle-right'
+      this.$nextBtn = document.createElement('button')
+      this.$nextBtn.classList.value = 'navigation navigation--next'
+      this.$nextBtn.ariaRoleDescription = "naviguer à l'élément suivant"
+      this.$nextBtn.appendChild(this.$nextIcon)
 
-      this.$btnClose.classList.value = 'fa-solid fa-xmark'
-      this.$btnClose.setAttribute('role', 'button')
-      this.$btnClose.ariaRoleDescription = 'Fermer la fenêtre'
+      this.$closeIcon = document.createElement('span')
+      this.$closeIcon.classList.value = 'fa-solid fa-xmark'
+      this.$closeIcon.setAttribute('role', 'button')
+      this.$closeBtn = document.createElement('button')
+      this.$closeBtn.classList.value = 'navigation navigation--close'
+      this.$closeBtn.ariaRoleDescription = 'Fermer la fenêtre'
+      this.$closeBtn.appendChild(this.$closeIcon)
 
+      this.$mediaTitle = document.createElement('h3')
       this.$mediaTitle.classList.value = 'lightbox__title'
+      this.$mediaTitle.ariaLabel = 'titre'
+      this.$mediaTitle.tabIndex = 0
+
       // All Medias from page
       this.allMediaLink = [...document.querySelectorAll('.media__link')]
       // Spinner Loader Class
@@ -68,6 +80,11 @@ class Lightbox {
       e.preventDefault()
       this.$activeMedia = $mediaLink
 
+      document.querySelector('.lightbox__media-wrapper').focus({ focusVisible: true })
+      //remove focus on main logo link
+      document.querySelector('header a').ariaHidden = 'true'
+      document.querySelector('header a').tabIndex = -1
+
       const previousMediaCard = document.querySelector('.lightbox__displayed-media')
       if (previousMediaCard) this.$mediaContainer.removeChild(previousMediaCard)
 
@@ -90,11 +107,11 @@ class Lightbox {
          /*Enable KeyBoard Navigation*/
          document.addEventListener('keydown', e => this.keyboardNavigation(e))
          /*Enable Close Event*/
-         this.$btnClose.addEventListener('click', e => this.closeLightbox(e))
+         this.$closeBtn.addEventListener('click', e => this.closeLightbox(e))
          /*Enable Previous Event*/
-         this.$btnPrevious.addEventListener('click', e => this.changeMedia(e, 'previous'))
+         this.$previousBtn.addEventListener('click', e => this.changeMedia(e, 'previous'))
          /*Enable Next Event*/
-         this.$btnNext.addEventListener('click', e => this.changeMedia(e, 'next'))
+         this.$nextBtn.addEventListener('click', e => this.changeMedia(e, 'next'))
       }, 300)
 
       this.removeEventListenerToAllMedias()
@@ -114,14 +131,17 @@ class Lightbox {
     */
    closeLightbox(e) {
       this.$lightbox.dataset.open = 'false'
+      //reset focus on main logo link
+      document.querySelector('header a[href="index.html"]').ariaHidden = 'false'
+      document.querySelector('header a').tabIndex = 0
 
       setTimeout(() => {
          this.$main.dataset.lightboxIsOpen = 'false'
       }, 250)
 
       this.addEventListenerToAllMedias()
-      this.$btnPrevious.removeEventListener('click', this.changeMedia)
-      this.$btnNext.removeEventListener('click', this.changeMedia)
+      this.$previousBtn.removeEventListener('click', this.changeMedia)
+      this.$nextBtn.removeEventListener('click', this.changeMedia)
       document.removeEventListener('keydown', this.keyboardNavigation)
       this.spinnerLoader.renderSpinner()
    }
@@ -176,32 +196,33 @@ class Lightbox {
       switch (e.key) {
          case 'ArrowLeft':
             await this.changeMedia(e, 'previous')
-            this.$btnPrevious.classList.add('focusNavigation')
+            this.$previousBtn.classList.add('focusNavigation')
             break
          case 'ArrowRight':
             await this.changeMedia(e, 'next')
-            this.$btnNext.classList.add('focusNavigation')
+            this.$nextBtn.classList.add('focusNavigation')
             break
          case 'Escape':
             this.closeLightbox(e)
-            this.$btnClose.classList.add('focusNavigation')
+            this.$closeBtn.classList.add('focusNavigation')
             break
       }
    }
 
    async init() {
       this.addEventListenerToAllMedias()
+
       document.addEventListener('keyup', e => {
          setTimeout(() => {
             switch (e.key) {
                case 'ArrowLeft':
-                  this.$btnPrevious.classList.remove('focusNavigation')
+                  this.$previousBtn.classList.remove('focusNavigation')
                   break
                case 'ArrowRight':
-                  this.$btnNext.classList.remove('focusNavigation')
+                  this.$nextBtn.classList.remove('focusNavigation')
                   break
                case 'Escape':
-                  this.$btnClose.classList.remove('focusNavigation')
+                  this.$closeBtn.classList.remove('focusNavigation')
                   break
             }
          }, 250)
@@ -209,9 +230,9 @@ class Lightbox {
 
       this.$lightboxContent.appendChild(this.$mediaContainer)
       this.$lightboxContent.appendChild(this.$mediaTitle)
-      this.$lightbox.appendChild(this.$btnPrevious)
-      this.$lightbox.appendChild(this.$btnClose)
-      this.$lightbox.appendChild(this.$btnNext)
+      this.$lightbox.appendChild(this.$previousBtn)
+      this.$lightbox.appendChild(this.$closeBtn)
+      this.$lightbox.appendChild(this.$nextBtn)
       this.$lightbox.appendChild(this.$lightboxContent)
    }
 }

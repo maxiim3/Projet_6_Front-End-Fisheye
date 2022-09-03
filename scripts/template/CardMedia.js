@@ -60,17 +60,21 @@ class CardMedia {
          ev.preventDefault()
 
          const dom = { card, $likesCounter, $asideLike }
-         if (card.dataset.isLiked === 'true') {
-            card.dataset.isLiked = 'false'
-            this.updateLikes('DEC', dom)
-         } else {
-            card.dataset.isLiked = 'true'
-            this.updateLikes('INC', dom)
+
+         switch (card.dataset.isLiked) {
+            case 'true':
+               card.dataset.isLiked = 'false'
+               this.updateLikes('DEC', dom)
+               break
+            case 'false':
+               card.dataset.isLiked = 'true'
+               this.updateLikes('INC', dom)
+               break
          }
       })
    }
 
-   updateLikes(type, { card, $likesCounter, $asideLike, LikeCounter }) {
+   updateLikes(type, { card, $likesCounter, $asideLike }) {
       switch (type) {
          case 'DEC':
             this._media.LikeCounter.update('DEC')

@@ -11,9 +11,8 @@ class Api {
 
    async fetch() {
       try {
-         const fetchData = await fetch(this.url)
-         const response = await fetchData.json()
-         return await response
+         const fetchData = await fetch(this.url) // Promesse
+         return await fetchData.json() // renvoie un objet JSON
       } catch (e) {
          throw new Error('Un problème est survenu...')
       }

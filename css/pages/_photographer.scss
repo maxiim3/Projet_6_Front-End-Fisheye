@@ -365,6 +365,7 @@
    height: 18.5px;
 }
 
+//region Lightbox
 .lightbox {
    position: absolute;
    top: 0;
@@ -421,45 +422,51 @@
       }
    }
 
-   .fa-solid {
-      font-size: $text__64;
+   .navigation {
       position: absolute;
-      cursor: pointer;
-      color: $primary;
       $offset: 60px;
+      border: none;
+      background-color: rgba(0, 0, 0, 0);
 
-      &.fa-angle-right,
-      &.fa-angle-left,
-      &.fa-xmark {
-         transition: color 350ms;
+      &--previous {
+         top: 50%;
+         left: $offset;
+      }
 
-         &:active {
+      &--next {
+         top: 50%;
+         right: $offset;
+      }
+
+      &--close {
+         top: $offset;
+         right: $offset;
+      }
+
+      &:active {
+         .fa-solid {
             animation: navigation 450ms 100ms ease-in-out;
             color: $dark;
          }
+      }
 
-         &:hover {
+      &:hover {
+         .fa-solid {
             transition: color 350ms;
             color: $dark;
          }
       }
 
-      &.fa-angle-right {
-         top: 50%;
-         right: $offset;
-      }
-
-      &.fa-angle-left {
-         top: 50%;
-         left: $offset;
-      }
-
-      &.fa-xmark {
-         top: $offset;
-         right: $offset;
+      .fa-solid {
+         font-size: $text__64;
+         cursor: pointer;
+         color: $primary;
+         transition: color 350ms;
       }
    }
 }
+
+//endregion
 
 .focusNavigation {
    animation: navigation 250ms ease-in-out;
