@@ -146,6 +146,7 @@ main[data-lightbox-is-open=true] {
 
 .cardLayout {
   animation: fadeIn 400ms both ease-in-out 600ms;
+  z-index: 0;
 }
 
 .hero-banner {
@@ -172,6 +173,11 @@ main[data-lightbox-is-open=true] {
   column-gap: 70px;
   row-gap: 70px;
   margin-block: 110px 70px;
+}
+@media screen and (min-width: 1920px) {
+  .cardWrapper {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 .cardWrapper > .duo {
   position: absolute;
@@ -208,6 +214,12 @@ header h1 {
 .page__main {
   width: 100%;
   margin: 0;
+}
+@media screen and (min-width: 1600px) {
+  .page__main {
+    margin-block: 0;
+    margin-inline: 7vw;
+  }
 }
 .page__main .cardWrapper {
   row-gap: 70px;
@@ -305,31 +317,54 @@ header h1 {
 
 .sort__wrapper {
   font-size: 18px;
-  position: absolute;
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
+  width: 360px;
   gap: 20px;
+  position: relative;
+  z-index: 999;
+}
+.sort__wrapper button:not(.sort__trigger) {
+  font-weight: bold;
+  background-color: #901c1c;
+  color: #fafafa;
+  border: none;
+  text-align: left;
 }
 .sort__label {
   font-weight: bold;
 }
-.sort__options {
-  z-index: 10;
+.sort__trigger {
+  z-index: 999;
+  border: none;
+  opacity: 0;
+  cursor: pointer;
+  display: block;
+}
+.sort__trigger:focus-visible {
+  opacity: 0.5;
+}
+.sort__container, .sort__trigger {
+  width: 180px;
+  height: 40px;
+  padding: 1px 5px 5px;
+  border-radius: 5px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.sort__container {
+  z-index: 555;
   display: flex;
   overflow: hidden;
   align-items: start;
   flex-flow: column nowrap;
   justify-content: space-between;
-  width: 180px;
-  height: 40px;
-  padding: 1px 5px 5px;
   transition: height 450ms;
-  color: #fafafa;
-  border-radius: 5px;
   background-color: #901c1c;
 }
-.sort__options p {
+.sort__container button {
   position: relative;
   display: block;
   width: 100%;
@@ -338,34 +373,38 @@ header h1 {
   padding-left: 10px;
   transition: opacity 550ms ease-in-out;
 }
-.sort__options p[data-hidden=true] {
+.sort__container button:focus-visible {
+  outline: 1px yellow;
+}
+.sort__container button[data-hidden=true] {
   opacity: 0;
 }
-.sort__options p:hover {
+.sort__container button:hover, .sort__container button:focus-visible {
   cursor: pointer;
+  border: 1px solid yellow;
 }
-.sort__options--icon {
+.sort__container .sort__icon {
   font-size: 22px;
   position: absolute;
-  z-index: 15;
+  z-index: 600;
   top: 10px;
   right: 10px;
   transition: rotate 350ms ease-in-out;
   color: white;
   cursor: pointer;
 }
-.sort__options[data-dropped=true] {
+.sort__container[data-dropped=true] {
   height: 140px;
   box-shadow: 2px 3px 5px #525252;
 }
-.sort__options[data-dropped=true] p {
+.sort__container[data-dropped=true] button {
   opacity: 1;
 }
-.sort__options[data-dropped=true] p:hover {
+.sort__container[data-dropped=true] button:hover {
   text-decoration: underline;
   text-underline-offset: 7px;
 }
-.sort__options[data-dropped=true] p:not(:last-of-type):after {
+.sort__container[data-dropped=true] button:not(:last-of-type):after {
   position: absolute;
   bottom: -5px;
   left: 0;
@@ -373,7 +412,7 @@ header h1 {
   content: "";
   border-top: 1px rgba(255, 255, 255, 0.8) solid;
 }
-.sort__options[data-dropped=true] .sort__options--icon {
+.sort__container[data-dropped=true] .sort__icon {
   rotate: 180deg;
 }
 
@@ -555,6 +594,7 @@ header h1 {
   object-fit: cover;
   object-position: top;
   margin-inline: auto;
+  z-index: -5;
 }
 
 .likeIcon {

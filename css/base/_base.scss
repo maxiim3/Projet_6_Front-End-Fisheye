@@ -22,6 +22,7 @@ $card-layout-width: 355px;
 $card-layout-height: 340px;
 
 $grid-columns: 3;
+$grid-columns--wide: 4;
 
 @mixin links {
    background: $primary;

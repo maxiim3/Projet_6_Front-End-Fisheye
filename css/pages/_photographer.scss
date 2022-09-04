@@ -62,38 +62,65 @@
 
 //endregion
 
-//region Sort Menu Drop-Down
+//region Filter Menu Drop-Down
 .sort {
    &__wrapper {
       font-size: $text__18;
-      position: absolute;
       display: flex;
       justify-content: space-between;
       margin-top: 15px;
-      //width: 300px;
+      width: 360px;
       gap: 20px;
+      position: relative;
+      z-index: 999;
+
+      button:not(.sort__trigger) {
+         font-weight: bold;
+         background-color: $primary;
+         color: $white;
+         border: none;
+         text-align: left;
+      }
    }
 
    &__label {
       font-weight: bold;
    }
 
-   &__options {
-      z-index: 10;
+   &__trigger {
+      z-index: 999;
+      border: none;
+      opacity: 0;
+      cursor: pointer;
+      display: block;
+
+      &:focus-visible {
+         opacity: 0.5;
+      }
+   }
+
+   &__container,
+   &__trigger {
+      width: 180px;
+      height: 40px;
+      padding: 1px 5px 5px;
+      border-radius: 5px;
+      position: absolute;
+      right: 0;
+      top: 0;
+   }
+
+   &__container {
+      z-index: 555;
       display: flex;
       overflow: hidden;
       align-items: start;
       flex-flow: column nowrap;
       justify-content: space-between;
-      width: 180px;
-      height: 40px;
-      padding: 1px 5px 5px;
       transition: height 450ms;
-      color: $white;
-      border-radius: 5px;
       background-color: $primary;
 
-      p {
+      button {
          position: relative;
          display: block;
          width: 100%;
@@ -102,19 +129,25 @@
          padding-left: 10px;
          transition: opacity 550ms ease-in-out;
 
+         &:focus-visible {
+            outline: 1px yellow;
+         }
+
          &[data-hidden='true'] {
             opacity: 0;
          }
 
-         &:hover {
+         &:hover,
+         &:focus-visible {
             cursor: pointer;
+           border: 1px solid yellow;
          }
       }
 
-      &--icon {
+      .sort__icon {
          font-size: 22px;
          position: absolute;
-         z-index: 15;
+         z-index: 600;
          top: 10px;
          right: 10px;
          transition: rotate 350ms ease-in-out;
@@ -126,7 +159,7 @@
          height: 140px;
          box-shadow: 2px 3px 5px $gray;
 
-         p {
+         button {
             opacity: 1;
 
             &:hover {
@@ -146,7 +179,7 @@
             }
          }
 
-         .sort__options--icon {
+         .sort__icon {
             rotate: 180deg;
          }
       }
@@ -260,6 +293,7 @@
 
 //endregion
 
+//region Media Card
 .card__information {
    display: flex;
    align-items: center;
@@ -358,12 +392,15 @@
    object-fit: cover;
    object-position: top;
    margin-inline: auto;
+   z-index: -5;
 }
 
 .likeIcon {
    width: 18px;
    height: 18.5px;
 }
+
+//endregion
 
 //region Lightbox
 .lightbox {

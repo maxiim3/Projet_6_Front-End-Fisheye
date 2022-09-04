@@ -4,35 +4,37 @@ class Filter {
    }
 
    async renderFilter() {
-      const options = document.createElement('div')
-      options.ariaLabel = 'sélectionner pour trier les éléments'
-      options.classList.value = 'sort__options'
-      options.dataset.dropped = 'false'
-      options.tabIndex = 0
+      const triggerBtn = document.createElement('button')
+      triggerBtn.ariaLabel = 'sélectionner pour trier les éléments'
+      triggerBtn.classList.value = 'sort__trigger'
 
-      const date = document.createElement('p')
+      const filterWrapper = document.createElement('div')
+      filterWrapper.classList.value = 'sort__container'
+      filterWrapper.dataset.dropped = 'false'
+
+      const date = document.createElement('button')
       date.ariaLabel = 'trier les éléments par date'
-      date.classList.value = 'sort__options--date'
+      date.classList.value = 'sort__filters sort__filters--date'
       date.textContent = 'Date'
-      date.tabIndex = options.dataset.dropped === 'true' ? 0 : -1
-      date.ariaHidden = options.dataset.dropped === 'true' ? 'false' : 'true'
+      date.tabIndex = filterWrapper.dataset.dropped === 'true' ? 0 : -1
+      date.ariaHidden = filterWrapper.dataset.dropped === 'true' ? 'false' : 'true'
 
-      const popularity = document.createElement('p')
+      const popularity = document.createElement('button')
       popularity.ariaLabel = 'trier les éléments par popularité'
-      popularity.classList.value = 'sort__options--popularity'
+      popularity.classList.value = 'sort__filters sort__filters--popularity'
       popularity.textContent = 'Popularité'
-      popularity.tabIndex = options.dataset.dropped === 'true' ? 0 : -1
-      popularity.ariaHidden = options.dataset.dropped === 'true' ? 'false' : 'true'
+      popularity.tabIndex = filterWrapper.dataset.dropped === 'true' ? 0 : -1
+      popularity.ariaHidden = filterWrapper.dataset.dropped === 'true' ? 'false' : 'true'
 
-      const title = document.createElement('p')
+      const title = document.createElement('button')
       title.ariaLabel = 'trier les éléments par tite'
-      title.classList.value = 'sort__options--title'
+      title.classList.value = 'sort__filters sort__filters--title'
       title.textContent = 'Titre'
-      title.tabIndex = options.dataset.dropped === 'true' ? 0 : -1
-      title.ariaHidden = options.dataset.dropped === 'true' ? 'false' : 'true'
+      title.tabIndex = filterWrapper.dataset.dropped === 'true' ? 0 : -1
+      title.ariaHidden = filterWrapper.dataset.dropped === 'true' ? 'false' : 'true'
 
       const icon = document.createElement('span')
-      icon.classList.value = 'sort__options--icon fa-solid fa-angle-down'
+      icon.classList.value = 'sort__icon fa-solid fa-angle-down'
       icon.ariaHidden = 'true'
 
       const label = document.createElement('label')
@@ -41,86 +43,129 @@ class Filter {
       label.textContent = 'Trier les éléments'
       label.tabIndex = 0
 
-      options.appendChild(icon)
-      options.appendChild(title)
-      options.appendChild(popularity)
-      options.appendChild(date)
+      filterWrapper.appendChild(icon)
+      filterWrapper.appendChild(title)
+      filterWrapper.appendChild(popularity)
+      filterWrapper.appendChild(date)
 
       const wrapper = document.querySelector('.sort__wrapper')
       wrapper.appendChild(label)
-      wrapper.appendChild(options)
+      wrapper.appendChild(triggerBtn)
+      wrapper.appendChild(filterWrapper)
       wrapper.tabIndex = -1
    }
 
-   async handleSort(ev, obj) {
-      ev.preventDefault()
-      const { options, buttons, btn } = obj
+   openDropDownMenu(ev, $dropDownBtn) {
+      const $container = document.querySelector('.sort__container')
+      const $filtersBtn = [...$container.querySelectorAll('button')]
+      $dropDownBtn.style.visibility = 'hidden'
+      // todo 2. set props to open, listen tu filters,
+      $container.dataset.dropped = 'true'
+      $container.ariaExpanded = 'true'
+      $filtersBtn.forEach(
+         btn => (btn.dataset.hidden = 'false') && (btn.ariaHidden = 'false') && (btn.tabIndex = 0)
+      )
 
-      switch (options.dataset.dropped) {
-         case 'true':
-            btn.dataset.selected = 'true'
-            btn.ariaHidden = 'false'
-
-            options.dataset.dropped = 'false'
-            options.ariaExpanded = false
-
-            buttons
-               .filter(others => others !== btn)
-               .forEach(
-                  other =>
-                     (other.dataset.hidden = 'true') &&
-                     (other.ariaHidden = 'true') &&
-                     (other.dataset.selected = 'false')
-               )
-
-            btn.style.opacity = '1'
-            const buttonsIndex = buttons.indexOf(btn)
-            // ⚠️ Added +1 to index because first is icon with absolute position
-            const optionsIndex = buttons.indexOf(btn) + 1
-            if (options.childNodes[1] !== options.childNodes[optionsIndex]) {
-               // reorder buttons array
-               const target = buttons[buttonsIndex]
-               buttons.splice(buttonsIndex, 1)
-               buttons.unshift(target)
-               // ℹ️ change order => place clicked on first position
-               options.insertBefore(options.childNodes[optionsIndex], options.childNodes[1])
-            }
-            sortBy(btn.textContent, this.$mediasContainer)
-            break
-
-         case 'false':
-            options.dataset.dropped = 'true'
-            options.ariaExpanded = true
-            buttons.forEach(btn => (btn.dataset.hidden = 'false') && (btn.ariaHidden = 'false'))
-            break
-
-         default:
-            throw 'Something went wrong..'
-      }
+      $filtersBtn.forEach(filter => {
+         filter.addEventListener('click', async ev =>
+            this.handleSort(ev, $dropDownBtn, $container, $filtersBtn, filter)
+         )
+      })
    }
+
+   closeDropDownMenu($dropDownBtn, $container, $filtersBtn) {
+      $dropDownBtn.addEventListener('click', e => this.openDropDownMenu(e, $dropDownBtn))
+
+      $dropDownBtn.style.visibility = 'visible'
+      $container.dataset.dropped = 'false'
+      $container.ariaExpanded = 'false'
+   }
+
+   async handleSort(ev, $dropDownBtn, $container, $filtersBtn, filterBtn) {
+      ev.preventDefault()
+
+      if ($container.dataset.dropped === 'false') return
+
+      document.removeEventListener('click', this.openDropDownMenu)
+      console.log(filterBtn.textContent)
+
+      // set clicked filter
+      $filtersBtn.forEach(btn => {
+         btn.dataset.selected = 'false'
+         btn.ariaHidden = 'false'
+         btn.style.opacity = '1'
+         btn.tabIndex = -1
+         btn.removeEventListener('click', this.handleSort)
+      })
+
+      filterBtn.dataset.selected = 'true'
+
+      const filterIndex = $filtersBtn.indexOf(filterBtn)
+      // ⚠️ Added +1 to index because first is icon with absolute position
+      const filterNodeIndex = $filtersBtn.indexOf(filterBtn) + 1
+      this.closeDropDownMenu($dropDownBtn, $container, $filtersBtn)
+
+      if (filterNodeIndex > 1) {
+         // reorder buttons array
+         const target = $filtersBtn[filterIndex]
+         $filtersBtn.splice(filterIndex, 1)
+         $filtersBtn.unshift(target)
+         // ℹ️ change order => place clicked on first position
+         $container.insertBefore($container.childNodes[filterNodeIndex], $container.childNodes[1])
+      }
+      sortBy(filterBtn.textContent, this.$mediasContainer)
+   }
+
+   // async handleSort(ev, obj) {
+   //       ev.preventDefault()
+   //       const { options, buttons, btn } = obj
+   //
+   //       switch (options.dataset.dropped) {
+   //          case 'true':
+   //             btn.dataset.selected = 'true'
+   //             btn.ariaHidden = 'false'
+   //
+   //             options.dataset.dropped = 'false'
+   //             options.ariaExpanded = false
+   //
+   //             buttons
+   //                .filter(others => others !== btn)
+   //                .forEach(
+   //                   other =>
+   //                      (other.dataset.hidden = 'true') &&
+   //                      (other.ariaHidden = 'true') &&
+   //                      (other.dataset.selected = 'false')
+   //                )
+   //
+   //             btn.style.opacity = '1'
+   //             const buttonsIndex = buttons.indexOf(btn)
+   //             // ⚠️ Added +1 to index because first is icon with absolute position
+   //             const optionsIndex = buttons.indexOf(btn) + 1
+   //             if (options.childNodes[1] !== options.childNodes[optionsIndex]) {
+   //                // reorder buttons array
+   //                const target = buttons[buttonsIndex]
+   //                buttons.splice(buttonsIndex, 1)
+   //                buttons.unshift(target)
+   //                // ℹ️ change order => place clicked on first position
+   //                options.insertBefore(options.childNodes[optionsIndex], options.childNodes[1])
+   //             }
+   //             sortBy(btn.textContent, this.$mediasContainer)
+   //             break
+   //
+   //          case 'false':
+   //             options.dataset.dropped = 'true'
+   //             options.ariaExpanded = true
+   //             buttons.forEach(btn => (btn.dataset.hidden = 'false') && (btn.ariaHidden = 'false'))
+   //             break
+   //
+   //          default:
+   //             throw 'Something went wrong..'
+   //       }
+   //    }
 
    async init() {
       await this.renderFilter()
-      const options = document.querySelector('.sort__options')
-
-      const buttons = [
-         ...options.querySelectorAll('p'),
-         document.querySelector('.sort__options--icon'),
-      ]
-
-      buttons.forEach(btn => {
-         btn.addEventListener('click', async ev => this.handleSort(ev, { options, buttons, btn }))
-      })
-      /*options.addEventListener('focus', ev => {
-         document.addEventListener('keypress', ev => {
-            if (ev.key === 'Enter' || ev.key === ' ') {
-               ev.preventDefault()
-               console.log(ev.key)
-               const activeBtn = options.querySelector("p.dataset.selected")
-               this.handleSort(ev, { options, buttons, activeBtn })
-               // todo focus on element
-            }
-         })
-      })*/
+      const $dropDownBtn = document.querySelector('.sort__trigger')
+      $dropDownBtn.addEventListener('click', e => this.openDropDownMenu(e, $dropDownBtn))
    }
 }

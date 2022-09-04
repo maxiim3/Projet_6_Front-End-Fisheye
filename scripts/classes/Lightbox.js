@@ -38,7 +38,6 @@ class Lightbox {
 
       this.$closeIcon = document.createElement('span')
       this.$closeIcon.classList.value = 'fa-solid fa-xmark'
-      this.$closeIcon.setAttribute('role', 'button')
       this.$closeBtn = document.createElement('button')
       this.$closeBtn.classList.value = 'navigation navigation--close'
       this.$closeBtn.ariaRoleDescription = 'Fermer la fenêtre'
