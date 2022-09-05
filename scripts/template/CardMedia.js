@@ -17,25 +17,25 @@ class CardMedia {
       // like Icon
       const $likesIcon = document.createElement('span')
       $likesIcon.classList.value = 'fa-solid fa-heart card__information__icon'
+      $likesIcon.tabIndex = -1
+      $likesIcon.ariaHidden = 'true'
 
       // Like BTN | wraps like icon
       const $likeBtn = document.createElement('button')
       $likeBtn.classList.value = 'card__information__btn'
-      $likeBtn.alt = 'Cliquez pour ajouter à vos favoris'
       $likeBtn.ariaLabel = 'Sélectionner pour ajouter à vos favoris'
       $likeBtn.appendChild($likesIcon)
 
       // like Wrapper
       const $likeWrapper = document.createElement('div')
       $likeWrapper.classList.value = 'card__information__wrapper'
-      $likeWrapper.ariaHidden = 'true'
       $likeWrapper.dataset.isLiked = 'false'
       $likeWrapper.dataset.mediaId = this._media.id
       $likeWrapper.appendChild($likesCounter)
       $likeWrapper.appendChild($likeBtn)
 
       // title
-      const $mediaTitle = document.createElement('h3')
+      const $mediaTitle = document.createElement('p')
       $mediaTitle.innerText = title
       $mediaTitle.classList.value = 'card__information__title'
 
@@ -55,19 +55,24 @@ class CardMedia {
          .querySelector('.photographer__aside')
          .querySelector('.aside__count-like')
       const $likesCounter = card.querySelector('.card__information__likes')
+      const $LikeWrapper = card.querySelector('.card__information__wrapper')
 
       card.querySelector('.card__information__btn').addEventListener('click', ev => {
          ev.preventDefault()
-
+         console.log('like')
          const dom = { card, $likesCounter, $asideLike }
 
-         switch (card.dataset.isLiked) {
+         switch ($LikeWrapper.dataset.isLiked) {
             case 'true':
-               card.dataset.isLiked = 'false'
+               $LikeWrapper.dataset.isLiked = 'false'
+               card.querySelector('.card__information__btn').ariaLive = "polite"
+               card.querySelector('.card__information__btn').ariaLabel = "élément retiré des favoris"
                this.updateLikes('DEC', dom)
                break
             case 'false':
-               card.dataset.isLiked = 'true'
+               $LikeWrapper.dataset.isLiked = 'true'
+               card.querySelector('.card__information__btn').ariaLive = "polite"
+               card.querySelector('.card__information__btn').ariaLabel = "élément ajouté aux favoris"
                this.updateLikes('INC', dom)
                break
          }

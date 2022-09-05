@@ -59,7 +59,6 @@ class Filter {
       const $container = document.querySelector('.sort__container')
       const $filtersBtn = [...$container.querySelectorAll('button')]
       $dropDownBtn.style.visibility = 'hidden'
-      // todo 2. set props to open, listen tu filters,
       $container.dataset.dropped = 'true'
       $container.ariaExpanded = 'true'
       $filtersBtn.forEach(
@@ -115,53 +114,6 @@ class Filter {
       }
       sortBy(filterBtn.textContent, this.$mediasContainer)
    }
-
-   // async handleSort(ev, obj) {
-   //       ev.preventDefault()
-   //       const { options, buttons, btn } = obj
-   //
-   //       switch (options.dataset.dropped) {
-   //          case 'true':
-   //             btn.dataset.selected = 'true'
-   //             btn.ariaHidden = 'false'
-   //
-   //             options.dataset.dropped = 'false'
-   //             options.ariaExpanded = false
-   //
-   //             buttons
-   //                .filter(others => others !== btn)
-   //                .forEach(
-   //                   other =>
-   //                      (other.dataset.hidden = 'true') &&
-   //                      (other.ariaHidden = 'true') &&
-   //                      (other.dataset.selected = 'false')
-   //                )
-   //
-   //             btn.style.opacity = '1'
-   //             const buttonsIndex = buttons.indexOf(btn)
-   //             // ⚠️ Added +1 to index because first is icon with absolute position
-   //             const optionsIndex = buttons.indexOf(btn) + 1
-   //             if (options.childNodes[1] !== options.childNodes[optionsIndex]) {
-   //                // reorder buttons array
-   //                const target = buttons[buttonsIndex]
-   //                buttons.splice(buttonsIndex, 1)
-   //                buttons.unshift(target)
-   //                // ℹ️ change order => place clicked on first position
-   //                options.insertBefore(options.childNodes[optionsIndex], options.childNodes[1])
-   //             }
-   //             sortBy(btn.textContent, this.$mediasContainer)
-   //             break
-   //
-   //          case 'false':
-   //             options.dataset.dropped = 'true'
-   //             options.ariaExpanded = true
-   //             buttons.forEach(btn => (btn.dataset.hidden = 'false') && (btn.ariaHidden = 'false'))
-   //             break
-   //
-   //          default:
-   //             throw 'Something went wrong..'
-   //       }
-   //    }
 
    async init() {
       await this.renderFilter()

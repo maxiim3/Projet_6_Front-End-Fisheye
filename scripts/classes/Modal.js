@@ -27,6 +27,17 @@ class Modal {
       document.addEventListener('keydown', e => this.closeWithKeyboard(e))
    }
 
+   closeWithMouse(e) {
+      e.preventDefault()
+      this.hideModal()
+   }
+
+   closeWithKeyboard(e) {
+      if (e?.key === 'Escape') {
+         this.hideModal()
+      }
+   }
+
    hideModal() {
       this.$innerModal.classList.add('animate__fade-out')
       this.$innerModal.classList.add('animate__shrink')
@@ -47,17 +58,6 @@ class Modal {
          this.$modal.classList.remove('animate__fade-out')
          clearTimeout(timeOutBeforeClosing)
       }, 450)
-   }
-
-   closeWithKeyboard(e) {
-      if (e?.key === 'Escape') {
-         this.hideModal()
-      }
-   }
-
-   closeWithMouse(e) {
-      e.preventDefault()
-      this.hideModal()
    }
 
    init() {

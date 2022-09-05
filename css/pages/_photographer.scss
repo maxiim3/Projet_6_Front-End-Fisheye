@@ -72,7 +72,7 @@
       width: 360px;
       gap: 20px;
       position: relative;
-      z-index: 999;
+      z-index: 555;
 
       button:not(.sort__trigger) {
          font-weight: bold;
@@ -88,7 +88,7 @@
    }
 
    &__trigger {
-      z-index: 999;
+      z-index: 556;
       border: none;
       opacity: 0;
       cursor: pointer;
@@ -129,10 +129,6 @@
          padding-left: 10px;
          transition: opacity 550ms ease-in-out;
 
-         &:focus-visible {
-            outline: 1px yellow;
-         }
-
          &[data-hidden='true'] {
             opacity: 0;
          }
@@ -140,8 +136,14 @@
          &:hover,
          &:focus-visible {
             cursor: pointer;
-           border: 1px solid yellow;
          }
+
+        &:hover{
+          border: 1px solid white;
+        }
+        &:focus-visible {
+          border: 1px solid yellow;
+        }
       }
 
       .sort__icon {
@@ -191,7 +193,7 @@
 //region Modal
 #contact_modal {
    position: fixed;
-   z-index: 50;
+   z-index: 999;
    top: -10px;
    left: 0;
    display: none;
@@ -343,7 +345,7 @@
    }
 }
 
-.cardLayout[data-is-liked='true'] {
+.card__information__wrapper[data-is-liked='true'] {
    .card__information__icon,
    .card__information__likes {
       color: #d09139;
@@ -392,7 +394,7 @@
    object-fit: cover;
    object-position: top;
    margin-inline: auto;
-   z-index: -5;
+   //z-index: -5;
 }
 
 .likeIcon {
