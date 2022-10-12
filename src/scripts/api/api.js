@@ -14,7 +14,7 @@ class Api {
          const fetchData = await fetch(this.url) // Promesse
          return await fetchData.json() // renvoie un objet JSON
       } catch (e) {
-         throw new Error('Un problème est survenu...')
+         throw new Error('Un problème est survenu... Impossible de récupérer les données')
       }
    }
 

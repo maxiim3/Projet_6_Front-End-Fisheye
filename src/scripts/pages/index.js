@@ -1,6 +1,6 @@
 class App {
    constructor() {
-      this.api = new Api('/public/data/photographers.json')
+      this.api = new Api('public/data/photographers.json')
       this.$mediasContainer = document.getElementById('cardWrapper')
       this.spinnerLoader = new LoadingSpinner(this.$mediasContainer)
    }
