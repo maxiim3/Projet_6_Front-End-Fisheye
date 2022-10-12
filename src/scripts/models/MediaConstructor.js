@@ -20,7 +20,7 @@ class MediaConstructor {
    get mediaLink() {
       const {image, video} = this._data
 
-      return `assets/images/photographers/${this.photographerId}/${image || video}`
+      return `public/assets/images/photographers/${this.photographerId}/${image || video}`
    }
 
    get mediaType() {

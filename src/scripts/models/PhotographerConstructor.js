@@ -42,6 +42,6 @@ class PhotographerConstructor {
    }
 
    get portrait() {
-      return `assets/images/photographerPortrait/${this.#data['portrait']}`
+      return `public/assets/images/photographerPortrait/${this.#data['portrait']}`
    }
 }

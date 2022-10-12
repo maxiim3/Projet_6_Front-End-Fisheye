@@ -1,8 +1,9 @@
+@import "../base/base";
 //region Style.css
 
 body > header,
 body > main {
-   margin-inline: $outer-border;
+   margin-inline: 7vw;
 }
 
 header {

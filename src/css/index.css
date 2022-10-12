@@ -60,6 +60,67 @@ h1 {
   height: 50px;
 }
 
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline-color: #901c1c;
+  outline-offset: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+label,
+button,
+input,
+textarea,
+body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
+
+a:visited, a:link {
+  text-decoration: none;
+}
+
+body * :focus-visible {
+  scale: 101%;
+  transition: scale 120ms ease-out;
+}
+
+h1 {
+  margin-right: 70px;
+}
+
+.portrait {
+  width: 240px;
+  height: 240px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-inline: auto;
+}
+
+.cardLayout {
+  width: 355px;
+  height: 340px;
+}
+
+.logo {
+  height: 50px;
+}
+
 @keyframes navigation {
   0%, 60%, 100% {
     scale: 100%;
@@ -137,6 +198,67 @@ h1 {
     transform: rotate(360deg);
   }
 }
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline-color: #901c1c;
+  outline-offset: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+label,
+button,
+input,
+textarea,
+body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
+
+a:visited, a:link {
+  text-decoration: none;
+}
+
+body * :focus-visible {
+  scale: 101%;
+  transition: scale 120ms ease-out;
+}
+
+h1 {
+  margin-right: 70px;
+}
+
+.portrait {
+  width: 240px;
+  height: 240px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-inline: auto;
+}
+
+.cardLayout {
+  width: 355px;
+  height: 340px;
+}
+
+.logo {
+  height: 50px;
+}
+
 main {
   display: block;
 }
@@ -188,6 +310,67 @@ main[data-lightbox-is-open=true] {
   width: 350px;
   height: 300px;
   border-radius: 5px;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline-color: #901c1c;
+  outline-offset: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+label,
+button,
+input,
+textarea,
+body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
+
+a:visited, a:link {
+  text-decoration: none;
+}
+
+body * :focus-visible {
+  scale: 101%;
+  transition: scale 120ms ease-out;
+}
+
+h1 {
+  margin-right: 70px;
+}
+
+.portrait {
+  width: 240px;
+  height: 240px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-inline: auto;
+}
+
+.cardLayout {
+  width: 355px;
+  height: 340px;
+}
+
+.logo {
+  height: 50px;
 }
 
 body > header,
@@ -259,6 +442,67 @@ header h1 {
 .page__main .photographer__information__price {
   font-size: 10px;
   color: #525252;
+}
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+  outline-color: #901c1c;
+  outline-offset: 5px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+p,
+li,
+a,
+label,
+button,
+input,
+textarea,
+body {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
+
+a:visited, a:link {
+  text-decoration: none;
+}
+
+body * :focus-visible {
+  scale: 101%;
+  transition: scale 120ms ease-out;
+}
+
+h1 {
+  margin-right: 70px;
+}
+
+.portrait {
+  width: 240px;
+  height: 240px;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+  margin-inline: auto;
+}
+
+.cardLayout {
+  width: 355px;
+  height: 340px;
+}
+
+.logo {
+  height: 50px;
 }
 
 .hero-banner {

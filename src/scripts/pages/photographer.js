@@ -7,7 +7,7 @@ class App {
       this.$mediasContainer = document.getElementById('cardWrapper')
 
       this._countLikes = 0
-      this.api = new Api('/data/photographers.json')
+      this.api = new Api('/public/data/photographers.json')
       this.spinnerLoader = new LoadingSpinner(this.$mediasContainer)
    }
 
